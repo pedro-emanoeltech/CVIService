@@ -5,11 +5,11 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurriculoVitaeInteligenteAPI", "CurriculoVitaeInteligenteAPI\CurriculoVitaeInteligenteAPI.csproj", "{4E09017A-0B0C-49C3-8D7C-968CA61C60FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurriculoVitaeInteligenteApp", "CurriculoVitaeInteligenteApp\CurriculoVitaeInteligenteApp.csproj", "{12851EFB-005D-4FC3-ACD3-C082C9AADD73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurriculoVitaeInteligenteApp", "CurriculoVitaeInteligenteApp\CurriculoVitaeInteligenteApp.csproj", "{12851EFB-005D-4FC3-ACD3-C082C9AADD73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurriculoVitaeInteligenteDomain", "CurriculoVitaeInteligenteDomain\CurriculoVitaeInteligenteDomain.csproj", "{3311489A-DB2E-4B78-A919-36B70E81FD03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurriculoVitaeInteligenteDomain", "CurriculoVitaeInteligenteDomain\CurriculoVitaeInteligenteDomain.csproj", "{3311489A-DB2E-4B78-A919-36B70E81FD03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurriculoVitaeInteligenteInfra", "CurriculoVitaeInteligenteInfra\CurriculoVitaeInteligenteInfra.csproj", "{C046D140-7BE5-4300-8F26-45085E994B4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurriculoVitaeInteligenteInfra", "CurriculoVitaeInteligenteInfra\CurriculoVitaeInteligenteInfra.csproj", "{C046D140-7BE5-4300-8F26-45085E994B4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
