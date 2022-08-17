@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
-    public abstract class BaseEntityConta :BaseEntityComData
+    public class Idioma :BaseEntity
     {
-        public Guid? IdConta { get;  set; }
+        public string? Nome { get; set; }
+        //relacionamento
+
+
+        //navegaçao 
+        public virtual Linguagem? Linguagem { get; set; }
+
     }
 }

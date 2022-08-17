@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
-    public abstract class BaseEntityConta :BaseEntityComData
+    public class Curso : BaseEntity
     {
-        public Guid? IdConta { get;  set; }
+
+        public string? NomeCurso { get; set; }
+
+
     }
 }
