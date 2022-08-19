@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CurriculoVitaeInteligenteDomain.Content.Enums;
+
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class Idioma :BaseEntity
     {
-        public string? Nome { get; set; }
-        //relacionamento
+        public Guid? PessoaId { get; set; }
+        public Idioma? Nome { get; set; }
+        public NivelLinguagem? NivelLeitura { get; set; }
+        public NivelLinguagem? NivelEscrita { get; set; }
+        public NivelLinguagem? NivelConversacao { get; set; }
 
 
-        //navegaçao 
-        public virtual Linguagem? Linguagem { get; set; }
+        public Pessoa? Pessoa { get; set; }
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
-    public class Nacionalidade
+    public class Nacionalidade:BaseEntity
     {
         public string? Nome { get; set; }
     }

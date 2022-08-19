@@ -8,6 +8,6 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public abstract class BaseEntityConta :BaseEntityComData
     {
-        public Guid? IdConta { get;  set; }
+        public Guid? ContaId { get;  set; }
     }
 }

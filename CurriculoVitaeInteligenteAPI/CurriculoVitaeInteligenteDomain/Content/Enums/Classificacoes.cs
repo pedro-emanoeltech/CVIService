@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace CurriculoVitaeInteligenteDomain.Content.Enums
 {
@@ -14,6 +10,12 @@ namespace CurriculoVitaeInteligenteDomain.Content.Enums
     {
         CPF = 1,
         CNPJ = 2
+    }
+    public enum Status
+    {
+        Inativo = 0,
+        Ativo = 1
+        
     }
     public enum EstadoCivil
     {
@@ -93,6 +95,19 @@ namespace CurriculoVitaeInteligenteDomain.Content.Enums
         homeOffice = 1,
         híbrido = 2,
         Presencial = 3
+    }
+    public enum Idiomas
+    {
+        Ingles           = 1,
+        Chines           = 2,
+        Hindi            = 3,
+        Espanhol         = 4,
+        Frances          = 5,
+        Arabe            = 6,
+        Bengali          = 7,
+        Russo            = 8,
+        Português        = 9,
+        Indonésio        = 10
     }
 
 }

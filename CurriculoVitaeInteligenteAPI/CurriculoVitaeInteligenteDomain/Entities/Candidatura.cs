@@ -8,11 +8,11 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class Candidatura :BaseEntityComData
     {
-        public Guid? IdPerfil{ get; set; }
-        public Guid? IdVaga { get; set; }
+        public Guid? PessoaId { get; set; }
+        public Guid? VagaId { get; set; }
 
-        public PessoaFisica? PessoaFisica { get; set; }
-        public Vaga? Vaga{ get; set; }
-
+        //navegaçao
+        public Pessoa? Pessoa { get; set; }
+        public Vaga? Vaga { get; set; }
     }
 }

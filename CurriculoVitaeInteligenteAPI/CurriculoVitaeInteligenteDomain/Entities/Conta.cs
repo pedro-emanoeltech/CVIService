@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static CurriculoVitaeInteligenteDomain.Content.Enums.Classificacoes;
+﻿using CurriculoVitaeInteligenteDomain.Content.Enums;
+using System;
+
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
-    internal class Conta : BaseEntityComData
+    public class Conta : BaseEntityComData
     {
 
         public string? Email { get; set; }
@@ -16,7 +13,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         
         public TipoPerfil? TipoPerfil { get; set; }
 
-        public Boolean Status { get; set; }
+        public Status Status { get; set; } = Status.Ativo;
 
     }
 }
