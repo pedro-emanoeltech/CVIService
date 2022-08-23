@@ -30,6 +30,6 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 
 
         //navegaçao
-        public Pessoa? Pessoa { get; set; }
+        public virtual Pessoa? Pessoa { get; set; }
     }
 }

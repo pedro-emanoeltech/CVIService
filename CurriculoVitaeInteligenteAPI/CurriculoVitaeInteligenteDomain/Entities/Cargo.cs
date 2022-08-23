@@ -15,6 +15,6 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public string? DescricaoCargo { get; set; }
 
         //navegacao
-        public HistoricoProfissional? HistoricoProfissional { get; set; }
+        public virtual HistoricoProfissional? HistoricoProfissional { get; set; }
     }
 }

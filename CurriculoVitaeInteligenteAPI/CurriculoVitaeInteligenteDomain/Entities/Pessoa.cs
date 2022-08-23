@@ -39,7 +39,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 
         //navegacao
 
-        public Conta? Conta { get; set; }
+        public virtual Conta? Conta { get; set; }
 
 
 

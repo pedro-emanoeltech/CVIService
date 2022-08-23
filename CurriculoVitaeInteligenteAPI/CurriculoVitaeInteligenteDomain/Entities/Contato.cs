@@ -20,8 +20,8 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public string? CelularSecundario { get; set; }
 
         //navegacao
-        public Pessoa? Pessoa { get; set; }
+        public virtual Pessoa? Pessoa { get; set; }
 
-        public Vaga? Vaga { get; set; }
+        public virtual Vaga? Vaga { get; set; }
     }
 }

@@ -15,6 +15,6 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 
 
         //navegacao
-        public Estado? Estado { get; set; }
+        public virtual Estado? Estado { get; set; }
     }
 }

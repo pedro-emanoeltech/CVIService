@@ -12,7 +12,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public Guid? VagaId { get; set; }
 
         //navegaçao
-        public Pessoa? Pessoa { get; set; }
-        public Vaga? Vaga { get; set; }
+        public virtual Pessoa? Pessoa { get; set; }
+        public virtual Vaga? Vaga { get; set; }
     }
 }

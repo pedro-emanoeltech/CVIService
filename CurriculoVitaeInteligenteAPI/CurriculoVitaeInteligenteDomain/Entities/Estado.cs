@@ -15,6 +15,6 @@ namespace CurriculoVitaeInteligenteDomain.Entities
       
         //navegaçao
 
-        public Pais? Pais { get; set; }
+        public virtual Pais? Pais { get; set; }
     }
 }

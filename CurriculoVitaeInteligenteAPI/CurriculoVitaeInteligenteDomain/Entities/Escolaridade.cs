@@ -6,6 +6,6 @@ namespace CurriculoVitaeInteligenteDomain.Entities
     {
         public Guid? PessoaId { get; set; }
         public NivelAcademico? NivelAcademico { get; set; }
-        public Pessoa? Pessoa { get; set; }
+        public virtual Pessoa? Pessoa { get; set; }
     }
 }

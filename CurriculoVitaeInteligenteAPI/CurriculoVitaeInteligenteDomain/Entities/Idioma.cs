@@ -12,7 +12,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public NivelLinguagem? NivelConversacao { get; set; }
 
 
-        public Pessoa? Pessoa { get; set; }
+        public virtual Pessoa? Pessoa { get; set; }
 
     }
 }

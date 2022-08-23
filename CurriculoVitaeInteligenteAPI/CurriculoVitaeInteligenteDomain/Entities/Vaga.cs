@@ -21,6 +21,6 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public Contato? Contato { get; set; }
 
         //navegacao
-        public Pessoa? Pessoa { get; set; }
+        public virtual  Pessoa? Pessoa { get; set; }
     }
 }

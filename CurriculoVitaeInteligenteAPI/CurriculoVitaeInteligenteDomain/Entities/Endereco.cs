@@ -28,13 +28,13 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 
 
         //relacionamento
-        public Cidade? Cidade { get; set; }
+        public  Cidade? Cidade { get; set; }
 
-        public Estado? Estado { get; set; }
+        public  Estado? Estado { get; set; }
 
         //navegacao
-        public Pessoa? Pessoa { get; set; }
-        public Vaga? Vaga { get; set; }
+        public virtual Pessoa? Pessoa { get; set; }
+        public virtual Vaga? Vaga { get; set; }
 
 
     }

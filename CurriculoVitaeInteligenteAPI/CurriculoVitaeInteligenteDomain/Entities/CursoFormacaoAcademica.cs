@@ -23,11 +23,11 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public string? DescricaoCurso { get; set; }
 
 
-        public Curso? Curso { get; set; }
-        public Cidade? Cidade { get; set; }
+        public virtual Curso? Curso { get; set; }
+        public virtual Cidade? Cidade { get; set; }
 
 
         // navegação
-        public Pessoa? Pessoa { get; set; }
+        public virtual Pessoa? Pessoa { get; set; }
     }
 }
