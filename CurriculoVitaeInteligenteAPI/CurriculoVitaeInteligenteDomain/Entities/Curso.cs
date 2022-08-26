@@ -11,7 +11,9 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 
         public string? NomeCurso { get; set; }
 
+        public virtual CursoFormacaoAcademica? CursoFormacaoAcademica { get; set; }
 
 
-    }
+
+}
 }

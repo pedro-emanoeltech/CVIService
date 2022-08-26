@@ -8,10 +8,10 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class Endereco :BaseEntityComData
     {
-        public Guid? PessoaId { get; set; }
+        public Guid? PerfilId { get; set; }
         public Guid? VagaId { get; set; }
 
-        public string? EnderecoPessoa { get; set; }
+        public string? EnderecoPerfil { get; set; }
 
         public string? Bairro { get; set; }
 
@@ -29,11 +29,10 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 
         //relacionamento
         public  Cidade? Cidade { get; set; }
-
         public  Estado? Estado { get; set; }
 
         //navegacao
-        public virtual Pessoa? Pessoa { get; set; }
+        public virtual Perfil? Perfil { get; set; }
         public virtual Vaga? Vaga { get; set; }
 
 

@@ -22,7 +22,7 @@ namespace CurriculoVitaeInteligenteDomain.Content.Enums
         Solteiro = 1,
         Casado = 2,
         Separado = 3,
-        Divorciad = 4,
+        Divorciado = 4,
         Viuvo = 5
     }
     public enum Genero

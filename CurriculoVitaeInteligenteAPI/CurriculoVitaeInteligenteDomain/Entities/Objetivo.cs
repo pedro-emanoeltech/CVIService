@@ -9,7 +9,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
     public class Objetivo :BaseEntityComData
     {
 
-        public Guid? PessoaId { get; set; }
+        public Guid? PerfilId { get; set; }
         public string? AreaInteresse { get; set; }
 
         public double? PretensaoSalarial { get; set; }
@@ -22,6 +22,6 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public Cidade? Cidade { get; set; }
 
         //navegaçao
-        public virtual Pessoa? Pessoa { get; set; }
+        public virtual Perfil? Perfil { get; set; }
     }
 }

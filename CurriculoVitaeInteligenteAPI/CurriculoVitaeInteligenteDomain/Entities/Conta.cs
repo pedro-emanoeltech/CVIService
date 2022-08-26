@@ -15,7 +15,9 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 
         public Status Status { get; set; } = Status.Ativo;
 
-        public virtual Pessoa? Pessoa { get; set; }
+
+        //navegação
+        public virtual Perfil? Perfil { get; set; }
 
     }
 }

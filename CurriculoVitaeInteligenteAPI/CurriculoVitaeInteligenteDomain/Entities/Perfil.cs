@@ -3,7 +3,7 @@
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
-   public class Pessoa : BaseEntityConta
+   public class Perfil : BaseEntityConta
     {
         public string? Nome { get; set; }
         public string? Apelido { get; set; }
@@ -26,7 +26,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 
         public Contato? Contato { get; set; }
 
-        public Objetivo? Objetivo{ get; set; }
+        public Objetivo? Objetivo { get; set; }
 
         public Idioma? Idioma { get; set; }
 
@@ -40,6 +40,8 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         //navegacao
 
         public virtual Conta? Conta { get; set; }
+
+        public virtual IList<Candidatura>? Candidatura { get; set; }
 
 
 

@@ -11,9 +11,9 @@ namespace CurriculoVitaeInteligenteDomain.Entities
     public class CursoFormacaoAcademica : BaseEntityComData
     {
 
-        public Guid? PessoaId { get; set; }
-        public Guid? IdCurso { get; set; }
-        public Guid? IdCidade { get; set; }
+        public Guid? PerfilId { get; set; }
+        public Guid? CursoId { get; set; }
+        public Guid? CidadeId { get; set; }
         public SituacaoCurso? SituacaoCurso { get; set; }
 
         public DateTime? Inicio { get; set; }
@@ -23,11 +23,11 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public string? DescricaoCurso { get; set; }
 
 
-        public virtual Curso? Curso { get; set; }
-        public virtual Cidade? Cidade { get; set; }
+        public Curso? Curso { get; set; }
+        public  Cidade? Cidade { get; set; }
 
 
         // navegação
-        public virtual Pessoa? Pessoa { get; set; }
+        public virtual Perfil? Perfil { get; set; }
     }
 }

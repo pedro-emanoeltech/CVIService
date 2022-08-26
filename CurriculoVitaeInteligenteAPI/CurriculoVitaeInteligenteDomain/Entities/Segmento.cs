@@ -10,5 +10,8 @@ namespace CurriculoVitaeInteligenteDomain.Entities
     {
 
         public string? Descricao { get; set; }
+
+        public virtual Perfil? Perfil { get; set; }
+        public virtual HistoricoProfissional? HistoricoProfissional { get; set; }
     }
 }

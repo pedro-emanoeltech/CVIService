@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
-    public class Nacionalidade:BaseEntity
+    public class Nacionalidade: BaseEntity
     {
         public string? Nome { get; set; }
+
+        public virtual Perfil? Perfil { get; set; }
+
     }
 }

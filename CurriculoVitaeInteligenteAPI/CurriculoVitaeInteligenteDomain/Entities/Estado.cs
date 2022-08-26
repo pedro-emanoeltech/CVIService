@@ -12,9 +12,11 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public string? Nome { get; set; }
         public string? UF { get; set; }
 
-      
+
+        public virtual Endereco? Endereco { get; set; }
+
         //navegaçao
 
-        public virtual Pais? Pais { get; set; }
+        public  Pais? Pais { get; set; }
     }
 }

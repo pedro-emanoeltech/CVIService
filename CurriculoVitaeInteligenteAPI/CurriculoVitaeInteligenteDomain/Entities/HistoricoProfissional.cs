@@ -10,26 +10,24 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class HistoricoProfissional : BaseEntityComData
     {
-        public Guid? PessoaId { get; set; }
+        public Guid? PerfilId { get; set; }
 
         public string? NomeEmpresa { get; set; }
-
-        public string? Telefone { get; set; }
-
         public PorteEmpresa? Porte { get; set; }
 
-        public Guid? IdCidade { get; set; }
-
-        public Guid? IdSegmento { get; set; }
+        public Guid? ContatoId { get; set; }
+        public Guid? CidadeId { get; set; }
+        public Guid? SegmentoId { get; set; }
 
 
         //relacionamento
+        public Contato? Contato { get; set; }
         public Segmento? Segmento { get; set; }
         public Cidade? Cidade { get; set; }
         public IList<Cargo>? Cargo { get; set; }
 
 
         //navegaçao
-        public virtual Pessoa? Pessoa { get; set; }
+        public virtual Perfil? Perfil { get; set; }
     }
 }

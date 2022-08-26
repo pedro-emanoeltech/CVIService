@@ -13,5 +13,13 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 
         public string? CodigoIBge { get; set; }
 
+        public virtual Endereco? Endereco { get; set; }
+
+        public virtual Objetivo? Objetivo { get; set; }
+
+        public virtual HistoricoProfissional? HistoricoProfissional { get; set; }
+        public virtual CursoFormacaoAcademica? CursoFormacaoAcademica { get; set; }
+        
+
     }
 }
