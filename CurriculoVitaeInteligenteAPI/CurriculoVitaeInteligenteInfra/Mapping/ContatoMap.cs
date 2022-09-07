@@ -8,10 +8,10 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 {
     public class ContatoMap : BaseEntityComDataMap<Contato>
     {
-        public override void BaseConfigure(EntityTypeBuilder<Contato> builder)
+        public override void Configure(EntityTypeBuilder<Contato> builder)
         {
             // chave
-            base.BaseConfigure(builder);
+            base.Configure(builder);
             builder.Property(i => i.Email).IsRequired(true).HasMaxLength(255).HasConversion(v => v == null ? null : v.ToLower(), v => v);
             builder.Property(i => i.Telefone).HasMaxLength(20);
             builder.Property(i => i.Celular).HasMaxLength(20);

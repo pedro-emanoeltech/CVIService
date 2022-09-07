@@ -8,10 +8,10 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 {
     public class CandidaturaMap : BaseEntityComDataMap<Candidatura>
     {
-        public override void BaseConfigure(EntityTypeBuilder<Candidatura> builder)
+        public override void Configure(EntityTypeBuilder<Candidatura> builder)
         {
             // chave
-            base.BaseConfigure(builder);
+            base.Configure(builder);
 
             //indice
             builder.HasOne(i => i.Perfil).WithMany(p => p.Candidatura).HasForeignKey(i => i.PerfilId).OnDelete(DeleteBehavior.Cascade);

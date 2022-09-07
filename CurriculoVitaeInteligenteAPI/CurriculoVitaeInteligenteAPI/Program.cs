@@ -1,7 +1,13 @@
+using CurriculoVitaeInteligenteAPI.Configuration;
+using CurriculoVitaeInteligenteInfra.Context;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.ConfigurationPostgres(builder.Configuration);
+
 
 var app = builder.Build();
 
@@ -17,7 +23,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.ConfigurationPostgresEscopo();
 app.UseAuthorization();
 
 app.MapRazorPages();

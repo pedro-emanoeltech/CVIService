@@ -8,10 +8,10 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 {
     public class PerfilMap : BaseEntityContaMap<Perfil>
     {
-        public override void BaseConfigure(EntityTypeBuilder<Perfil> builder)
+        public override void Configure(EntityTypeBuilder<Perfil> builder)
         {
             // chave
-            base.BaseConfigure(builder);
+            base.Configure(builder);
             builder.Property(i => i.Nome).HasMaxLength(30);
             builder.Property(i => i.Apelido).HasMaxLength(30);
             builder.Property(i => i.CNPJ).HasMaxLength(14);

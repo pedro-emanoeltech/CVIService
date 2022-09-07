@@ -8,10 +8,10 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 {
     public class VagaMap : BaseEntityComDataMap<Vaga>
     {
-        public override void BaseConfigure(EntityTypeBuilder<Vaga> builder)
+        public override void Configure(EntityTypeBuilder<Vaga> builder)
         {
             // chave
-            base.BaseConfigure(builder);
+            base.Configure(builder);
             builder.Property(i => i.Titulo).HasMaxLength(100);
             builder.Property(i => i.Descricao).HasMaxLength(500);
             builder.Property(i => i.NomeEmpresa).HasMaxLength(100);

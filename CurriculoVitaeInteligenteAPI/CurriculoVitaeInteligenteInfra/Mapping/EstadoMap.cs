@@ -8,10 +8,10 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 {
     public class EstadoMap : BaseMap<Estado>
     {
-        public override void BaseConfigure(EntityTypeBuilder<Estado> builder)
+        public override void Configure(EntityTypeBuilder<Estado> builder)
         {
             // chave
-            base.BaseConfigure(builder);
+            base.Configure(builder);
             builder.Property(i => i.Nome).IsRequired(true).HasMaxLength(55).HasConversion(v => v == null ? null : v.ToLower(), v => v);
             builder.Property(i => i.UF).IsRequired(true).HasMaxLength(3);
 

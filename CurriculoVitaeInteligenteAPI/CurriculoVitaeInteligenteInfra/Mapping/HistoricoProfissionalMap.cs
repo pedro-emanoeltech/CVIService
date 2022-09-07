@@ -8,10 +8,10 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 {
     public class HistoricoProfissionalMap : BaseEntityComDataMap<HistoricoProfissional>
     {
-        public override void BaseConfigure(EntityTypeBuilder<HistoricoProfissional> builder)
+        public override void Configure(EntityTypeBuilder<HistoricoProfissional> builder)
         {
             // chave
-            base.BaseConfigure(builder);
+            base.Configure(builder);
             builder.Property(i => i.NomeEmpresa).IsRequired(true).HasMaxLength(255).HasConversion(v => v == null ? null : v.ToLower(), v => v);
             builder.Property(i => i.Porte).HasMaxLength(30).HasConversion(new EnumToStringConverter<PorteEmpresa>());
 

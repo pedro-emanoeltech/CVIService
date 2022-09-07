@@ -8,10 +8,10 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 {
     public class EscolaridadeMap : BaseMap<Escolaridade>
     {
-        public override void BaseConfigure(EntityTypeBuilder<Escolaridade> builder)
+        public override void Configure(EntityTypeBuilder<Escolaridade> builder)
         {
             // chave
-            base.BaseConfigure(builder);
+            base.Configure(builder);
             builder.Property(i => i.NivelAcademico).HasMaxLength(20).HasConversion(new EnumToStringConverter<NivelAcademico>());
 
 

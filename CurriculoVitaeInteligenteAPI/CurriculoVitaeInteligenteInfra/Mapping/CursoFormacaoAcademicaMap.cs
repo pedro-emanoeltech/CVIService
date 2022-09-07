@@ -8,10 +8,10 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 {
     public class CursoFormacaoAcademicaMap : BaseEntityComDataMap<CursoFormacaoAcademica>
     {
-        public override void BaseConfigure(EntityTypeBuilder<CursoFormacaoAcademica> builder)
+        public override void Configure(EntityTypeBuilder<CursoFormacaoAcademica> builder)
         {
             // chave
-            base.BaseConfigure(builder);
+            base.Configure(builder);
             builder.Property(i => i.Instituicao).IsRequired(true).HasMaxLength(255).HasConversion(v => v == null ? null : v.ToLower(), v => v);
             builder.Property(i => i.DescricaoCurso).HasMaxLength(300);
             builder.Property(i => i.SituacaoCurso).HasMaxLength(20).HasConversion(new EnumToStringConverter<SituacaoCurso>());

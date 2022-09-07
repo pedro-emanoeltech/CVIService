@@ -8,10 +8,10 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 {
     public class ObjetivoMap : BaseEntityComDataMap<Objetivo>
     {
-        public override void BaseConfigure(EntityTypeBuilder<Objetivo> builder)
+        public override void Configure(EntityTypeBuilder<Objetivo> builder)
         {
             // chave
-            base.BaseConfigure(builder);
+            base.Configure(builder);
             builder.Property(i => i.AreaInteresse).IsRequired(true).HasMaxLength(255).HasConversion(v => v == null ? null : v.ToLower(), v => v);
             builder.Property(i => i.PretensaoSalarial).HasMaxLength(20);
             builder.Property(i => i.ResumoProfissional).HasMaxLength(500);

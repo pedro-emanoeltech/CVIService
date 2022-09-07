@@ -8,10 +8,10 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 {
     public class EnderecoMap : BaseEntityComDataMap<Endereco>
     {
-        public override void BaseConfigure(EntityTypeBuilder<Endereco> builder)
+        public override void Configure(EntityTypeBuilder<Endereco> builder)
         {
             // chave
-            base.BaseConfigure(builder);
+            base.Configure(builder);
             builder.Property(i => i.EnderecoPerfil).HasMaxLength(30);
             builder.Property(i => i.Bairro).HasMaxLength(30);
             builder.Property(i => i.Numero).HasMaxLength(7);

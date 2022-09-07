@@ -8,10 +8,10 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 {
     public class SegmentoMap : BaseMap<Segmento>
     {
-        public override void BaseConfigure(EntityTypeBuilder<Segmento> builder)
+        public override void Configure(EntityTypeBuilder<Segmento> builder)
         {
             // chave
-            base.BaseConfigure(builder);
+            base.Configure(builder);
             builder.Property(i => i.Descricao).HasMaxLength(30);
     
             
