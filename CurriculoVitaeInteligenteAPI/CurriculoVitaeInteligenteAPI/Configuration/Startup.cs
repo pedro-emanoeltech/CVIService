@@ -1,7 +1,6 @@
 ﻿using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
+
 
 namespace CurriculoVitaeInteligenteAPI.Configuration
 {
@@ -12,7 +11,8 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
         { 
             services.AddDbContext<CVIContext>(options =>
             {
-             options.UseNpgsql(configuration.GetValue<string>("PostgresSettings:ConnectionString"));
+                options.UseLoggerFactory(LoggerFactory.Create(build => build.AddConsole()));
+                options.UseNpgsql(configuration.GetValue<string>("PostgresSettings:ConnectionString"));
             });
             return services;
         }

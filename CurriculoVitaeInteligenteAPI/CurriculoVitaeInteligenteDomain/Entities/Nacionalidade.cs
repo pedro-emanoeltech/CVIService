@@ -8,7 +8,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class Nacionalidade: BaseEntity
     {
-        public string? Nome { get; set; }
+        public string? NomePais { get; set; }
 
         public virtual Perfil? Perfil { get; set; }
 

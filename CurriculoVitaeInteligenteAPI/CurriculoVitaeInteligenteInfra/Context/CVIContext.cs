@@ -1,6 +1,7 @@
 ﻿using CurriculoVitaeInteligenteDomain.Entities;
 using CurriculoVitaeInteligenteInfra.Mapping;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace CurriculoVitaeInteligenteInfra.Context
 {
@@ -8,7 +9,7 @@ namespace CurriculoVitaeInteligenteInfra.Context
     {
         public CVIContext(DbContextOptions<CVIContext> options) :
             base(options)
-        { 
+        {
         }
 
         public DbSet<Perfil>? Perfil { get; set; }
@@ -31,25 +32,27 @@ namespace CurriculoVitaeInteligenteInfra.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new PerfilMap()); 
+            modelBuilder.ApplyConfiguration(new PerfilMap());
             modelBuilder.ApplyConfiguration(new CandidaturaMap());
-            modelBuilder.ApplyConfiguration(new CargoMap()); 
+            modelBuilder.ApplyConfiguration(new CargoMap());
             modelBuilder.ApplyConfiguration(new ContaMap());
-            modelBuilder.ApplyConfiguration(new ContatoMap()); 
+            modelBuilder.ApplyConfiguration(new ContatoMap());
             modelBuilder.ApplyConfiguration(new CursoFormacaoAcademicaMap());
             modelBuilder.ApplyConfiguration(new EnderecoMap());
-            modelBuilder.ApplyConfiguration(new EscolaridadeMap()); 
-            modelBuilder.ApplyConfiguration(new EstadoMap()); 
-            modelBuilder.ApplyConfiguration(new HistoricoProfissionalMap()); 
-            modelBuilder.ApplyConfiguration(new IdiomaMap()); 
-            modelBuilder.ApplyConfiguration(new NacionalidadeMap()); 
-            modelBuilder.ApplyConfiguration(new ObjetivoMap()); 
+            modelBuilder.ApplyConfiguration(new EscolaridadeMap());
+            modelBuilder.ApplyConfiguration(new EstadoMap());
+            modelBuilder.ApplyConfiguration(new HistoricoProfissionalMap());
+            modelBuilder.ApplyConfiguration(new IdiomaMap());
+            modelBuilder.ApplyConfiguration(new NacionalidadeMap());
+            modelBuilder.ApplyConfiguration(new ObjetivoMap());
             modelBuilder.ApplyConfiguration(new VagaMap());
             modelBuilder.ApplyConfiguration(new PaisMap());
-            modelBuilder.ApplyConfiguration(new SegmentoMap()); 
-           
-            
+            modelBuilder.ApplyConfiguration(new SegmentoMap());
+
+
         }
+
+        
     }
     
 
