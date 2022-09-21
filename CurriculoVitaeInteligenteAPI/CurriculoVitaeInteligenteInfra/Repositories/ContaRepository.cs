@@ -26,10 +26,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
         {
             try
             {
-                if (conta == null)
-                {
-                    return null;
-                }
+                
                 await _context.AddAsync(conta);
                 if (saveChanges)
                 {
@@ -78,21 +75,22 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
         {
             try
             {
-                if (id == null)
+                if (id is not null)
                 {
-                    return false;
-                }
-                var conta = await _context.Conta.FirstOrDefaultAsync(m => m.Id == Guid.Parse(id));
-                if (conta == null)
-                {
-                    return false;
-                }
+                    var conta = await _context.Conta.FirstOrDefaultAsync(c =>c.Id == Guid.Parse(id));
+                    if (conta is not null )
+                    {
+                        _context.Remove(conta);
+                        await _context.SaveChangesAsync();
+                        return true;
+                        
+                    }
 
-                _context.Remove(conta);
-                await _context.SaveChangesAsync();
-                return true;
+                    return false;
+                }
+                return false;
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }

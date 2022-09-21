@@ -1,4 +1,5 @@
 ﻿using CurriculoVitaeInteligenteDomain.Entities;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,6 @@ namespace CurriculoVitaeInteligenteDomain.Interfaces.Services
         Task<Conta> Edit(Conta conta);
         Task<Conta?> GetFirstOrDefault(Expression<Func<Conta, bool>>? condicao = null);
         Task<IList<Conta>?> GetToList(Expression<Func<Conta, bool>>? condicao = null);
+        Task<Conta> AdicionarConta(CancellationToken stoppingToken);
     }
 }
