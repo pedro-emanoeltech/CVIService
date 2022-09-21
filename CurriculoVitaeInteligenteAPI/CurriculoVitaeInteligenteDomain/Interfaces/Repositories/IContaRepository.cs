@@ -10,13 +10,13 @@ namespace CurriculoVitaeInteligenteDomain.Interfaces.Repositories
 {
     public interface IContaRepository
     {
-        Task<Conta> Add(Conta conta, bool saveChanges = true);
-        Task<Conta?> Get(string id);
-        Task<IList<Conta>> GetList();
-        Task<bool> Remove(string id);
-        Task<Conta> Edit(Conta conta);
-        Task<Conta?> GetFirstOrDefault(Expression<Func<Conta, bool>>? condicao = null);
-        Task<IList<Conta>?> GetToList(Expression<Func<Conta, bool>>? condicao = null);
+        public Task<Conta> Add(Conta conta, bool saveChanges = true);
+        public Task<Conta?> Get(string id);
+        public Task<IList<Conta>> GetList();
+        public Task<bool> Remove(string id);
+        public Task<Conta> Edit(Conta conta);
+        public Task<Conta?> GetFirstOrDefault(Expression<Func<Conta, bool>>? condicao = null);
+        public Task<IList<Conta>?> GetToList(Expression<Func<Conta, bool>>? condicao = null);
 
 
     }

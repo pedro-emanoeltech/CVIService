@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CurriculoVitaeInteligenteAPI.Configuration
 {
-    public static class Startup
+    public static class StartupConfiguration
     {
 
         public static IServiceCollection ConfigurationPostgres(this IServiceCollection services, IConfiguration configuration)

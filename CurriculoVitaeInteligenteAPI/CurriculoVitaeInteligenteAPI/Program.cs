@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.ConfigurationPostgres(builder.Configuration);
-
+builder.Services.AddDependencyInjectionConfiguration(builder.Configuration);
 
 var app = builder.Build();
 
