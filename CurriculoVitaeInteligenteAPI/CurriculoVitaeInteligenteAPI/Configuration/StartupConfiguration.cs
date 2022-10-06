@@ -13,6 +13,7 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
             {
                 options.UseLoggerFactory(LoggerFactory.Create(build => build.AddConsole()));
                 options.UseNpgsql(configuration.GetValue<string>("PostgresSettings:ConnectionString"));
+                options.EnableDetailedErrors().EnableSensitiveDataLogging();
             });
             return services;
         }

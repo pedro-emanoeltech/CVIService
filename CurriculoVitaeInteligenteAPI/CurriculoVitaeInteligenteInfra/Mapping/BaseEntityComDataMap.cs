@@ -9,7 +9,7 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
         {
             // chave
             base.Configure(builder);
-            builder.Property(x => x.DateCreate).IsRequired();
+            builder.Property(x => x.DateCreate).IsRequired(true);
             builder.Property(x => x.DateUpdate).IsRequired(false);
 
             // index
