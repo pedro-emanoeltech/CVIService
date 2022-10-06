@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace CurriculoVitaeInteligenteInfra.Repositories
 {
     
-    public class ContaRepository : IContaRepository
+    public class ContaRepository : BaseRepository<Conta>,IBaseRepository
     {
         protected readonly CVIContext _context;
 

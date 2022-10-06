@@ -1,32 +1,36 @@
-﻿using CurriculoVitaeInteligenteDomain.Entities;
-using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
+﻿using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-
+using System.Data.Entity;
+using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
+using System.Data;
 
 namespace CurriculoVitaeInteligenteInfra.Repositories
 {
-   public abstract class BaseRepository : IBaseRepository
+   public abstract class BaseRepository<T> : IDisposable, IBaseRepository<T> where T : class , IAddContextBaseProperty
     {
-        protected readonly CVIContext _context;
+        private CVIContext _context;
 
-        public BaseRepository(CVIContext context)
+        public BaseRepository(IUnitOfWork unitOfWorkt)
         {
-            _context = context;
+            if (unitOfWorkt == null)
+                throw new ArgumentNullException("unitOfWork");
+
+            _context = unitOfWorkt as CVIContext;
+  
         }
 
-        public async Task<Conta> Add(Conta conta, bool saveChanges = true)
+        public async Task<T> Add(T TEntity, bool saveChanges = true)
         {
             try
             {
-
-                await _context.AddAsync(conta);
+                await _context.Set<T>().AddAsync(TEntity);
                 if (saveChanges)
                 {
                     await _context.SaveChangesAsync();
                 }
-                return conta;
+                return TEntity;
             }
             catch (Exception e)
             {
@@ -34,7 +38,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public async Task<Conta?> Get(string id)
+        public async Task<T?> Get(string id)
         {
             try
             {
@@ -42,9 +46,9 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
                 {
                     return null;
                 }
-                var conta = await _context.Conta!.FirstOrDefaultAsync(m => m.Id == Guid.Parse(id));
+                T TEntity = await _context.Set<T>().FirstOrDefaultAsync((T m) => m.Id == Guid.Parse(id));
 
-                return conta;
+                return TEntity;
             }
             catch (Exception e)
             {
@@ -52,11 +56,11 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public async Task<IList<Conta>> GetList()
+        public async Task<IList<T>> GetList()
         {
             try
             {
-                var lista = await _context.Conta!.Where(e => e.Id != Guid.Empty).ToListAsync<Conta>();
+                var lista = await _context.Set<T>()!.Where(e => e.Id != Guid.Empty).ToListAsync<T>();
                 return lista;
             }
             catch (Exception e)
@@ -71,10 +75,10 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             {
                 if (id is not null)
                 {
-                    var conta = await _context.Conta.FirstOrDefaultAsync(c => c.Id == Guid.Parse(id));
-                    if (conta is not null)
+                    var TEntity = await _context.Set<T>().FirstOrDefaultAsync(c => c.Id == Guid.Parse(id));
+                    if (TEntity is not null)
                     {
-                        _context.Remove(conta);
+                        _context.Set<T>().Remove(TEntity);
                         await _context.SaveChangesAsync();
                         return true;
 
@@ -90,30 +94,35 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public async Task<Conta> Edit(Conta conta)
+        public async Task<T> Edit(T TEntity)
         {
             try
             {
-                if (conta.Id is not null)
-                {
-                    _context.Update(conta);
-                    await _context.SaveChangesAsync();
+                
+                _context.Entry(TEntity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 
-                }
+               
+                _context.Set<T>().Update(TEntity);
+                 await _context.SaveChangesAsync();
 
-                return conta;
+                    
+
+                return TEntity;
+               
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception(e.Message);
+
+                throw;
             }
+           
         }
 
-        public async Task<Conta?> GetFirstOrDefault(Expression<Func<Conta, bool>>? condicao = null)
+        public async Task<T?> GetFirstOrDefault(Expression<Func<T, bool>>? condicao = null)
         {
             try
             {
-                IQueryable<Conta> queryable = _context.Conta!;
+                IQueryable<T> queryable = _context.Set<T>()!;
                 if (condicao != null)
                 {
                     queryable = queryable.Where(condicao);
@@ -126,11 +135,11 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public async Task<IList<Conta>?> GetToList(Expression<Func<Conta, bool>>? condicao = null)
+        public async Task<IList<T>?> GetToList(Expression<Func<T, bool>>? condicao = null)
         {
             try
             {
-                IQueryable<Conta> queryable = _context.Conta!;
+                IQueryable<T> queryable = _context.Set<T>()!;
 
                 if (condicao != null)
                 {
@@ -142,6 +151,11 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             {
                 return null;
             }
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

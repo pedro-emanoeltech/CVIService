@@ -13,6 +13,7 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
             services.AddScoped<IContaRepository,ContaRepository> ();
             services.AddScoped<IContaService, ContaService>();
 
+
             services.AddHostedService<ContaApp>();
 
             return services;

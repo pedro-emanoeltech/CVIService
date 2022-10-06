@@ -1,6 +1,8 @@
 ﻿using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteInfra.Mapping;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+
 
 
 namespace CurriculoVitaeInteligenteInfra.Context

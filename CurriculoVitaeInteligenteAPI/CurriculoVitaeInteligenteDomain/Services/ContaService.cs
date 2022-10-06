@@ -13,49 +13,49 @@ using System.Threading.Tasks;
 
 namespace CurriculoVitaeInteligenteDomain.Services
 {
-    public class ContaService : IContaService
+    public class ContaService :  BaseService<Conta>, IContaService
     {
 
         private readonly IContaRepository _contaRepository;
 
-        public ContaService(IContaRepository contaRepository, IServiceProvider serviceProvider)
+        public ContaService(IContaRepository contaRepository)
         {
             _contaRepository = contaRepository;
         }
-        public async Task<Conta> Add(Conta conta, bool saveChanges = true)
-        {
-            return await _contaRepository.Add(conta, saveChanges);
-        }
+        //public async Task<Conta> Add(Conta conta, bool saveChanges = true)
+        //{
+        //    return await _contaRepository.Add(conta, saveChanges);
+        //}
 
-        public async Task<Conta> Edit(Conta conta)
-        {
-            return await _contaRepository.Edit(conta);
-        }
+        //public async Task<Conta> Edit(Conta conta)
+        //{
+        //    return await _contaRepository.Edit(conta);
+        //}
 
-        public async Task<Conta?> Get(string id)
-        {
-            return await _contaRepository.Get(id);
-        }
+        //public async Task<Conta?> Get(string id)
+        //{
+        //    return await _contaRepository.Get(id);
+        //}
 
-        public async Task<Conta?> GetFirstOrDefault(Expression<Func<Conta, bool>>? condicao = null)
-        {
-            return await _contaRepository.GetFirstOrDefault(condicao);
-        }
+        //public async Task<Conta?> GetFirstOrDefault(Expression<Func<Conta, bool>>? condicao = null)
+        //{
+        //    return await _contaRepository.GetFirstOrDefault(condicao);
+        //}
 
-        public async Task<IList<Conta>> GetList()
-        {
-            return await _contaRepository.GetList();
-        }
+        //public async Task<IList<Conta>> GetList()
+        //{
+        //    return await _contaRepository.GetList();
+        //}
 
-        public async Task<IList<Conta>?> GetToList(Expression<Func<Conta, bool>>? condicao = null)
-        {
-            return await _contaRepository.GetToList(condicao);
-        }
+        //public async Task<IList<Conta>?> GetToList(Expression<Func<Conta, bool>>? condicao = null)
+        //{
+        //    return await _contaRepository.GetToList(condicao);
+        //}
 
-        public async Task<bool> Remove(string id)
-        {
-            return await _contaRepository.Remove(id);
-        }
+        //public async Task<bool> Remove(string id)
+        //{
+        //    return await _contaRepository.Remove(id);
+        //}
 
         public async Task<Conta> AdicionarConta(CancellationToken stoppingToken)
         {
@@ -64,7 +64,7 @@ namespace CurriculoVitaeInteligenteDomain.Services
             {
                 Conta conta = new Conta();
                 conta.Id = Guid.NewGuid();
-                conta.Email = "Pedro.emanoeltech@hotmail4.com";
+                conta.Email = "Pedro.emanoeltech@hotmail5.com";
                 conta.Senha = "vtp-123p";
                 conta.DateCreate = DateTime.Now;
                 conta.DateUpdate = DateTime.Now;
