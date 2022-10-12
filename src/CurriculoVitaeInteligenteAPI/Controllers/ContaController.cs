@@ -1,10 +1,13 @@
-﻿using CurriculoVitaeInteligenteDomain.Interfaces.Services;
-using Microsoft.AspNetCore.Http;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
+using CurriculoVitaeInteligenteDomain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CurriculoVitaeInteligenteAPI.Controllers
 {
-    public class ContaController : Controller
+    
+    [ApiController]
+    [Route("[controller]")]
+    public class ContaController : ControllerBase
     {
         public readonly IContaService _contaService;
 
@@ -12,79 +15,35 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
         {
             _contaService = contaService;   
         }
-        // GET: ContaController
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: ContaController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: ContaController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ContaController/Create
+   
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult<Conta>> Add([FromBody] Conta request)
         {
-            try
+            if (request == null)
             {
-                return RedirectToAction(nameof(Index));
+                return (ActionResult<Conta>)BadRequest("Conteúdo não pode ser nulo");
             }
-            catch
-            {
-                return View();
-            }
+            var result = await _contaService.Add(request);
+            return Ok();
+
         }
 
-        // GET: ContaController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        public virtual async Task<ActionResult<Conta>> GetList()
         {
-            return View();
+           
+            var result = await _contaService.GetList();
+           
+            if (result != null)
+            {
+                return (ActionResult<Conta>)Ok(result);
+            }
+            else
+            {
+                return (ActionResult<Conta>)BadRequest("Falha na busca de Contas");
+            }
+ 
         }
 
-        // POST: ContaController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ContaController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ContaController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

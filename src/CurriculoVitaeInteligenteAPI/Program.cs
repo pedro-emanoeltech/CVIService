@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.ConfigurationPostgres(builder.Configuration);
 builder.Services.AddDependencyInjectionConfiguration(builder.Configuration);
+builder.Services.AddSwaggerConfiguration(builder.Configuration);
+builder.Services.AddApiConfiguration();
 
 var app = builder.Build();
 
@@ -25,7 +27,12 @@ app.UseStaticFiles();
 app.UseRouting();
 app.ConfigurationPostgresEscopo();
 app.UseAuthorization();
+app.UseSwaggerConfiguration();
+app.UseApiConfiguration();
 
 app.MapRazorPages();
+
+app.Urls.Add("http://*:5071");
+app.Urls.Add("https://*:5070");
 
 app.Run();

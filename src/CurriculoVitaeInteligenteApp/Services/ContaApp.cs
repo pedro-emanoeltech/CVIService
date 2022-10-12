@@ -20,7 +20,7 @@ namespace CurriculoVitaeInteligenteApp.Services
         {
             using var scope = _serviceProvider.CreateScope();
             var ContaService =  scope.ServiceProvider.GetRequiredService<IContaService>();
-            var conta = await ContaService.AdicionarConta(cancellationToken);
+            //var conta = await ContaService.AdicionarConta(cancellationToken);
 
 
         }
