@@ -6,15 +6,13 @@ using CurriculoVitaeInteligenteDomain.Interfaces.Services;
 
 namespace CurriculoVitaeInteligenteDomain.Services
 {
-    public class ContaService 
+    public class ContaService : BaseService<Conta>, IContaService
     {
-
-        private readonly IContaRepository _contaRepository;
-
-        public ContaService(IContaRepository contaRepository)
+        public ContaService(IBaseRepository<Conta> repository, IUnitOfWork unitOfWork) : base(repository, unitOfWork)
         {
-            _contaRepository = contaRepository;
         }
+
+
         //public async Task<Conta> Add(Conta conta, bool saveChanges = true)
         //{
         //    return await _contaRepository.Add(conta, saveChanges);
@@ -70,11 +68,11 @@ namespace CurriculoVitaeInteligenteDomain.Services
         //       var  conta1 = await this.GetList();
         //        Conta conta2 = new Conta();
         //        Conta conta3 = new Conta();
-              
+
         //        for (int i = 0; i < conta1.Count; i++)
         //        {
         //            conta2 = await this.Get(conta1[i].Id.ToString()!);
-                   
+
         //        }
         //        conta3 = await this.GetFirstOrDefault(p => p.Status == Content.Enums.Status.Inativo);
 
@@ -94,10 +92,10 @@ namespace CurriculoVitaeInteligenteDomain.Services
         //    {
         //        throw new Exception(e.InnerException?.Message ?? e.Message);
         //    }
-            
+
         //}
-       
+
     }
 
- 
+
 }

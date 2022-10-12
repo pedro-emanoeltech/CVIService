@@ -11,8 +11,8 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
     {
         public static IServiceCollection AddDependencyInjectionConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddScoped<IContaRepository,ContaRepository> ();
-            //services.AddScoped<IContaService, ContaService>();
+            services.AddScoped<IContaRepository, ContaRepository>();
+            services.AddScoped<IContaService, ContaService>();
 
             services.AddHostedService<ContaApp>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

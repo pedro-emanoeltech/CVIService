@@ -1,18 +1,14 @@
-﻿
+﻿using CurriculoVitaeInteligenteDomain.Entities;
+using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
+using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
+using CurriculoVitaeInteligenteInfra.Context;
 
 namespace CurriculoVitaeInteligenteInfra.Repositories
 {
-
-    public class ContaRepository 
+    public class ContaRepository : BaseRepository<Conta> ,IContaRepository
     {
+        public ContaRepository(CVIContext context): base(context) { }
 
-
-        //protected readonly CVIContext _context;
-
-        //public ContaRepository(CVIContext context)
-        //{
-        //    _context = context;
-        //}
 
         //public async Task<Conta> Add(Conta conta, bool saveChanges = true)
         //{
@@ -141,7 +137,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
         //        return null;
         //    }
         //}
-    
+
     }
 
 

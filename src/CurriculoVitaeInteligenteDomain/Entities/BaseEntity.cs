@@ -5,10 +5,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
-    public abstract class BaseEntity : ClassBase
+    public abstract class BaseEntity : ClassBase, IAddContextBaseProperty
     {
         [Key]
         public Guid? Id { get; set; }

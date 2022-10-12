@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CurriculoVitaeInteligenteDomain.Interfaces.Services
 {
-    public interface IContaService 
+    public interface IContaService : IBaseService<Conta>
     {
         //Task<Conta> Add(Conta conta, bool saveChanges = true);
         //Task<Conta?> Get(string id);

@@ -1,8 +1,9 @@
 ﻿using CurriculoVitaeInteligenteDomain.Entities;
+using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 
 namespace CurriculoVitaeInteligenteDomain.Interfaces.Repositories
 {
-    public interface IContaRepository 
+    public interface IContaRepository :IBaseRepository<Conta>
     {
         //public Task<Conta> Add(Conta conta, bool saveChanges = true);
         //public Task<Conta?> Get(string id);
