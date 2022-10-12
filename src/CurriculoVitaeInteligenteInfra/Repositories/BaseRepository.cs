@@ -9,13 +9,16 @@ using CurriculoVitaeInteligenteDomain.Entities;
 
 namespace CurriculoVitaeInteligenteInfra.Repositories
 {
-   public abstract class BaseRepository<T> : IBaseRepository<T> where T : ClassBase, IAddContextBaseProperty
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : ClassBase, IAddContextBaseProperty
     {
         protected readonly CVIContext _context;
 
-        protected BaseRepository(CVIContext context) => 
+        protected BaseRepository(CVIContext context)
+        {
             _context = context;
 
+        }
+       
         public virtual async Task<T> Add(T TEntity, bool saveChanges = true)
         {
             try
@@ -51,7 +54,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public virtual  async Task<IList<T>> GetList()
+        public virtual async Task<IList<T>> GetList()
         {
             try
             {
@@ -93,24 +96,24 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
         {
             try
             {
-                
+
                 _context.Entry(TEntity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 
-               
-                _context.Set<T>().Update(TEntity);
-                 await _context.SaveChangesAsync();
 
-                    
+                _context.Set<T>().Update(TEntity);
+                await _context.SaveChangesAsync();
+
+
 
                 return TEntity;
-               
+
             }
             catch (Exception)
             {
 
                 throw;
             }
-           
+
         }
 
         public virtual async Task<T?> GetFirstOrDefault(Expression<Func<T, bool>>? condicao = null)

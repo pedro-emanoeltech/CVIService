@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CurriculoVitaeInteligenteDomain.Interfaces.Repositories
 {
-   public interface IUnitOfWork
+   public interface IUnitOfWork 
     {
         Task<bool> Commit();
         Task Rollback();

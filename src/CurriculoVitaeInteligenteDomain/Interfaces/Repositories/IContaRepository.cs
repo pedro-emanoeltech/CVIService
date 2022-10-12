@@ -3,7 +3,7 @@ using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 
 namespace CurriculoVitaeInteligenteDomain.Interfaces.Repositories
 {
-    public interface IContaRepository :IBaseRepository<Conta>
+    public interface IContaRepository : IBaseRepository<Conta>
     {
         //public Task<Conta> Add(Conta conta, bool saveChanges = true);
         //public Task<Conta?> Get(string id);

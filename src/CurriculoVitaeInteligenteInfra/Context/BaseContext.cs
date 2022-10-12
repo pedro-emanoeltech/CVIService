@@ -1,6 +1,7 @@
 ﻿using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteInfra.Mapping;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Linq;
 
 
@@ -17,6 +18,16 @@ namespace CurriculoVitaeInteligenteInfra.Context
         public void Save()
         {
             base.SaveChanges();
+        }
+        public override ChangeTracker ChangeTracker
+        {
+            get
+            {
+                base.ChangeTracker.LazyLoadingEnabled = false;
+                base.ChangeTracker.CascadeDeleteTiming = CascadeTiming.OnSaveChanges;
+                base.ChangeTracker.DeleteOrphansTiming = CascadeTiming.OnSaveChanges;
+                return base.ChangeTracker;
+            }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

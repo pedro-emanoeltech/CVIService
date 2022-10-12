@@ -18,6 +18,6 @@ namespace CurriculoVitaeInteligenteDomain.Interfaces.Services
         //Task<Conta> Edit(Conta conta);
         //Task<Conta?> GetFirstOrDefault(Expression<Func<Conta, bool>>? condicao = null);
         //Task<IList<Conta>?> GetToList(Expression<Func<Conta, bool>>? condicao = null);
-        //Task<Conta> AdicionarConta(CancellationToken stoppingToken);
+        Task<Conta> AdicionarConta(CancellationToken stoppingToken);
     }
 }

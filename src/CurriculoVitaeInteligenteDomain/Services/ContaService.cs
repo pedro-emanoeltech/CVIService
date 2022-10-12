@@ -8,92 +8,83 @@ namespace CurriculoVitaeInteligenteDomain.Services
 {
     public class ContaService : BaseService<Conta>, IContaService
     {
-        public ContaService(IBaseRepository<Conta> repository, IUnitOfWork unitOfWork) : base(repository, unitOfWork)
-        {
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IContaRepository _repository;
+        public ContaService(IContaRepository repository, IUnitOfWork unitOfWork) : base(repository, unitOfWork)
+        {   
+            _unitOfWork = unitOfWork;
+            _repository = repository;
         }
 
+        public async Task<Conta> AdicionarConta(CancellationToken stoppingToken)
+        {
 
-        //public async Task<Conta> Add(Conta conta, bool saveChanges = true)
-        //{
-        //    return await _contaRepository.Add(conta, saveChanges);
-        //}
+            try
+            {
+                try
+                {
+                    var conta3 = await this.GetFirstOrDefault(p => p.Status == Status.Inativo);
 
-        //public async Task<Conta> Edit(Conta conta)
-        //{
-        //    return await _contaRepository.Edit(conta);
-        //}
-
-        //public async Task<Conta?> Get(string id)
-        //{
-        //    return await _contaRepository.Get(id);
-        //}
-
-        //public async Task<Conta?> GetFirstOrDefault(Expression<Func<Conta, bool>>? condicao = null)
-        //{
-        //    return await _contaRepository.GetFirstOrDefault(condicao);
-        //}
-
-        //public async Task<IList<Conta>> GetList()
-        //{
-        //    return await _contaRepository.GetList();
-        //}
-
-        //public async Task<IList<Conta>?> GetToList(Expression<Func<Conta, bool>>? condicao = null)
-        //{
-        //    return await _contaRepository.GetToList(condicao);
-        //}
-
-        //public async Task<bool> Remove(string id)
-        //{
-        //    return await _contaRepository.Remove(id);
-        //}
-
-        //public async Task<Conta> AdicionarConta(CancellationToken stoppingToken)
-        //{
-
-        //    try
-        //    {
-        //        Conta conta = new Conta();
-        //        conta.Id = Guid.NewGuid();
-        //        conta.Email = "Pedro.emanoeltech@hotmail5.com";
-        //        conta.Senha = "vtp-123p";
-        //        conta.DateCreate = DateTime.Now;
-        //        conta.DateUpdate = DateTime.Now;
-        //        conta.TipoPerfil = Content.Enums.TipoPerfil.CPF;
-        //        conta.Status = Content.Enums.Status.Inativo;
-        //        await this.Add(conta);
+                    conta3.Id = Guid.NewGuid();
+                    conta3.Email = "josefino@hotmail.com";
+                    conta3.Status = Status.Ativo;
+                    await this.Add(conta3);
 
 
-        //        //IList<Conta> conta1 = new IList<Conta>;
-        //       var  conta1 = await this.GetList();
-        //        Conta conta2 = new Conta();
-        //        Conta conta3 = new Conta();
-
-        //        for (int i = 0; i < conta1.Count; i++)
-        //        {
-        //            conta2 = await this.Get(conta1[i].Id.ToString()!);
-
-        //        }
-        //        conta3 = await this.GetFirstOrDefault(p => p.Status == Content.Enums.Status.Inativo);
-
-        //        //if (conta3 != null)
-        //        //{
-        //        //    await this.Remove(conta3.Id!.ToString());
-        //        //}
-        //        conta2.TipoPerfil = TipoPerfil.CNPJ;
-        //        await this.Edit(conta2);
-
-        //       var conta4 = await this.GetToList(p => p.TipoPerfil == TipoPerfil.CNPJ);
+                    Conta conta = new Conta();
+                    conta.Id = Guid.NewGuid();
+                    conta.Email = "josefino@hotmail2.com";
+                    conta.Senha = "vtp-123p";
+                    conta.DateCreate = DateTime.Now;
+                    conta.DateUpdate = DateTime.Now;
+                    conta.TipoPerfil = TipoPerfil.CNPJ;
+                    conta.Status = Status.Inativo;
+                    await this.Add(conta);
+                    await _unitOfWork.Commit();
+                    return conta;
+                }
+                catch (Exception e)
+                {
+                    await _unitOfWork.Rollback();
+                    throw;
+                }
+               
 
 
-        //        return conta;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception(e.InnerException?.Message ?? e.Message);
-        //    }
+                ////IList<Conta> conta1 = new IList<Conta>;
+                //var conta1 = await this.GetList();
+                //Conta conta2 = new Conta();
+                //Conta conta3 = new Conta();
 
-        //}
+                //for (int i = 0; i < conta1.Count; i++)
+                //{
+                //    conta2 = await this.Get(conta1[i].Id.ToString()!);
+
+                //}
+                //conta3 = await this.GetFirstOrDefault(p => p.Status == Status.Inativo);
+
+                //if (conta3 != null)
+                //{
+                //    await this.Remove(conta3.Id!.ToString());
+                //}
+                //conta2.TipoPerfil = TipoPerfil.CNPJ;
+                //await this.Edit(conta2);
+
+                //var conta4 = await this.GetToList(p => p.TipoPerfil == TipoPerfil.CNPJ);
+                //{
+
+                //}
+
+            
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
 
     }
 
