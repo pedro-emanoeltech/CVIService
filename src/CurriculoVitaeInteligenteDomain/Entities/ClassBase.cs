@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CurriculoVitaeInteligenteInfra
+namespace CurriculoVitaeInteligenteDomain.Entities
 {
-   public class UnitOfWork
+    public abstract class ClassBase
     {
     }
 }

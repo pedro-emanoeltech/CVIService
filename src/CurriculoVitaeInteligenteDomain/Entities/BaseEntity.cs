@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity : ClassBase
     {
         [Key]
         public Guid? Id { get; set; }

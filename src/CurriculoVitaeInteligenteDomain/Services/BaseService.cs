@@ -1,10 +1,12 @@
-﻿using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
+using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
+using CurriculoVitaeInteligenteDomain.Interfaces.Services;
 using System.Linq.Expressions;
 
 namespace CurriculoVitaeInteligenteDomain.Services
 {
-    public class BaseService<T>: IDisposable, IBaseRepository<T> where T : class, IAddContextBaseProperty
+    public abstract class BaseService<T>: IBaseService<T> where T : ClassBase, IAddContextBaseProperty
     {
         private readonly IBaseRepository<T> _repositorio;
 
@@ -15,7 +17,6 @@ namespace CurriculoVitaeInteligenteDomain.Services
             _repositorio = repository;
             _unitOfWork = unitOfWork;
         }
-
 
         public async Task<T> Add(T TEntity, bool saveChanges = true)
         {

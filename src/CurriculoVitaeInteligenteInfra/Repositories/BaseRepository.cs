@@ -5,23 +5,24 @@ using System.Linq.Expressions;
 using System.Data.Entity;
 using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using System.Data;
+using CurriculoVitaeInteligenteDomain.Entities;
 
 namespace CurriculoVitaeInteligenteInfra.Repositories
 {
-   public abstract class BaseRepository<T> : IDisposable, IBaseRepository<T> where T : class , IAddContextBaseProperty
+   public abstract class BaseRepository<T> : IBaseRepository<T> where T : ClassBase, IAddContextBaseProperty
     {
-        private CVIContext _context;
+        protected readonly CVIContext _context;
 
-        public BaseRepository(IUnitOfWork unitOfWorkt)
+        protected BaseRepository(CVIContext context)
         {
-            if (unitOfWorkt == null)
-                throw new ArgumentNullException("unitOfWork");
+            //if (unitOfWorkt == null)
+            //    throw new ArgumentNullException("unitOfWork");
 
-            _context = unitOfWorkt as CVIContext;
+            _context = context;
   
         }
 
-        public async Task<T> Add(T TEntity, bool saveChanges = true)
+        public virtual async Task<T> Add(T TEntity, bool saveChanges = true)
         {
             try
             {
@@ -38,7 +39,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public async Task<T?> Get(string id)
+        public virtual async Task<T?> Get(string id)
         {
             try
             {
@@ -56,7 +57,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public async Task<IList<T>> GetList()
+        public virtual  async Task<IList<T>> GetList()
         {
             try
             {
@@ -69,7 +70,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public async Task<bool> Remove(string id)
+        public virtual async Task<bool> Remove(string id)
         {
             try
             {
@@ -94,7 +95,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public async Task<T> Edit(T TEntity)
+        public virtual async Task<T> Edit(T TEntity)
         {
             try
             {
@@ -118,7 +119,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
            
         }
 
-        public async Task<T?> GetFirstOrDefault(Expression<Func<T, bool>>? condicao = null)
+        public virtual async Task<T?> GetFirstOrDefault(Expression<Func<T, bool>>? condicao = null)
         {
             try
             {
@@ -135,7 +136,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public async Task<IList<T>?> GetToList(Expression<Func<T, bool>>? condicao = null)
+        public virtual async Task<IList<T>?> GetToList(Expression<Func<T, bool>>? condicao = null)
         {
             try
             {

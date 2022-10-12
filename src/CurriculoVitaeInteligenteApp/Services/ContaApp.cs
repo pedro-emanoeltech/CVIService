@@ -19,8 +19,8 @@ namespace CurriculoVitaeInteligenteApp.Services
         public override async Task StartAsync(CancellationToken cancellationToken)
         {
             using var scope = _serviceProvider.CreateScope();
-            var ContaService = scope.ServiceProvider.GetRequiredService<IContaService>();
-            var conta = await ContaService.AdicionarConta(cancellationToken);
+            var ContaService =  scope.ServiceProvider.GetRequiredService<IContaService>();
+            //var conta = await ContaService.AdicionarConta(cancellationToken);
 
            
         }
