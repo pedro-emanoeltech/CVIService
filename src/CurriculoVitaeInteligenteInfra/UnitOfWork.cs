@@ -1,30 +1,25 @@
-﻿using CurriculoVitaeInteligenteInfra.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
+using CurriculoVitaeInteligenteInfra.Context;
+
 
 namespace CurriculoVitaeInteligenteInfra
 {
-   public class UnitOfWork
+   public class UnitOfWork : IUnitOfWork
     {
         private readonly CVIContext _context;
-        public UnitOfWork(CVIContext context)
+        public UnitOfWork(CVIContext context) =>
+                  _context = context;
+            
+        public async Task<bool> Commit()
         {
-            _context = context;
+            var success = (await _context.SaveChangesAsync()) > 0;
+
+            return success;
         }
 
-        public async Task Save()
+        public Task Rollback()
         {
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            return Task.CompletedTask;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace CurriculoVitaeInteligenteDomain.Interfaces.Repositories
 {
    public interface IUnitOfWork
     {
-        void Save();
+        Task<bool> Commit();
+        Task Rollback();
     }
 }

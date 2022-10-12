@@ -12,15 +12,11 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
    public abstract class BaseRepository<T> : IBaseRepository<T> where T : ClassBase, IAddContextBaseProperty
     {
         protected readonly CVIContext _context;
+        private bool _disposed = false;
 
-        protected BaseRepository(CVIContext context)
-        {
-            //if (unitOfWorkt == null)
-            //    throw new ArgumentNullException("unitOfWork");
-
+        protected BaseRepository(CVIContext context) => 
             _context = context;
-  
-        }
+
 
         public virtual async Task<T> Add(T TEntity, bool saveChanges = true)
         {
@@ -154,9 +150,6 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

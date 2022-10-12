@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CurriculoVitaeInteligenteInfra.Context
 {
-   public abstract class BaseContext: DbContext, IUnitOfWork
+   public abstract class BaseContext: DbContext
     {
         public BaseContext(DbContextOptions<CVIContext> options) :
            base(options)
