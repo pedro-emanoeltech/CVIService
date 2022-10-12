@@ -17,7 +17,6 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
         protected BaseRepository(CVIContext context) => 
             _context = context;
 
-
         public virtual async Task<T> Add(T TEntity, bool saveChanges = true)
         {
             try
