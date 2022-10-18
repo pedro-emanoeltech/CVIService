@@ -1,15 +1,16 @@
-﻿using CurriculoVitaeInteligenteDomain.Entities;
+﻿using CurriculoVitaeInteligenteApp.Interfaces;
+using CurriculoVitaeInteligenteDomain.Entities;
 using CurriculoVitaeInteligenteDomain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CurriculoVitaeInteligenteAPI.Controllers
 {
-    
+
     [ApiController]
     [Route("[controller]")]
     public class ContaController : ControllerBase
     {
-        public readonly IContaService _contaService;
+        public readonly IContaServiceApp _contaServiceApp;
 
         public ContaController(IContaService contaService)
         {
@@ -31,7 +32,6 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
         [HttpGet]
         public virtual async Task<ActionResult<Conta>> GetList()
         {
-           
             var result = await _contaService.GetList();
            
             if (result != null)

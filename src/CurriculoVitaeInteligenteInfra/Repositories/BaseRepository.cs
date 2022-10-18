@@ -12,6 +12,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : ClassBase, IAddContextBaseProperty
     {
         protected readonly CVIContext _context;
+      
 
         protected BaseRepository(CVIContext context)
         {

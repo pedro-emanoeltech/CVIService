@@ -1,10 +1,12 @@
-﻿using CurriculoVitaeInteligenteInfra.Context;
+﻿using CurriculoVitaeInteligenteApp.AutoMapper;
+using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CurriculoVitaeInteligenteAPI.Configuration
 {
@@ -93,6 +95,15 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
             app.UseAuthorization();
             app.MapControllers();
             return app;
+        }
+
+
+        public static IServiceCollection AutoMapperConfiguration(this IServiceCollection services)
+        {
+
+            services.AddAutoMapper(typeof (DTOsToEntityAutoMapper));
+            services.AddAutoMapper(typeof(EntityToDTOsAutoMapper));
+            return services;
         }
 
     }

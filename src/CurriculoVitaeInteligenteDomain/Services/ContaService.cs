@@ -16,39 +16,38 @@ namespace CurriculoVitaeInteligenteDomain.Services
             _repository = repository;
         }
 
-        //public async Task<Conta> AdicionarConta(CancellationToken stoppingToken)
-        //{
+        public async Task<Conta> AdicionarConta(CancellationToken stoppingToken)
+        {
 
-        //    try
-        //    {
-        //        try
-        //        {
-        //            //var conta3 = await this.GetFirstOrDefault(p => p.Status == Status.Inativo);
+          
+                try
+                {
+                    var conta3 = await this.GetFirstOrDefault(p => p.Status == Status.Inativo);
 
-        //            //conta3.Id = Guid.NewGuid();
-        //            //conta3.Email = "josefino@hotmail.com";
-        //            //conta3.Status = Status.Ativo;
-        //            //await this.Add(conta3);
+                //            //conta3.Id = Guid.NewGuid();
+                //            //conta3.Email = "josefino@hotmail.com";
+                //            //conta3.Status = Status.Ativo;
+                //            //await this.Add(conta3);
 
 
-        //            Conta conta = new Conta();
-        //            conta.Id = Guid.NewGuid();
-        //            conta.Email = "josefino@hotmail2.com";
-        //            conta.Senha = "vtp-123p";
-        //            conta.DateCreate = DateTime.Now;
-        //            conta.DateUpdate = DateTime.Now;
-        //            conta.TipoPerfil = TipoPerfil.CNPJ;
-        //            conta.Status = Status.Inativo;
-        //            await this.Add(conta);
-        //            await _unitOfWork.Commit();
-        //            return conta;
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            await _unitOfWork.Rollback();
-        //            throw;
-        //        }
-               
+                //            Conta conta = new Conta();
+                //            conta.Id = Guid.NewGuid();
+                //            conta.Email = "josefino@hotmail2.com";
+                //            conta.Senha = "vtp-123p";
+                //            conta.DateCreate = DateTime.Now;
+                //            conta.DateUpdate = DateTime.Now;
+                //            conta.TipoPerfil = TipoPerfil.CNPJ;
+                //            conta.Status = Status.Inativo;
+                //            await this.Add(conta);
+                //            await _unitOfWork.Commit();
+                //            return conta;
+                //        }
+                //        catch (Exception e)
+                //        {
+                //            await _unitOfWork.Rollback();
+                //            throw;
+                //        }
+
 
 
                 ////IList<Conta> conta1 = new IList<Conta>;
@@ -75,17 +74,20 @@ namespace CurriculoVitaeInteligenteDomain.Services
 
                 //}
 
+                return conta3;
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+
+
+
             
-            //}
-            //catch (Exception)
-            //{
-
-            //    throw;
-            //}
-
-
-        
-
+        }   
     }
 
 

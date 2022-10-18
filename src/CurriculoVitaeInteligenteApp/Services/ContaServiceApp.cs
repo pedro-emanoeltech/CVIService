@@ -1,21 +1,14 @@
-﻿using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CurriculoVitaeInteligenteApp.Interfaces;
+using CurriculoVitaeInteligenteDomain.Entities;
+using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
+using CurriculoVitaeInteligenteDomain.Interfaces.Services;
 
 namespace CurriculoVitaeInteligenteApp.Services
 {
-    public abstract class ContaServiceApp : IHostedService
+    public class ContaServiceApp : BaseServiceApp<Conta>, IContaServiceApp
     {
-        protected ContaServiceApp()
+        protected ContaServiceApp(IBaseService<Conta> Service, IUnitOfWork unitOfWork) : base(Service, unitOfWork)
         {
-
         }
-
-        public abstract Task StartAsync(CancellationToken cancellationToken);
-        public abstract Task StopAsync(CancellationToken cancellationToken);
-        protected abstract Task ExecuteAsync(CancellationToken stoppingToken);
     }
 }
