@@ -1,4 +1,6 @@
-﻿using CurriculoVitaeInteligenteApp.Interfaces;
+﻿using AutoMapper;
+using CurriculoVitaeInteligenteApp.DTOs;
+using CurriculoVitaeInteligenteApp.Interfaces;
 using CurriculoVitaeInteligenteDomain.Entities;
 using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
@@ -7,16 +9,16 @@ using System.Linq.Expressions;
 
 namespace CurriculoVitaeInteligenteApp.Services
 {
-    public class BaseServiceApp<T> : IBaseServiceApp<T> where T : ClassBase, IAddContextBaseProperty
+    public abstract class BaseServiceApp<T> : IBaseServiceApp<T> where T : ClassBase, IAddContextBaseProperty
     {
         private readonly IBaseService<T> _Service;
-
         protected readonly IUnitOfWork _unitOfWork;
 
         protected BaseServiceApp(IBaseService<T> Service, IUnitOfWork unitOfWork)
         {
             _Service = Service;
             _unitOfWork = unitOfWork;
+          
         }
 
         public async Task<T> Add(T TEntity, bool saveChanges = true)
@@ -29,9 +31,10 @@ namespace CurriculoVitaeInteligenteApp.Services
             return await _Service.Get(id);
         }
 
-        public async Task<IList<T>> GetList()
+        public virtual async Task<IList<T>> GetList()
         {
             return await _Service.GetList();
+
         }
 
         public async Task<bool> Remove(string id)
@@ -39,7 +42,7 @@ namespace CurriculoVitaeInteligenteApp.Services
             return await _Service.Remove(id);
         }
 
-        public async Task<T> Edit(T TEntity)
+        public  async Task<T> Edit(T TEntity)
         {
             try
             {
@@ -54,7 +57,7 @@ namespace CurriculoVitaeInteligenteApp.Services
 
         }
 
-        public async Task<T?> GetFirstOrDefault(Expression<Func<T, bool>>? condicao = null)
+        public virtual async Task<T?> GetFirstOrDefault(Expression<Func<T, bool>>? condicao = null)
         {
             try
             {
@@ -66,15 +69,16 @@ namespace CurriculoVitaeInteligenteApp.Services
             }
         }
 
-        public async Task<IList<T>?> GetToList(Expression<Func<T, bool>>? condicao = null)
+        public virtual async Task<IList<T>?> GetToList(Expression<Func<T, bool>>? condicao = null)
         {
             try
             {
                 return await _Service.GetToList(condicao);
             }
-            catch
+            catch (Exception e )   
             {
-                return null;
+               throw new Exception(e.Message);
+               return null;
             }
         }
 

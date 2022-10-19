@@ -10,6 +10,7 @@ builder.Services.ConfigurationPostgres(builder.Configuration);
 builder.Services.AddDependencyInjectionConfiguration(builder.Configuration);
 builder.Services.AddSwaggerConfiguration(builder.Configuration);
 builder.Services.AddApiConfiguration();
+builder.Services.AutoMapperConfiguration();
 
 var app = builder.Build();
 

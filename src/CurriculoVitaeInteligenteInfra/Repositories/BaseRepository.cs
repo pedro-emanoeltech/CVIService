@@ -59,7 +59,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
         {
             try
             {
-                var lista = await _context.Set<T>()!.Where(e => e.Id != Guid.Empty).ToListAsync<T>();
+                var lista = await _context.Set<T>()!.ToListAsync<T>();
                 return lista;
             }
             catch (Exception e)

@@ -1,4 +1,5 @@
-﻿using CurriculoVitaeInteligenteApp.Services;
+﻿using CurriculoVitaeInteligenteApp.Interfaces;
+using CurriculoVitaeInteligenteApp.Services;
 using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteDomain.Interfaces.Services;
 using CurriculoVitaeInteligenteDomain.Services;
@@ -13,8 +14,9 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
         {
             services.AddScoped<IContaRepository, ContaRepository>();
             services.AddScoped<IContaService, ContaService>();
+            services.AddScoped<IContaServiceApp, ContaServiceApp>();
 
-            services.AddHostedService<ContaApp>();
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }
