@@ -1,6 +1,8 @@
-﻿namespace CurriculoVitaeInteligenteAPI.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace CurriculoVitaeInteligenteAPI.Controllers
 {
-    public class BaseControllers
+    public abstract class BaseControllers : ControllerBase
     {
     }
 }

@@ -11,13 +11,6 @@ namespace CurriculoVitaeInteligenteDomain.Interfaces.Services
 {
     public interface IContaService : IBaseService<Conta>
     {
-        //Task<Conta> Add(Conta conta, bool saveChanges = true);
-        //Task<Conta?> Get(string id);
-        //Task<IList<Conta>> GetList();
-        //Task<bool> Remove(string id);
-        //Task<Conta> Edit(Conta conta);
-        //Task<Conta?> GetFirstOrDefault(Expression<Func<Conta, bool>>? condicao = null);
-        //Task<IList<Conta>?> GetToList(Expression<Func<Conta, bool>>? condicao = null);
         Task<Conta> AdicionarConta(CancellationToken stoppingToken);
     }
 }

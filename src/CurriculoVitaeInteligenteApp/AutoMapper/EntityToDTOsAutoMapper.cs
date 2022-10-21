@@ -4,7 +4,7 @@ using CurriculoVitaeInteligenteDomain.Entities;
 
 namespace CurriculoVitaeInteligenteApp.AutoMapper
 {
-    public class EntityToDTOsAutoMapper:Profile
+    public class EntityToDTOsAutoMapper: Profile
     {
         public EntityToDTOsAutoMapper()
         {

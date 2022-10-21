@@ -8,12 +8,9 @@ namespace CurriculoVitaeInteligenteDomain.Services
 {
     public class ContaService : BaseService<Conta>, IContaService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IContaRepository _repository;
         public ContaService(IContaRepository repository, IUnitOfWork unitOfWork) : base(repository, unitOfWork)
         {   
-            _unitOfWork = unitOfWork;
-            _repository = repository;
+
         }
 
         public async Task<Conta> AdicionarConta(CancellationToken stoppingToken)
@@ -74,7 +71,7 @@ namespace CurriculoVitaeInteligenteDomain.Services
 
                 //}
 
-                return conta3;
+                    return conta3!;
 
                 }
                 catch (Exception)
@@ -82,10 +79,6 @@ namespace CurriculoVitaeInteligenteDomain.Services
 
                     throw;
                 }
-
-
-
-
             
         }   
     }

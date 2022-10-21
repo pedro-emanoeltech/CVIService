@@ -12,12 +12,14 @@ namespace CurriculoVitaeInteligenteApp.Services
     public abstract class BaseServiceApp<T> : IBaseServiceApp<T> where T : ClassBase, IAddContextBaseProperty
     {
         private readonly IBaseService<T> _Service;
+        protected readonly IMapper _mapper;
         protected readonly IUnitOfWork _unitOfWork;
 
-        protected BaseServiceApp(IBaseService<T> Service, IUnitOfWork unitOfWork)
+        protected BaseServiceApp(IBaseService<T> Service, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _Service = Service;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
           
         }
 
@@ -77,16 +79,11 @@ namespace CurriculoVitaeInteligenteApp.Services
             }
             catch (Exception e )   
             {
-               throw new Exception(e.Message);
-               return null;
+               throw new Exception(e.Message);            
             }
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
+       
     }
 
 }

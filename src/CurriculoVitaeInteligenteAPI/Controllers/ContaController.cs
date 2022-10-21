@@ -10,7 +10,7 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
   
     [ApiController]
     [Route("[controller]")]
-    public class ContaController : ControllerBase
+    public class ContaController : BaseControllers
     {
         public readonly IContaServiceApp _contaServiceApp;
         private readonly IMapper _mapper;   
@@ -33,19 +33,19 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
         }
 
         [HttpGet]
-        public virtual async Task<ActionResult<ContaDTo>> GetList()
+        public async Task<ActionResult<Conta>> GetList()
         {
             var result = await _contaServiceApp.GetList();
            
             if (result != null)
             {
-                ContaDTo contaDTo = new ContaDTo();
-                contaDTo = _mapper.Map<ContaDTo>(result);
-                return (ActionResult<ContaDTo>)Ok(contaDTo);
+                Conta contaDTo = new Conta();
+                contaDTo = _mapper.Map<Conta>(result);
+                return (ActionResult<Conta>)Ok(contaDTo);
             }
             else
             {
-                return (ActionResult<ContaDTo>)BadRequest("Falha na busca de Contas");
+                return (ActionResult<Conta>)BadRequest("Falha na busca de Contas");
             }
  
         }

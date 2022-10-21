@@ -28,7 +28,7 @@ namespace CurriculoVitaeInteligenteDomain.Services
             return await _repositorio.Get(id);
         }
 
-        public async Task<IList<T>> GetList()
+        public virtual  async Task<IList<T>> GetList()
         {
             return await _repositorio.GetList();
         }
@@ -53,7 +53,7 @@ namespace CurriculoVitaeInteligenteDomain.Services
 
         }
 
-        public async Task<T?> GetFirstOrDefault(Expression<Func<T, bool>>? condicao = null)
+        public virtual async Task<T?> GetFirstOrDefault(Expression<Func<T, bool>>? condicao = null)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace CurriculoVitaeInteligenteDomain.Services
             }
         }
 
-        public async Task<IList<T>?> GetToList(Expression<Func<T, bool>>? condicao = null)
+        public virtual async Task<IList<T>?> GetToList(Expression<Func<T, bool>>? condicao = null)
         {
             try
             {

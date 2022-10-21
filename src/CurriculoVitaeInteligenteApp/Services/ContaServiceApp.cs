@@ -8,7 +8,7 @@ namespace CurriculoVitaeInteligenteApp.Services
 {
     public class ContaServiceApp : BaseServiceApp<Conta>, IContaServiceApp
     {
-        public ContaServiceApp( IContaService Service,IUnitOfWork unitOfWork ) : base(Service,unitOfWork)
+        public ContaServiceApp(IContaService Service,IUnitOfWork unitOfWork,IMapper mapper) : base(Service, mapper, unitOfWork)
         {
         }
     }
