@@ -2,7 +2,6 @@
 using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Data.Entity;
 using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using System.Data;
 using CurriculoVitaeInteligenteDomain.Entities;

@@ -2,6 +2,7 @@
 
 namespace CurriculoVitaeInteligenteAPI.Controllers
 {
+   
     public abstract class BaseControllers : ControllerBase
     {
     }
