@@ -38,11 +38,11 @@ namespace CurriculoVitaeInteligenteDomain.Services
            return await _repositorio.Remove(id);
         }
 
-        public async Task<T> Edit(T TEntity)
+        public async Task<T> Edit(string id, T TEntity)
         {
             try
             {
-                return await _repositorio.Edit(TEntity);
+                return await _repositorio.Edit( id, TEntity);
 
             }
             catch (Exception)

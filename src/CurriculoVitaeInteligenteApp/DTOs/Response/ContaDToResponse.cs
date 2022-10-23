@@ -1,13 +1,11 @@
 ﻿using CurriculoVitaeInteligenteDomain.Content.Enums;
 
 
-namespace CurriculoVitaeInteligenteApp.DTOs
+namespace CurriculoVitaeInteligenteApp.DTOs.Response
 {
-    public class ContaDTo
+    public class ContaDToResponse
     {
         public string? Email { get; set; }
-
-        public string? Senha { get; set; }
 
         public TipoPerfil? TipoPerfil { get; set; }
 

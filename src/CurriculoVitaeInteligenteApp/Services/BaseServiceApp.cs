@@ -44,11 +44,11 @@ namespace CurriculoVitaeInteligenteApp.Services
             return await _Service.Remove(id);
         }
 
-        public  async Task<T> Edit(T TEntity)
+        public  async Task<T> Edit(string id, T TEntity)
         {
             try
             {
-                return await _Service.Edit(TEntity);
+                return await _Service.Edit(id, TEntity);
 
             }
             catch (Exception)

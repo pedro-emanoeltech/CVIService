@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using CurriculoVitaeInteligenteApp.DTOs;
+using CurriculoVitaeInteligenteApp.DTOs.Request;
+using CurriculoVitaeInteligenteApp.DTOs.Response;
 using CurriculoVitaeInteligenteDomain.Entities;
 
 namespace CurriculoVitaeInteligenteApp.AutoMapper
@@ -8,7 +9,10 @@ namespace CurriculoVitaeInteligenteApp.AutoMapper
     {
         public DTOsToEntityAutoMapper()
         {
-            CreateMap<ContaDTo,Conta>();
+            CreateMap<ContaDToResponse,Conta>();
+
+
+            CreateMap<ContaDTORequest, Conta>();
         }
     }
 }

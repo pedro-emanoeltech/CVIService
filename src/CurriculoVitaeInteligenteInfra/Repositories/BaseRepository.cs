@@ -1,10 +1,10 @@
-﻿using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
+using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
+using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using System.Data;
-using CurriculoVitaeInteligenteDomain.Entities;
+using System.Linq.Expressions;
 
 namespace CurriculoVitaeInteligenteInfra.Repositories
 {
@@ -92,12 +92,12 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public virtual async Task<T> Edit(T TEntity)
+        public virtual async Task<T> Edit(string id,T TEntity)
         {
             try
             {
 
-                _context.Entry(TEntity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                _context.Entry(TEntity).State = EntityState.Modified;
 
 
                 _context.Set<T>().Update(TEntity);
