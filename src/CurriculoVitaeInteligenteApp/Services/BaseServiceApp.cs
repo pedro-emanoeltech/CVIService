@@ -6,6 +6,8 @@ using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteDomain.Interfaces.Services;
 using System.Linq.Expressions;
+using System.Net;
+using System.Web.Http;
 
 namespace CurriculoVitaeInteligenteApp.Services
 {
@@ -48,8 +50,8 @@ namespace CurriculoVitaeInteligenteApp.Services
         {
             try
             {
-                return await _Service.Edit(id, TEntity);
-
+                 TEntity = await _Service.Edit(id, TEntity);
+                return TEntity;
             }
             catch (Exception)
             {

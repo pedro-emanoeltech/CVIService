@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using CurriculoVitaeInteligenteApp.DTOs.Request;
 using CurriculoVitaeInteligenteApp.DTOs.Response;
+using CurriculoVitaeInteligenteApp.DTOs.Validations;
 using CurriculoVitaeInteligenteApp.Interfaces;
 using CurriculoVitaeInteligenteDomain.Entities;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace CurriculoVitaeInteligenteAPI.Controllers
 {
@@ -111,23 +113,28 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
         {
             if (request == null)
             {
-                return (ActionResult<ContaDToResponse>)BadRequest("objeto não pode ser nulo");
+                return (ActionResult<ContaDToResponse>)BadRequest("Conteúdo não pode ser nulo");
             }
 
-            var requestConta = _mapper.Map<Conta>(request);
+            var validation = new ContaDTOValidation().Validate(request);
+            if (!validation.IsValid)
+            {
+                return (ActionResult<ContaDToResponse>)BadRequest("Conteúdo não pode ser nulo"+validation);
+            }
+            var resultGet = await _contaServiceApp.Get(id);
+            if (resultGet == null)
+            {
+                return (ActionResult<ContaDToResponse>)BadRequest("ID nao encontrado");
+            }
+            var requestConta = _mapper.Map(request,resultGet);
 
             var result = await _contaServiceApp.Edit(id, requestConta);
             if (result is null)
             {
-                return (ActionResult<ContaDToResponse>)BadRequest(result);
+                return (ActionResult<ContaDToResponse>)BadRequest("Falha ao atualizar dados" );
             }
 
             var responseResult = _mapper.Map<ContaDToResponse>(result);
-
-            if (responseResult != null)
-            {
-                return (ActionResult<ContaDToResponse>)BadRequest();
-            }
 
             return (ActionResult<ContaDToResponse>)Ok(responseResult);
         }

@@ -42,10 +42,13 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             {
                 if (id == null)
                 {
-                    return null;
+                    throw new Exception("ID INVALIDO");
                 }
-                T TEntity = await _context.Set<T>().FirstOrDefaultAsync((T m) => m.Id == Guid.Parse(id));
-
+                T? TEntity = await _context.Set<T>().FirstOrDefaultAsync((T m) => m.Id == Guid.Parse(id));
+                if (TEntity == null)
+                {
+                    throw new Exception("erro ao consultar Id" + id);
+                }
                 return TEntity;
             }
             catch (Exception e)
@@ -96,7 +99,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
         {
             try
             {
-
+                
                 _context.Entry(TEntity).State = EntityState.Modified;
 
 
