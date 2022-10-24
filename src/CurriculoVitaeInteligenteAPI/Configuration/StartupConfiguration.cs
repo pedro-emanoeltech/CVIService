@@ -2,11 +2,10 @@
 using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
 using System.Text.Json.Serialization;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CurriculoVitaeInteligenteAPI.Configuration
 {
@@ -72,7 +71,7 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
             });
             
             services.AddHttpContextAccessor();
-            services.AddControllers().ConfigureApiBehaviorOptions(delegate (ApiBehaviorOptions options)
+            services.AddControllers().AddOData(opt=> opt.Select().Filter().OrderBy()).ConfigureApiBehaviorOptions(delegate (ApiBehaviorOptions options)
             {
                 options.SuppressMapClientErrors = true;
                 options.SuppressModelStateInvalidFilter = true;
@@ -81,6 +80,7 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
             services.AddEndpointsApiExplorer();
+
             return services;
         }
 
@@ -105,6 +105,6 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
             services.AddAutoMapper(typeof(EntityToDTOsAutoMapper));
             return services;
         }
-
+        
     }
 }

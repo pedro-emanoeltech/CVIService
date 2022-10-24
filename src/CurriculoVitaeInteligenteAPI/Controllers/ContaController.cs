@@ -5,7 +5,7 @@ using CurriculoVitaeInteligenteApp.DTOs.Validations;
 using CurriculoVitaeInteligenteApp.Interfaces;
 using CurriculoVitaeInteligenteDomain.Entities;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Web.Http.OData;
 
 namespace CurriculoVitaeInteligenteAPI.Controllers
 {
@@ -26,19 +26,20 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
         }
 
         [HttpGet]
+        [EnableQuery]
         [ProducesResponseType(typeof(ContaDToResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<IList<ContaDToResponse>>> GetList()
+        public async Task<ActionResult<IQueryable<ContaDToResponse>>> GetList()
         {
             var result = await _contaServiceApp.GetList();
             if (result != null)
             {
                 var responseResult = _mapper.Map<IList<ContaDToResponse>>(result);
-                return (ActionResult<IList<ContaDToResponse>>)Ok(responseResult);
+                return (ActionResult<IQueryable<ContaDToResponse>>)Ok(responseResult);
             }
             else
             {
-                return (ActionResult<IList<ContaDToResponse>>)BadRequest("Falha na busca de Contas");
+                return (ActionResult<IQueryable<ContaDToResponse>>)BadRequest("Falha na busca de Contas");
             }
         }
 
@@ -90,19 +91,17 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
         }
 
         //[HttpGet]
-        //[ProducesResponseType(typeof(ResultFail), 400)]
-        //[ProducesResponseType(typeof(ResultFail), 500)]
-        //public virtual async Task<ActionResult<ResultList<TResponse>>> GetListPaginated([FromQuery] ODataParametrosRequest oDataParametros)
+        //[ProducesResponseType(typeof(ContaDToResponse), 400)]
+        //[ProducesResponseType(typeof(ContaDToResponse), 500)]
+        //public virtual async Task<ActionResult<IQueryable<ContaDToResponse>>> GetToList()
         //{
-        //    ODataParametrosRequest oDataParametros2 = _mapper.Map<ODataParametrosRequest>(oDataParametros);
-        //    IResult result = await _appService.GetListPaginated(oDataParametros2);
-        //    ResultFail resultFail = result as ResultFail;
-        //    if (resultFail != null)
+        //    var result = await _contaServiceApp.GetToList();
+        //    if (result != null)
         //    {
-        //        return (ActionResult<ResultList<TResponse>>)BadRequest(resultFail.Message);
+        //        return (ActionResult<IQueryable<ContaDToResponse>>)BadRequest("Sem resultado obtido");
         //    }
 
-        //    return (ActionResult<ResultList<TResponse>>)Ok(result);
+        //    return (ActionResult <IQueryable<ContaDToResponse>>)Ok(result);
         //}
 
         [HttpPut("{id}")]

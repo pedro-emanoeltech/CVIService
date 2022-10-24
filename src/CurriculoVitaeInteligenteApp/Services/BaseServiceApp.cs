@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
-using CurriculoVitaeInteligenteApp.DTOs;
 using CurriculoVitaeInteligenteApp.Interfaces;
 using CurriculoVitaeInteligenteDomain.Entities;
 using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteDomain.Interfaces.Services;
 using System.Linq.Expressions;
-using System.Net;
-using System.Web.Http;
 
 namespace CurriculoVitaeInteligenteApp.Services
 {
