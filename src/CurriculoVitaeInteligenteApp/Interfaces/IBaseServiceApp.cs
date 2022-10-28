@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace CurriculoVitaeInteligenteApp.Interfaces
 {
-    public interface IBaseServiceApp<T> where T : ClassBase, IAddContextBaseProperty
+    public interface IBaseServiceApp<T> where T : ClassBase
     {
         Task<T> Add(T Entity, bool saveChanges = true);
         Task<T?> Get(string id);

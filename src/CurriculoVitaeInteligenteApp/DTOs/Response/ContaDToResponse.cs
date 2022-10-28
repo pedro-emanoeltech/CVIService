@@ -3,7 +3,7 @@
 
 namespace CurriculoVitaeInteligenteApp.DTOs.Response
 {
-    public class ContaDToResponse
+    public class ContaDToResponse : BaseResponse
     {
         public Guid? Id { get; set; }
         public string? Email { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CurriculoVitaeInteligenteApp.DTOs.Request
 {
-    public class ContaDTORequest
+    public class ContaDTORequest : BaseRequest
     {
         public string? Email { get; set; }
 

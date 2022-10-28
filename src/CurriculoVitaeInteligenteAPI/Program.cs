@@ -1,7 +1,4 @@
 using CurriculoVitaeInteligenteAPI.Configuration;
-using CurriculoVitaeInteligenteInfra.Context;
-using Microsoft.AspNetCore.OData;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +7,10 @@ builder.Services.AddRazorPages();
 builder.Services.ConfigurationPostgres(builder.Configuration);
 builder.Services.AddDependencyInjectionConfiguration(builder.Configuration);
 builder.Services.AddSwaggerConfiguration(builder.Configuration);
-builder.Services.AddApiConfiguration();
+builder.Services.ConfiguratonsApi();
 //builder.Services.OdataConfiguration();
 builder.Services.AutoMapperConfiguration();
-builder.Services.AddControllers().AddOData();
+
 
 var app = builder.Build();
 
@@ -32,7 +29,7 @@ app.UseRouting();
 app.ConfigurationPostgresEscopo();
 app.UseAuthorization();
 app.UseSwaggerConfiguration();
-app.UseApiConfiguration();
+app.UseConfiguratonsApi();
 
 
 app.MapRazorPages();

@@ -1,7 +1,5 @@
 ﻿using CurriculoVitaeInteligenteDomain.Entities;
-using CurriculoVitaeInteligenteInfra.Mapping;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace CurriculoVitaeInteligenteInfra.Context
 {

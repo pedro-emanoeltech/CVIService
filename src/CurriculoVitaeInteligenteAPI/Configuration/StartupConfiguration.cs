@@ -2,7 +2,6 @@
 using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
@@ -57,7 +56,7 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
             
         }
 
-        public static IServiceCollection AddApiConfiguration(this IServiceCollection services)
+        public static IServiceCollection ConfiguratonsApi(this IServiceCollection services)
         {
 
             services.AddHttpLogging(delegate (HttpLoggingOptions options)
@@ -71,7 +70,7 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
             });
             
             services.AddHttpContextAccessor();
-            services.AddControllers().AddOData(opt=> opt.Select().Filter().OrderBy()).ConfigureApiBehaviorOptions(delegate (ApiBehaviorOptions options)
+            services.AddControllers().ConfigureApiBehaviorOptions(delegate (ApiBehaviorOptions options)
             {
                 options.SuppressMapClientErrors = true;
                 options.SuppressModelStateInvalidFilter = true;
@@ -84,7 +83,7 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
             return services;
         }
 
-        public static WebApplication UseApiConfiguration(this WebApplication app)
+        public static WebApplication UseConfiguratonsApi(this WebApplication app)
         {
             app.UseHttpLogging();
             
