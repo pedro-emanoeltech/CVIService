@@ -1,9 +1,13 @@
 ﻿using CurriculoVitaeInteligenteApp.AutoMapper;
+using CurriculoVitaeInteligenteDomain.Constant.settings;
 using CurriculoVitaeInteligenteInfra.Context;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace CurriculoVitaeInteligenteAPI.Configuration
@@ -78,7 +82,16 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
             {
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
+
             services.AddEndpointsApiExplorer();
+            services.AddCors();
+
+            var key = Encoding.ASCII.GetBytes(Token.Secret);
+            services.AddAuthentication(p =>
+            p.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme
+            p.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme
+
+            );
 
             return services;
         }
@@ -104,6 +117,9 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
             services.AddAutoMapper(typeof(EntityToDTOsAutoMapper));
             return services;
         }
-        
+
+
+       
     }
+
 }

@@ -12,6 +12,25 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             
         }
 
+        public override Task<Conta> Add(Conta TEntity, bool saveChanges = true)
+        {
+            if (TEntity.Email is not null)
+            {
+                TEntity.Email = TEntity!.Email!.ToLower();
+            }
+            
+            return base.Add(TEntity, saveChanges);  
+        }
+
+        public override Task<Conta> Edit(string id, Conta TEntity)
+        {
+            if (TEntity.Email is not null)
+            {
+                TEntity.Email = TEntity!.Email!.ToLower();
+            }
+
+            return base.Edit(id, TEntity);
+        }
 
     }
 

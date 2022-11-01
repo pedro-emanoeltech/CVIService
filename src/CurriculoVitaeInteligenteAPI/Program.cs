@@ -8,7 +8,6 @@ builder.Services.ConfigurationPostgres(builder.Configuration);
 builder.Services.AddDependencyInjectionConfiguration(builder.Configuration);
 builder.Services.AddSwaggerConfiguration(builder.Configuration);
 builder.Services.ConfiguratonsApi();
-//builder.Services.OdataConfiguration();
 builder.Services.AutoMapperConfiguration();
 
 
