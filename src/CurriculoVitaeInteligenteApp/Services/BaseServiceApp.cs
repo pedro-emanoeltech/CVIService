@@ -10,7 +10,7 @@ namespace CurriculoVitaeInteligenteApp.Services
 {
     public abstract class BaseServiceApp<T> : IBaseServiceApp<T> where T : ClassBase, IAddContextBaseProperty
     {
-        private readonly IBaseService<T> _Service;
+        public readonly IBaseService<T> _Service;
         protected readonly IMapper _mapper;
         protected readonly IUnitOfWork _unitOfWork;
 
@@ -22,12 +22,12 @@ namespace CurriculoVitaeInteligenteApp.Services
           
         }
 
-        public async Task<T> Add(T TEntity, bool saveChanges = true)
+        public virtual async Task<T> Add(T TEntity, bool saveChanges = true)
         {
             return await _Service.Add(TEntity, saveChanges);
         }
 
-        public async Task<T?> Get(string id)
+        public virtual async Task<T?> Get(string id)
         {
             return await _Service.Get(id);
         }
@@ -38,12 +38,12 @@ namespace CurriculoVitaeInteligenteApp.Services
 
         }
 
-        public async Task<bool> Remove(string id)
+        public virtual async Task<bool> Remove(string id)
         {
             return await _Service.Remove(id);
         }
 
-        public  async Task<T> Edit(string id, T TEntity)
+        public virtual async Task<T> Edit(string id, T TEntity)
         {
             try
             {

@@ -13,10 +13,7 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Consumes("application/json", new string[] { })]
     [Produces("application/json", new string[] { })]
-    public abstract class BaseController<
-        T
-        ,TRequestDTO
-        ,TResponsesDTO >
+    public abstract class BaseController<T,TRequestDTO,TResponsesDTO >
         : ControllerBase , IBaseController<T, TRequestDTO,TResponsesDTO> where T : ClassBase where TRequestDTO : BaseRequest where TResponsesDTO : BaseResponse
     {
      
@@ -48,21 +45,30 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
             [HttpPost]
             public async Task<ActionResult<TResponsesDTO>> Add([FromBody] TRequestDTO request)
             {
-                if (request == null)
+                try
                 {
-                    return (ActionResult<TResponsesDTO>)BadRequest("Conteúdo não pode ser nulo");
+                    if (request == null)
+                    {
+                        return (ActionResult<TResponsesDTO>)BadRequest("Conteúdo não pode ser nulo");
+                    }
+
+                    var requestConta = _mapper.Map<T>(request);
+
+                    var result = await _baseServiceApp.Add(requestConta);
+                    if (result is null)
+                    {
+                        return (ActionResult<TResponsesDTO>)BadRequest(result);
+                    }
+
+                    var responseResult = _mapper.Map<TResponsesDTO>(result);
+                    return (ActionResult<TResponsesDTO>)Ok(responseResult);
                 }
-
-                var requestConta = _mapper.Map<T>(request);
-
-                var result = await _baseServiceApp.Add(requestConta);
-                if (result is null)
+                catch (Exception e)
                 {
-                    return (ActionResult<TResponsesDTO>)BadRequest(result);
+                    return (ActionResult<TResponsesDTO>)BadRequest(e.Message);
+                    throw;
                 }
-
-                var responseResult = _mapper.Map<TResponsesDTO>(result);
-                return (ActionResult<TResponsesDTO>)Ok(responseResult);
+                
             }
 
             [HttpDelete("{id}")]
@@ -101,11 +107,11 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
 
             [HttpPut("{id}")]
             [Consumes("application/json", new string[] { })]
-            public async Task<ActionResult<TResponsesDTO>> Edit([FromBody] TRequestDTO request, string id)
+            public async Task<ActionResult<T>> Edit([FromBody] TRequestDTO request, string id)
             {
                 if (request == null)
                 {
-                    return (ActionResult<TResponsesDTO>)BadRequest("Conteúdo não pode ser nulo");
+                    return (ActionResult<T>)BadRequest("Conteúdo não pode ser nulo");
                 }
 
                 //var validation = new ContaDTOValidation().Validate(request);
@@ -116,19 +122,17 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
                 var resultGet = await _baseServiceApp.Get(id);
                 if (resultGet == null)
                 {
-                    return (ActionResult<TResponsesDTO>)BadRequest("ID nao encontrado");
+                    return (ActionResult<T>)BadRequest("ID nao encontrado");
                 }
                 var requestConta = _mapper.Map(request, resultGet);
 
                 var result = await _baseServiceApp.Edit(id, requestConta);
                 if (result is null)
                 {
-                    return (ActionResult<TResponsesDTO>)BadRequest("Falha ao atualizar dados");
+                    return (ActionResult<T>)BadRequest("Falha ao atualizar dados");
                 }
 
-                var responseResult = _mapper.Map<TResponsesDTO>(result);
-
-                return (ActionResult<TResponsesDTO>)Ok(responseResult);
+                return (ActionResult<T>)Ok(result);
             }
 
 

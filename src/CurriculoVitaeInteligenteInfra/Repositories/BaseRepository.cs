@@ -23,6 +23,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
         {
             try
             {
+
                 await _context.Set<T>().AddAsync(TEntity);
                 if (saveChanges)
                 {
