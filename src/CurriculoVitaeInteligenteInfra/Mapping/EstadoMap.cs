@@ -19,7 +19,7 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             builder.HasIndex(p => p.UF).IsUnique(true);
 
 
-            builder.HasOne(i => i.Pais).WithOne(p => p.Estado).HasForeignKey<Estado>(i => i.PaisId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Pais).WithOne(p => p.Estado).HasForeignKey<Estado>(i => i.Pais_Id).OnDelete(DeleteBehavior.Cascade);
 
         }
     }

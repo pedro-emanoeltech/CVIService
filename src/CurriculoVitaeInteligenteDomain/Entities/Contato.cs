@@ -8,7 +8,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class Contato : BaseEntityComData
     {
-        public Guid? PerfilId { get; set; }
+        public Guid? Perfil_Id { get; set; }
         public Guid? VagaId { get; set; }
 
         public string? Email { get; set; }

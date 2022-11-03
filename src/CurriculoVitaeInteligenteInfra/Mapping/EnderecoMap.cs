@@ -22,12 +22,12 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 
 
             //navegação
-            builder.HasOne(i => i.Perfil).WithOne(p => p.Endereco).HasForeignKey<Endereco>(i => i.PerfilId).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(i => i.Vaga).WithOne(p => p.Endereco).HasForeignKey<Endereco>(i => i.VagaId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Perfil).WithOne(p => p.Endereco).HasForeignKey<Endereco>(i => i.Perfil_Id).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Vaga).WithOne(p => p.Endereco).HasForeignKey<Endereco>(i => i.Vaga_Id).OnDelete(DeleteBehavior.Cascade);
 
             //relacionamento
-            builder.HasOne(i => i.Cidade).WithOne(p => p.Endereco).HasForeignKey<Endereco>(i => i.IdCidade).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(i => i.Estado).WithOne(p => p.Endereco).HasForeignKey<Endereco>(i => i.IdEstado).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Cidade).WithOne(p => p.Endereco).HasForeignKey<Endereco>(i => i.Cidade_Id).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Estado).WithOne(p => p.Endereco).HasForeignKey<Endereco>(i => i.Estado_Id).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

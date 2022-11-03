@@ -18,9 +18,9 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 
 
             //indice
-            builder.HasOne(i => i.Perfil).WithOne(p => p.Objetivo).HasForeignKey<Objetivo>(i => i.PerfilId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Perfil).WithOne(p => p.Objetivo).HasForeignKey<Objetivo>(i => i.Perfil_Id).OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(i => i.Cidade).WithOne(p => p.Objetivo).HasForeignKey<Objetivo>(i => i.CidadeRegiaoInteresseId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Cidade).WithOne(p => p.Objetivo).HasForeignKey<Objetivo>(i => i.CidadeRegiaoInteresse_Id).OnDelete(DeleteBehavior.Cascade);
 
 
 

@@ -21,8 +21,8 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             builder.Property(i => i.Genero).HasMaxLength(20).HasConversion(new EnumToStringConverter<Genero>());
 
             //relacionamento
-            builder.HasOne(i => i.Segmento).WithOne(p => p.Perfil).HasForeignKey<Perfil>(i => i.SegmentoId).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(i => i.Nacionalidade).WithOne(p => p.Perfil).HasForeignKey<Perfil>(i => i.NacionalidadeId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Segmento).WithOne(p => p.Perfil).HasForeignKey<Perfil>(i => i.Segmento_Id).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Nacionalidade).WithOne(p => p.Perfil).HasForeignKey<Perfil>(i => i.Nacionalidade_Id).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

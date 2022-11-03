@@ -5,7 +5,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class Idioma :BaseEntity
     {
-        public Guid? PerfilId { get; set; }
+        public Guid? Perfil_Id { get; set; }
         public string? Nome { get; set; }
         public NivelLinguagem? NivelLeitura { get; set; }
         public NivelLinguagem? NivelEscrita { get; set; }

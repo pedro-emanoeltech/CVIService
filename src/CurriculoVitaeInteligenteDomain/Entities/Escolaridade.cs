@@ -4,7 +4,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class Escolaridade : BaseEntityComData
     {
-        public Guid? PerfilId { get; set; }
+        public Guid? Perfil_Id { get; set; }
         public NivelAcademico? NivelAcademico { get; set; }
 
 

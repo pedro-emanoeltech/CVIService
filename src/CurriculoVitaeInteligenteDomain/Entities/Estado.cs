@@ -8,7 +8,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class Estado :BaseEntity
     {
-        public Guid? PaisId { get; set; }
+        public Guid? Pais_Id { get; set; }
         public string? Nome { get; set; }
         public string? UF { get; set; }
 
