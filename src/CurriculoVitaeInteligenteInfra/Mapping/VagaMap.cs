@@ -20,8 +20,8 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             builder.Property(i => i.TipoPerfil).HasMaxLength(10).HasConversion(new EnumToStringConverter<TipoPerfil>());
             builder.Property(i => i.ModalidadeTrabalho).HasMaxLength(20).HasConversion(new EnumToStringConverter<ModalidadeTrabalho>());
 
-            builder.HasOne(i => i.Endereco).WithOne(p => p.Vaga).HasForeignKey<Vaga>(i => i.EnderecoId).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(i => i.Contato).WithOne(p => p.Vaga).HasForeignKey<Vaga>(i => i.ContatoId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Endereco).WithOne(p => p.Vaga).HasForeignKey<Vaga>(i => i.Endereco_Id).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Contato).WithOne(p => p.Vaga).HasForeignKey<Vaga>(i => i.Contato_Id).OnDelete(DeleteBehavior.Cascade);
             
 
         }

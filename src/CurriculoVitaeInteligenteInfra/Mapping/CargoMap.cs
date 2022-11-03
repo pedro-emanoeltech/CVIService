@@ -16,7 +16,7 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             builder.Property(i => i.DescricaoCargo).HasMaxLength(300);
 
             //indice
-            builder.HasOne(i => i.HistoricoProfissional).WithMany(p => p.Cargo).HasForeignKey(i => i.HistoricoProfissionalId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.HistoricoProfissional).WithMany(p => p.Cargo).HasForeignKey(i => i.HistoricoProfissional_Id).OnDelete(DeleteBehavior.Cascade);
 
 
 

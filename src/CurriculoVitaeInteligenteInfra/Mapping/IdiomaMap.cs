@@ -18,7 +18,7 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             builder.Property(i => i.NivelConversacao).HasMaxLength(20).HasConversion(new EnumToStringConverter<NivelLinguagem>());
 
             //indice
-            builder.HasOne(i => i.Perfil).WithOne(p => p.Idioma).HasForeignKey<Idioma>(i => i.PerfilId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Perfil).WithOne(p => p.Idioma).HasForeignKey<Idioma>(i => i.Perfil_Id).OnDelete(DeleteBehavior.Cascade);
 
             
 

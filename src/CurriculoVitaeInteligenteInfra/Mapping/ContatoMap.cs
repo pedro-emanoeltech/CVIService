@@ -18,7 +18,7 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             builder.Property(i => i.CelularSecundario).HasMaxLength(20);
 
             //indice
-            builder.HasOne(i => i.Perfil).WithOne(p => p.Contato).HasForeignKey<Contato>(i => i.PerfilId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Perfil).WithOne(p => p.Contato).HasForeignKey<Contato>(i => i.Perfil_Id).OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(i => i.Vaga).WithOne(p => p.Contato).HasForeignKey<Contato>(i => i.VagaId).OnDelete(DeleteBehavior.Cascade);
 
 
