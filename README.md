@@ -2,7 +2,7 @@
 Projeto desenvolvido para o curso Engenharia da Computação (TCC) - Turma NDD 🚀
 
 <h1 align="center">
-   <p>Desenvolvido por Pedro Emanoel - API RESTful de Vagas de Emprego</p>
+   <p>Desenvolvido por Pedro Emanoel - API de Vagas de Emprego</p>
 </h1>
 
 Projeto Api faz parte de um grupo de 3 Serviços API/WEB/Mobile, desenvolvido com ASP.NET 6 com EntityFramework Core 6, em C#, conectando em base PostgreSQL, respeitando padrões Rest, com implementação do SOLID e divisão em camadas DDD.
