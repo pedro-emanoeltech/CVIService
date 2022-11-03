@@ -38,7 +38,7 @@ Crud Completo:
 
 Para rodar o projeto em sua máquina, você vai precisar ter instalado as seguintes ferramentas:
 [Git](https://git-scm.com) e [.NET 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
-Além disto é importante ter um editor para trabalhar com o código, como [VisualStudio](https://visualstudio.microsoft.com/) e um sistema gerenciador de Banco de dados relacional, como o [PostgreSQL](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads](https://www.postgresql.org/download/) , para gerenciar o banco de dados indico o [HeidiSQL](https://www.heidisql.com/download.php).
+Além disto é importante ter um editor para trabalhar com o código, como [VisualStudio](https://visualstudio.microsoft.com/) e um sistema gerenciador de Banco de dados relacional, como o [PostgreSQL](https://www.postgresql.org/download/) , para gerenciar o banco de dados indico o [HeidiSQL](https://www.heidisql.com/download.php).
 
 #### 🎲 Rodando a Aplicação
 
