@@ -1,5 +1,5 @@
 # CurriculoVitaeInteligente
-Projeto desenvolvido para o curso Engenharia da Computação (TCC) - Turma NDD 🚀
+Projeto desenvolvido para o curso Engenharia da Computação (TCC) - Turma 2018 🚀
 
 <h1 align="center">
    <p>Desenvolvido por Pedro Emanoel - API de Vagas de Emprego</p>
@@ -19,13 +19,18 @@ O projeto desenvolve uma API para Cadastro de Curriculo e vagas de emprego. Sepa
 
 Crud Completo:
 
-- User
-- Car
-- Address
-- Sales
-- Delivery
-- State
-- City
+- Conta
+- Perfil
+- Vaga
+- Cargo
+- Contato
+- Historico profissional
+- Curso/Formacao
+- Escolaridade
+- Objetivo profissional
+- Endereço
+- Cidade
+- Pais
 - Autenticação JWT
 - Autorização
 
@@ -33,7 +38,7 @@ Crud Completo:
 
 Para rodar o projeto em sua máquina, você vai precisar ter instalado as seguintes ferramentas:
 [Git](https://git-scm.com) e [.NET 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
-Além disto é importante ter um editor para trabalhar com o código, como [VisualStudio](https://visualstudio.microsoft.com/) e um sistema gerenciador de Banco de dados relacional, como o [SQLServer](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads).
+Além disto é importante ter um editor para trabalhar com o código, como [VisualStudio](https://visualstudio.microsoft.com/) e um sistema gerenciador de Banco de dados relacional, como o [PostgreSQL](https://www.microsoft.com/pt-br/sql-server/sql-server-downloads](https://www.postgresql.org/download/) , para gerenciar o banco de dados indico o [HeidiSQL](https://www.heidisql.com/download.php).
 
 #### 🎲 Rodando a Aplicação
 
@@ -42,7 +47,7 @@ Além disto é importante ter um editor para trabalhar com o código, como [Visu
 
 ```bash
 # Clone este repositório
-$ git clone https://github.com/edmilsondmx/Modulo03_Projeto01_DEVinHouse
+$ git clone [https://github.com/pedro-emanoeltech/CVIService.git]
 ```
 
 <h5>2 - Abra o projeto no VisualStudio, clicando 2x no arquivo <b>DevInCar.sln</b></h5>
@@ -51,19 +56,30 @@ $ git clone https://github.com/edmilsondmx/Modulo03_Projeto01_DEVinHouse
 <h5>3 - Vá para o arquivo <b>appsettings.json</b> e adicione a ConnectionString, seguindo o modelo abaixo 👇</h5>
 
 ```bash
-"ConnectionStrings": {
-"ServerConnection": "Server=localhost\\SQLEXPRESS;Database=BD_DEVINCAR;Trusted_Connection=True;"
+"PostgresSettings": {
+"ConnectionString": "Host=localhost;Port=5432;Pooling=true;Database=cvi_api;Username=postgres;Password=(senha do seu banco);"
 }
 ```
 
 
 <h5>4 - Instale as seguintes dependências, via NuGet:</h5>
     <ul>
-        <li>Microsoft.EntityFrameworkCore</li>
-        <li>Microsoft.EntityFrameworkCore.Tools</li>
-        <li>Microsoft.EntityFrameworkCore.Design</li>
-        <li>Microsoft.EntityFrameworkCore.SqlServer</li>
-        <li>Swashbuckle.AspNetCore</li>
+       Include="AutoMapper" Version="12.0.0" />
+       Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+       Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
+       Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
+       Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
+       Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+       Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.4.0" />
+       Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0" />
+       Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+       Include="FluentValidation" Version="11.2.2" />
+       Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+       Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+	    Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+	    Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+       Include="EntityFramework" Version="6.4.4" />
+       Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
     </ul>
 
 
@@ -88,4 +104,4 @@ dotnet watch run
 
 
 ## Autor
-Edmilson Gomes 😊
+Pedro Emanoel😊
