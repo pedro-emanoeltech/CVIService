@@ -1,90 +1,54 @@
-﻿using CurriculoVitaeInteligenteDomain.Interfaces.Services;
-using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using CurriculoVitaeInteligenteAPI.IControllers;
+using CurriculoVitaeInteligenteApp.DTOs.Request;
+using CurriculoVitaeInteligenteApp.DTOs.Response;
+using CurriculoVitaeInteligenteApp.DTOs.Validations;
+using CurriculoVitaeInteligenteApp.Interfaces;
+using CurriculoVitaeInteligenteDomain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CurriculoVitaeInteligenteAPI.Controllers
 {
-    public class ContaController : Controller
+    public class ContaController : BaseController<Conta, ContaDTORequest, ContaDToResponse>
     {
-        public readonly IContaService _contaService;
-
-        public ContaController(IContaService contaService)
+        private readonly IContaServiceApp _contaServiceApp;
+        private readonly IMapper _mapper;
+        public ContaController(IContaServiceApp contaServiceApp, IMapper mapper) : base(contaServiceApp, mapper)
         {
-            _contaService = contaService;   
-        }
-        // GET: ContaController
-        public ActionResult Index()
-        {
-            return View();
+            _contaServiceApp = contaServiceApp;
+            _mapper = mapper;
         }
 
-        // GET: ContaController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: ContaController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ContaController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [Route("Login")]
+        [AllowAnonymous]
+        public async Task<ActionResult<AuthenticateDTOResponse>> Authentcate([FromBody] AuthenticateDTORequest request)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                if (request == null)
+                {
+                    return BadRequest("Email ou Senha não pode ser Vazio");
+                }
 
-        // GET: ContaController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+                var requestConta = _mapper.Map<Conta>(request);
 
-        // POST: ContaController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                var authenticateDTOResponse = await _contaServiceApp.Authenticate(requestConta);
+                if (authenticateDTOResponse is null)
+                {
+                    return BadRequest("falha ao autenticar");
+                }
 
-        // GET: ContaController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+               
+                return (ActionResult<AuthenticateDTOResponse>)Ok(authenticateDTOResponse);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+                throw;
+            }
 
-        // POST: ContaController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

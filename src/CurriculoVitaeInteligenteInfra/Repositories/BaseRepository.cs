@@ -1,26 +1,29 @@
-﻿using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
+using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
+using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-using System.Data.Entity;
-using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using System.Data;
-using CurriculoVitaeInteligenteDomain.Entities;
+using System.Linq.Expressions;
 
 namespace CurriculoVitaeInteligenteInfra.Repositories
 {
-   public abstract class BaseRepository<T> : IBaseRepository<T> where T : ClassBase, IAddContextBaseProperty
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : ClassBase, IAddContextBaseProperty
     {
         protected readonly CVIContext _context;
-        private bool _disposed = false;
+      
 
-        protected BaseRepository(CVIContext context) => 
+        protected BaseRepository(CVIContext context)
+        {
             _context = context;
 
+        }
+       
         public virtual async Task<T> Add(T TEntity, bool saveChanges = true)
         {
             try
             {
+
                 await _context.Set<T>().AddAsync(TEntity);
                 if (saveChanges)
                 {
@@ -40,10 +43,13 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             {
                 if (id == null)
                 {
-                    return null;
+                    throw new Exception("ID INVALIDO");
                 }
-                T TEntity = await _context.Set<T>().FirstOrDefaultAsync((T m) => m.Id == Guid.Parse(id));
-
+                T? TEntity = await _context.Set<T>().FirstOrDefaultAsync((T m) => m.Id == Guid.Parse(id));
+                if (TEntity == null)
+                {
+                    throw new Exception("erro ao consultar Id" + id);
+                }
                 return TEntity;
             }
             catch (Exception e)
@@ -52,11 +58,11 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public virtual  async Task<IList<T>> GetList()
+        public virtual async Task<IList<T>> GetList()
         {
             try
             {
-                var lista = await _context.Set<T>()!.Where(e => e.Id != Guid.Empty).ToListAsync<T>();
+                var lista = await _context.Set<T>()!.ToListAsync<T>();
                 return lista;
             }
             catch (Exception e)
@@ -90,28 +96,28 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public virtual async Task<T> Edit(T TEntity)
+        public virtual async Task<T> Edit(string id,T TEntity)
         {
             try
             {
                 
-                _context.Entry(TEntity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                _context.Entry(TEntity).State = EntityState.Modified;
 
-               
+
                 _context.Set<T>().Update(TEntity);
-                 await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
-                    
+
 
                 return TEntity;
-               
+
             }
             catch (Exception)
             {
 
                 throw;
             }
-           
+
         }
 
         public virtual async Task<T?> GetFirstOrDefault(Expression<Func<T, bool>>? condicao = null)
@@ -148,7 +154,6 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
                 return null;
             }
         }
-
 
     }
 }

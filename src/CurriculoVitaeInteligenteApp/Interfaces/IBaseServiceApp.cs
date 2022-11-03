@@ -2,9 +2,9 @@
 using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using System.Linq.Expressions;
 
-namespace CurriculoVitaeInteligenteDomain.Interfaces.Services
+namespace CurriculoVitaeInteligenteApp.Interfaces
 {
-    public interface IBaseService<T> where T : ClassBase, IAddContextBaseProperty
+    public interface IBaseServiceApp<T> where T : ClassBase
     {
         Task<T> Add(T Entity, bool saveChanges = true);
         Task<T?> Get(string id);
@@ -13,6 +13,5 @@ namespace CurriculoVitaeInteligenteDomain.Interfaces.Services
         Task<T> Edit(string id, T TEntity);
         Task<T?> GetFirstOrDefault(Expression<Func<T, bool>>? condicao = null);
         Task<IList<T>?> GetToList(Expression<Func<T, bool>>? condicao = null);
-       
     }
 }

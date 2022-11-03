@@ -1,22 +1,48 @@
-﻿using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
 using CurriculoVitaeInteligenteInfra.Mapping;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 
 
 namespace CurriculoVitaeInteligenteInfra.Context
 {
-   public abstract class BaseContext: DbContext
+    public abstract class BaseContext : DbContext
     {
         public BaseContext(DbContextOptions<CVIContext> options) :
            base(options)
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", isEnabled: true);
         }
-        public void Save()
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            base.SaveChanges();
+            var entries = ChangeTracker
+                .Entries()
+                .Where(e => e.Entity is BaseEntityComData && (
+                        e.State == EntityState.Added
+                        || e.State == EntityState.Modified));
+
+            foreach (var entityEntry in entries)
+            {
+                ((BaseEntityComData)entityEntry.Entity).DateUpdate = DateTime.Now;
+
+                if (entityEntry.State == EntityState.Added)
+                {
+                    ((BaseEntityComData)entityEntry.Entity).DateCreate = DateTime.Now;
+                }
+            }
+            return await SaveChangesAsync(acceptAllChangesOnSuccess: true, cancellationToken: cancellationToken);
+        }
+            
+        public override ChangeTracker ChangeTracker
+        {
+            get
+            {
+                base.ChangeTracker.LazyLoadingEnabled = false;
+                base.ChangeTracker.CascadeDeleteTiming = CascadeTiming.OnSaveChanges;
+                base.ChangeTracker.DeleteOrphansTiming = CascadeTiming.OnSaveChanges;
+                return base.ChangeTracker;
+            }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

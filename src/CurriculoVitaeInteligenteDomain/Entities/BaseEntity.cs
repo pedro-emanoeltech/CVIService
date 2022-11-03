@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
-    public abstract class BaseEntity : ClassBase
+    public abstract class BaseEntity : ClassBase, IAddContextBaseProperty
     {
         [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid? Id { get; set; }
         protected BaseEntity()
         {

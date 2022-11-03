@@ -21,6 +21,7 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             builder.HasIndex(i => i.Email).IsUnique(true);
 
 
+
         }
     }
 }
