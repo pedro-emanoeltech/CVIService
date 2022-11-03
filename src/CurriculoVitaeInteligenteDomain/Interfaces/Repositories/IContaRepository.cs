@@ -5,5 +5,6 @@ namespace CurriculoVitaeInteligenteDomain.Interfaces.Repositories
 {
     public interface IContaRepository : IBaseRepository<Conta>
     {
+        Task<Conta> Authenticate(Conta TEntity);
     }
 }

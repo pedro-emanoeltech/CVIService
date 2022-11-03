@@ -10,8 +10,8 @@ namespace CurriculoVitaeInteligenteApp.Services
 {
     public abstract class BaseServiceApp<T> : IBaseServiceApp<T> where T : ClassBase, IAddContextBaseProperty
     {
-        public readonly IBaseService<T> _Service;
-        protected readonly IMapper _mapper;
+        private readonly IBaseService<T> _Service;
+        private readonly IMapper _mapper;
         protected readonly IUnitOfWork _unitOfWork;
 
         protected BaseServiceApp(IBaseService<T> Service, IMapper mapper, IUnitOfWork unitOfWork)

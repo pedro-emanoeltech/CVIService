@@ -2,6 +2,7 @@
 using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteInfra.Context;
+using System.Diagnostics.Eventing.Reader;
 
 namespace CurriculoVitaeInteligenteInfra.Repositories
 {
@@ -30,6 +31,29 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
 
             return base.Edit(id, TEntity);
+        }
+
+        public async Task<Conta> Authenticate(Conta TEntity)
+        {
+            try
+            {
+                Conta login = new Conta();
+                if (!string.IsNullOrEmpty(TEntity.Email) || !string.IsNullOrEmpty(TEntity.Senha))
+                {
+                var conta =  await base.GetFirstOrDefault(p => p.Email == TEntity.Email && p.Senha == TEntity.Senha);
+                    if (conta is not null)
+                    {
+                        login = conta;
+                    }
+                }
+
+
+                return login;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro ao fazer login" + e.Message);
+            }
         }
 
     }

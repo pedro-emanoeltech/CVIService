@@ -2,10 +2,11 @@
 using CurriculoVitaeInteligenteDomain.Constant.settings;
 using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -83,15 +84,28 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
 
-            services.AddEndpointsApiExplorer();
+            
             services.AddCors();
-
             var key = Encoding.ASCII.GetBytes(Token.Secret);
             services.AddAuthentication(p =>
-            p.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme
-            p.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme
+            {
+                p.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                p.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            );
+            }).AddJwtBearer(p =>
+            {
+                p.RequireHttpsMetadata = false;
+                p.SaveToken=true;
+                p.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer  = false,
+                    ValidateAudience = false
+                };
+            });
+            services.AddAuthorization();
+            services.AddEndpointsApiExplorer();
 
             return services;
         }
@@ -103,9 +117,17 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+
             app.UseAuthentication();
             app.UseAuthorization();
+
             app.MapControllers();
+
             return app;
         }
 

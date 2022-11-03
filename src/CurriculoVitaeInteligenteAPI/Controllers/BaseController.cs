@@ -4,20 +4,22 @@ using CurriculoVitaeInteligenteApp.DTOs.Request;
 using CurriculoVitaeInteligenteApp.DTOs.Response;
 using CurriculoVitaeInteligenteApp.Interfaces;
 using CurriculoVitaeInteligenteDomain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CurriculoVitaeInteligenteAPI.Controllers
 {
-    [ApiController]
+    
     [Route("api/[controller]")]
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Consumes("application/json", new string[] { })]
     [Produces("application/json", new string[] { })]
+    [ApiController]
     public abstract class BaseController<T,TRequestDTO,TResponsesDTO >
         : ControllerBase , IBaseController<T, TRequestDTO,TResponsesDTO> where T : ClassBase where TRequestDTO : BaseRequest where TResponsesDTO : BaseResponse
     {
      
-            public readonly IBaseServiceApp<T> _baseServiceApp;
+            private readonly IBaseServiceApp<T> _baseServiceApp;
             private readonly IMapper _mapper;
 
             public BaseController(IBaseServiceApp<T> baseServiceApp, IMapper mapper)

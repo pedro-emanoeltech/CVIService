@@ -8,15 +8,17 @@ namespace CurriculoVitaeInteligenteDomain.Services
 {
     public class ContaService : BaseService<Conta>, IContaService
     {
-        public ContaService(IContaRepository repository, IUnitOfWork unitOfWork) : base(repository, unitOfWork)
-        {   
-
+        private readonly IContaRepository _repositorio;
+        public ContaService(IContaRepository repository, IUnitOfWork unitOfWork, IContaRepository repositorio) : base(repository, unitOfWork)
+        {
+            _repositorio = repositorio;
         }
 
         public async Task<Conta> AdicionarConta(CancellationToken stoppingToken)
         {
+            
 
-          
+
                 try
                 {
                     var conta3 = await this.GetFirstOrDefault(p => p.Status == Status.Inativo);
@@ -80,7 +82,12 @@ namespace CurriculoVitaeInteligenteDomain.Services
                     throw;
                 }
             
-        }   
+        }
+
+        public async Task<Conta> Authenticate(Conta TEntity)
+        {
+            return await _repositorio.Authenticate(TEntity);
+        }
     }
 
 
