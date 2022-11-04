@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CurriculoVitaeInteligenteAPI.Controllers
 {
-    public class ContaController : BaseController<Conta, ContaDTORequest, ContaDToResponse>
+    public class ContaController : BaseController<Conta, ContaRequest, ContaResponse>
     {
         private readonly IContaServiceApp _contaServiceApp;
         private readonly IMapper _mapper;
@@ -23,7 +23,7 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
         [HttpPost]
         [Route("Login")]
         [AllowAnonymous]
-        public async Task<ActionResult<AuthenticateDTOResponse>> Authentcate([FromBody] AuthenticateDTORequest request)
+        public async Task<ActionResult<AuthenticateResponse>> Authentcate([FromBody] AuthenticateRequest request)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
                 }
 
                
-                return (ActionResult<AuthenticateDTOResponse>)Ok(authenticateDTOResponse);
+                return (ActionResult<AuthenticateResponse>)Ok(authenticateDTOResponse);
             }
             catch (Exception e)
             {

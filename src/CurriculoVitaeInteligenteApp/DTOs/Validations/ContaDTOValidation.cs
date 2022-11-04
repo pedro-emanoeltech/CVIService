@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace CurriculoVitaeInteligenteApp.DTOs.Validations
 {
-    public class ContaDTOValidation: BaseDTOValidations<ContaDTORequest>
+    public class ContaDTOValidation: BaseDTOValidations<ContaRequest>
     {
         public ContaDTOValidation()
         {

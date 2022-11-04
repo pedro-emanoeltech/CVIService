@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CurriculoVitaeInteligenteApp.DTOs.Response
 {
-    public class AuthenticateDTOResponse
+    public class AuthenticateResponse : BaseResponse
     {
         public Guid? ContaId { get; set; }
         public string? Email { get; set; }

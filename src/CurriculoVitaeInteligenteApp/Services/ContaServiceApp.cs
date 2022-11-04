@@ -36,11 +36,11 @@ namespace CurriculoVitaeInteligenteApp.Services
             return await base.Add(TEntity, saveChanges);
         }
 
-        public async Task<AuthenticateDTOResponse> Authenticate(Conta TEntity)
+        public async Task<AuthenticateResponse> Authenticate(Conta TEntity)
         {
             try
             {
-                AuthenticateDTOResponse authenticate = new AuthenticateDTOResponse();
+                AuthenticateResponse authenticate = new AuthenticateResponse();
                 var conta = await _Service.Authenticate(TEntity);
                 if (conta.Email is not null)
                 {

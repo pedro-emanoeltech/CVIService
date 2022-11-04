@@ -5,6 +5,6 @@ namespace CurriculoVitaeInteligenteApp.Interfaces
 {
     public interface IContaServiceApp: IBaseServiceApp<Conta>
     {
-        Task<AuthenticateDTOResponse> Authenticate(Conta TEntity);
+        Task<AuthenticateResponse> Authenticate(Conta TEntity);
     }
 }

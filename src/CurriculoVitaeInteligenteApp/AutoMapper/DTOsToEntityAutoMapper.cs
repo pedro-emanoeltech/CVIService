@@ -10,12 +10,12 @@ namespace CurriculoVitaeInteligenteApp.AutoMapper
         public DTOsToEntityAutoMapper()
         {
             //REQUEST 
-            CreateMap<AuthenticateDTORequest, Conta>().ReverseMap();
-            CreateMap<ContaDTORequest, Conta>().ReverseMap();
+            CreateMap<AuthenticateRequest, Conta>().ReverseMap();
+            CreateMap<ContaRequest, Conta>().ReverseMap();
 
             //RESPONSES
-            CreateMap<Conta,ContaDToResponse > ().ReverseMap();
-            CreateMap<Conta, AuthenticateDTOResponse>(MemberList.Destination)
+            CreateMap<Conta,ContaResponse > ().ReverseMap();
+            CreateMap<Conta, AuthenticateResponse>(MemberList.Destination)
                 .ForMember(d => d.ContaId, opt => opt.MapFrom(src => src.Id!));
 
 
