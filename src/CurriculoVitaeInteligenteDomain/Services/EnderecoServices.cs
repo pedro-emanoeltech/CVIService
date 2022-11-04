@@ -4,7 +4,7 @@ using CurriculoVitaeInteligenteDomain.Interfaces.Services;
 
 namespace CurriculoVitaeInteligenteDomain.Services
 {
-    public class EnderecoServices : BaseService<Endereco>, IEnderecoServices
+    public class EnderecoServices : BaseService<Endereco>, IEnderecoService
     {
         public EnderecoServices(IEnderecoRepository repository, IUnitOfWork unitOfWork) : base(repository, unitOfWork)
         {

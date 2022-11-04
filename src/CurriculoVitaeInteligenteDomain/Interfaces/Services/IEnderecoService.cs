@@ -2,7 +2,7 @@
 
 namespace CurriculoVitaeInteligenteDomain.Interfaces.Services
 {
-    public interface IEnderecoServices : IBaseService<Endereco>
+    public interface IEnderecoService : IBaseService<Endereco>
     {
     }
 }

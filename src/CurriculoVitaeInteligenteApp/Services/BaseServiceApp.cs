@@ -22,6 +22,7 @@ namespace CurriculoVitaeInteligenteApp.Services
           
         }
 
+
         public virtual async Task<T> Add(T TEntity, bool saveChanges = true)
         {
             return await _Service.Add(TEntity, saveChanges);
