@@ -20,7 +20,7 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 
 
             builder.HasOne(i => i.Contato).WithOne(p => p.HistoricoProfissional).HasForeignKey<HistoricoProfissional>(i => i.Contato_Id).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(i => i.Perfil).WithOne(p => p.HistoricoProfissional).HasForeignKey<HistoricoProfissional>(i => i.Cidade_Id).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Cidade).WithOne(p => p.HistoricoProfissional).HasForeignKey<HistoricoProfissional>(i => i.Cidade_Id).OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(i => i.Segmento).WithOne(p => p.HistoricoProfissional).HasForeignKey<HistoricoProfissional>(i => i.Segmento_Id).OnDelete(DeleteBehavior.Cascade);
 
 
