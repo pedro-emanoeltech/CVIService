@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CurriculoVitaeInteligenteApp.DTOs.Request
 {
-    public class Contato : BaseRequest
+    public class ContatoRequest : BaseRequest
     {
         public Guid? Perfil_Id { get; set; }
         public Guid? VagaId { get; set; }
