@@ -12,15 +12,9 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
         {
             // chave
             base.Configure(builder);
-            builder.Property(i => i.AreaInteresse).IsRequired(true).HasMaxLength(255).HasConversion(v => v == null ? null : v.ToLower(), v => v);
-            builder.Property(i => i.PretensaoSalarial).HasMaxLength(20);
-            builder.Property(i => i.ResumoProfissional).HasMaxLength(500);
-
-
-            //indice
-            builder.HasOne(i => i.Perfil).WithOne(p => p.Objetivo).HasForeignKey<Objetivo>(i => i.Perfil_Id).OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasOne(i => i.Cidade).WithOne(p => p.Objetivo).HasForeignKey<Objetivo>(i => i.CidadeRegiaoInteresse_Id).OnDelete(DeleteBehavior.Cascade);
+            builder.Property(i => i.AreaInteresse).IsRequired(true).HasColumnType("varchar(200)").HasConversion(v => v == null ? null : v.ToLower(), v => v);
+            builder.Property(i => i.PretensaoSalarial).HasColumnType("varchar(10)");
+            builder.Property(i => i.ResumoProfissional).HasColumnType("varchar(500)");
 
 
 

@@ -16,12 +16,11 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             builder.Property(i => i.Porte).HasMaxLength(30).HasConversion(new EnumToStringConverter<PorteEmpresa>());
 
             //indice
-            builder.HasOne(i => i.Perfil).WithOne(p => p.HistoricoProfissional).HasForeignKey<HistoricoProfissional>(i => i.Perfil_Id).OnDelete(DeleteBehavior.Cascade);
-
-
-            builder.HasOne(i => i.Contato).WithOne(p => p.HistoricoProfissional).HasForeignKey<HistoricoProfissional>(i => i.Contato_Id).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(i => i.Cidade).WithOne(p => p.HistoricoProfissional).HasForeignKey<HistoricoProfissional>(i => i.Cidade_Id).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(i => i.Segmento).WithOne(p => p.HistoricoProfissional).HasForeignKey<HistoricoProfissional>(i => i.Segmento_Id).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Segmento).WithOne().HasForeignKey<HistoricoProfissional>(i => i.SegmentoId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Cargo).WithOne().HasForeignKey<Cargo>(i => i.HistoricoProfissionalId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Contato).WithOne().HasForeignKey<HistoricoProfissional>(i => i.ContatoId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Cidade).WithOne().HasForeignKey<HistoricoProfissional>(i => i.CidadeId).OnDelete(DeleteBehavior.Cascade);
+          
 
 
 

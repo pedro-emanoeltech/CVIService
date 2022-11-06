@@ -9,8 +9,8 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class EnderecoRequest : BaseRequest
     {
-        public Guid? Perfil_Id { get; set; }
-        public Guid? Vaga_Id { get; set; }
+        public Guid? PerfilId { get; set; }
+        public Guid? VagaId { get; set; }
 
         public string? EnderecoPerfil { get; set; }
 
@@ -22,9 +22,9 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 
         public string?  Complemento { get; set; }
 
-        public Guid? Cidade_Id { get; set; }
+        public Guid? CidadeId { get; set; }
 
-        public Guid? Estado_Id{ get; set; }
+        public Guid? EstadoId{ get; set; }
 
     }
 }

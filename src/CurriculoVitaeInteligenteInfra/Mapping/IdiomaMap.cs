@@ -12,17 +12,10 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
         {
             // chave
             base.Configure(builder);
-            builder.Property(i => i.Nome).IsRequired(true).HasMaxLength(255).HasConversion(v => v == null ? null : v.ToLower(), v => v);
+            builder.Property(i => i.Nome).IsRequired(true).HasColumnType("varchar(255)").HasConversion(v => v == null ? null : v.ToLower(), v => v);
             builder.Property(i => i.NivelLeitura).HasMaxLength(20).HasConversion(new EnumToStringConverter<NivelLinguagem>());
             builder.Property(i => i.NivelEscrita).HasMaxLength(20).HasConversion(new EnumToStringConverter<NivelLinguagem>());
             builder.Property(i => i.NivelConversacao).HasMaxLength(20).HasConversion(new EnumToStringConverter<NivelLinguagem>());
-
-            //indice
-            builder.HasOne(i => i.Perfil).WithOne(p => p.Idioma).HasForeignKey<Idioma>(i => i.Perfil_Id).OnDelete(DeleteBehavior.Cascade);
-
-            
-
-
 
         }
     }

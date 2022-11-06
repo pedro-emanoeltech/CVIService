@@ -14,8 +14,8 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             base.Configure(builder);
 
             //indice
-            builder.HasOne(i => i.Perfil).WithMany(p => p.Candidatura).HasForeignKey(i => i.PerfilId).OnDelete(DeleteBehavior.Cascade);
-
+            builder.HasOne(i => i.Perfil).WithMany().HasForeignKey(i => i.PerfilId);
+            builder.HasOne(i => i.Vaga).WithMany().HasForeignKey(i => i.VagaId);
 
 
 

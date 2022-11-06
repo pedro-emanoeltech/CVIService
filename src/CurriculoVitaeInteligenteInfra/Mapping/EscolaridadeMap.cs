@@ -14,8 +14,6 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             base.Configure(builder);
             builder.Property(i => i.NivelAcademico).HasMaxLength(20).HasConversion(new EnumToStringConverter<NivelAcademico>());
 
-
-
         }
     }
 }

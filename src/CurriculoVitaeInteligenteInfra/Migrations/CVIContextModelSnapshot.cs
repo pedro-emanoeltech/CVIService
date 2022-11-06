@@ -17,7 +17,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.8")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -29,10 +29,10 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.Property<DateTime?>("DateCreate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateUpdate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid?>("PerfilId")
                         .HasColumnType("uuid");
@@ -61,10 +61,10 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.Property<DateTime?>("DateCreate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateUpdate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DescricaoCargo")
                         .HasMaxLength(300)
@@ -74,7 +74,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("Inicio")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("NomeCargo")
                         .IsRequired()
@@ -82,13 +82,14 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         .HasColumnType("character varying(255)");
 
                     b.Property<DateTime?>("Termino")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DateCreate");
 
-                    b.HasIndex("HistoricoProfissionalId");
+                    b.HasIndex("HistoricoProfissionalId")
+                        .IsUnique();
 
                     b.HasIndex("Id")
                         .IsUnique();
@@ -99,7 +100,6 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Cidade", b =>
                 {
                     b.Property<Guid?>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("CodigoIBge")
@@ -120,10 +120,10 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.Property<DateTime?>("DateCreate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateUpdate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -139,10 +139,6 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)");
-
-                    b.Property<string>("TipoPerfil")
-                        .HasMaxLength(5)
-                        .HasColumnType("character varying(5)");
 
                     b.HasKey("Id");
 
@@ -162,32 +158,23 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.Property<Guid?>("Id")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Celular")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("CelularSecundario")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
                     b.Property<DateTime?>("DateCreate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateUpdate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid?>("PerfilId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Telefone")
+                    b.Property<string>("Texto")
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
+
+                    b.Property<string>("TipoContato")
+                        .IsRequired()
+                        .HasColumnType("varchar(15)");
 
                     b.Property<Guid?>("VagaId")
                         .HasColumnType("uuid");
@@ -199,7 +186,9 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.HasIndex("PerfilId")
+                    b.HasIndex("PerfilId");
+
+                    b.HasIndex("VagaId")
                         .IsUnique();
 
                     b.ToTable("Contatos");
@@ -208,7 +197,6 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Curso", b =>
                 {
                     b.Property<Guid?>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
                     b.Property<string>("NomeCurso")
@@ -232,48 +220,42 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.Property<DateTime?>("DateCreate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateUpdate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DescricaoCurso")
-                        .HasMaxLength(300)
-                        .HasColumnType("character varying(300)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<DateTime?>("Inicio")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Instituicao")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("varchar(150)");
 
                     b.Property<Guid?>("PerfilId")
                         .HasColumnType("uuid");
 
                     b.Property<string>("SituacaoCurso")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasColumnType("varchar(500)");
 
                     b.Property<DateTime?>("Termino")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CidadeId")
-                        .IsUnique();
+                    b.HasIndex("CidadeId");
 
-                    b.HasIndex("CursoId")
-                        .IsUnique();
+                    b.HasIndex("CursoId");
 
                     b.HasIndex("DateCreate");
 
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.HasIndex("PerfilId")
-                        .IsUnique();
+                    b.HasIndex("PerfilId");
 
                     b.ToTable("CursoFormacaoAcademica");
                 });
@@ -291,26 +273,26 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("bigint");
 
+                    b.Property<Guid?>("CidadeId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Complemento")
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
                     b.Property<DateTime?>("DateCreate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateUpdate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("EnderecoPerfil")
+                    b.Property<Guid?>("EstadoId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Logradouro")
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
-
-                    b.Property<Guid?>("IdCidade")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("IdEstado")
-                        .HasColumnType("uuid");
 
                     b.Property<long?>("Numero")
                         .HasMaxLength(7)
@@ -324,18 +306,21 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CidadeId")
+                        .IsUnique();
+
                     b.HasIndex("DateCreate");
+
+                    b.HasIndex("EstadoId")
+                        .IsUnique();
 
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.HasIndex("IdCidade")
-                        .IsUnique();
-
-                    b.HasIndex("IdEstado")
-                        .IsUnique();
-
                     b.HasIndex("PerfilId")
+                        .IsUnique();
+
+                    b.HasIndex("VagaId")
                         .IsUnique();
 
                     b.ToTable("Endereco");
@@ -347,10 +332,10 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("DateCreate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateUpdate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("NivelAcademico")
                         .HasMaxLength(20)
@@ -364,7 +349,8 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.HasIndex("PerfilId");
+                    b.HasIndex("PerfilId")
+                        .IsUnique();
 
                     b.ToTable("Escolaridade");
                 });
@@ -392,8 +378,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.HasIndex("PaisId")
-                        .IsUnique();
+                    b.HasIndex("PaisId");
 
                     b.HasIndex("UF")
                         .IsUnique();
@@ -409,18 +394,15 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.Property<Guid?>("CidadeId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("CidadeId1")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid?>("ContatoId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("DateCreate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateUpdate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("NomeEmpresa")
                         .IsRequired()
@@ -442,9 +424,6 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("CidadeId")
                         .IsUnique();
 
-                    b.HasIndex("CidadeId1")
-                        .IsUnique();
-
                     b.HasIndex("ContatoId")
                         .IsUnique();
 
@@ -452,6 +431,8 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.HasIndex("Id")
                         .IsUnique();
+
+                    b.HasIndex("PerfilId");
 
                     b.HasIndex("SegmentoId")
                         .IsUnique();
@@ -478,8 +459,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<Guid?>("PerfilId")
                         .HasColumnType("uuid");
@@ -520,34 +500,25 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.Property<string>("AreaInteresse")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<Guid?>("CidadeRegiaoInteresseId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<DateTime?>("DateCreate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateUpdate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid?>("PerfilId")
                         .HasColumnType("uuid");
 
-                    b.Property<double?>("PretensaoSalarial")
-                        .HasMaxLength(20)
-                        .HasColumnType("double precision");
+                    b.Property<string>("PretensaoSalarial")
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("ResumoProfissional")
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
+                        .HasColumnType("varchar(500)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CidadeRegiaoInteresseId")
-                        .IsUnique();
 
                     b.HasIndex("DateCreate");
 
@@ -588,16 +559,13 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Apelido")
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)");
+                        .HasColumnType("varchar(50)");
 
-                    b.Property<long?>("CNPJ")
-                        .HasMaxLength(14)
-                        .HasColumnType("bigint");
+                    b.Property<string>("CNPJ")
+                        .HasColumnType("varchar(14)");
 
-                    b.Property<long?>("CPF")
-                        .HasMaxLength(12)
-                        .HasColumnType("bigint");
+                    b.Property<string>("CPF")
+                        .HasColumnType("varchar(12)");
 
                     b.Property<Guid?>("ContaId")
                         .IsRequired()
@@ -605,49 +573,34 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.Property<DateTime?>("DateCreate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateUpdate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EstadoCivil")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasColumnType("varchar(30)");
 
                     b.Property<string>("Genero")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasColumnType("varchar(20)");
 
-                    b.Property<int?>("Idade")
-                        .HasMaxLength(30)
-                        .HasColumnType("integer");
-
-                    b.Property<Guid?>("NacionalidadeId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("Idade")
+                        .HasColumnType("varchar(3)");
 
                     b.Property<string>("Nome")
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)");
+                        .HasColumnType("varchar(150)");
 
-                    b.Property<Guid?>("SegmentoId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("TipoPerfil")
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContaId")
-                        .IsUnique();
+                    b.HasIndex("ContaId");
 
                     b.HasIndex("DateCreate");
 
                     b.HasIndex("Id")
-                        .IsUnique();
-
-                    b.HasIndex("NacionalidadeId")
-                        .IsUnique();
-
-                    b.HasIndex("SegmentoId")
                         .IsUnique();
 
                     b.ToTable("Perfil");
@@ -679,22 +632,16 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("character varying(300)");
 
-                    b.Property<Guid?>("ContatoId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime?>("DateCreate")
                         .IsRequired()
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateUpdate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Descricao")
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)");
-
-                    b.Property<Guid?>("EnderecoId")
-                        .HasColumnType("uuid");
 
                     b.Property<string>("ModalidadeTrabalho")
                         .HasMaxLength(20)
@@ -711,28 +658,19 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)");
 
-                    b.Property<string>("TipoPerfil")
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
-
                     b.Property<string>("Titulo")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContatoId")
-                        .IsUnique();
-
                     b.HasIndex("DateCreate");
-
-                    b.HasIndex("EnderecoId")
-                        .IsUnique();
 
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.HasIndex("PerfilId");
+                    b.HasIndex("PerfilId")
+                        .IsUnique();
 
                     b.ToTable("Vaga");
                 });
@@ -740,9 +678,8 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Candidatura", b =>
                 {
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", "Perfil")
-                        .WithMany("Candidatura")
-                        .HasForeignKey("PerfilId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("PerfilId");
 
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Vaga", "Vaga")
                         .WithMany()
@@ -755,109 +692,106 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Cargo", b =>
                 {
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.HistoricoProfissional", "HistoricoProfissional")
-                        .WithMany("Cargo")
-                        .HasForeignKey("HistoricoProfissionalId")
+                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.HistoricoProfissional", null)
+                        .WithOne("Cargo")
+                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Cargo", "HistoricoProfissionalId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("HistoricoProfissional");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Contato", b =>
                 {
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", "Perfil")
-                        .WithOne("Contato")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Contato", "PerfilId")
+                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", null)
+                        .WithMany("Contato")
+                        .HasForeignKey("PerfilId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.Navigation("Perfil");
+                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Vaga", null)
+                        .WithOne("Contato")
+                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Contato", "VagaId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.CursoFormacaoAcademica", b =>
                 {
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Cidade", "Cidade")
-                        .WithOne("CursoFormacaoAcademica")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.CursoFormacaoAcademica", "CidadeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("CidadeId");
 
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Curso", "Curso")
-                        .WithOne("CursoFormacaoAcademica")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.CursoFormacaoAcademica", "CursoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("CursoId");
 
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", "Perfil")
-                        .WithOne("CursoFormacaoAcademica")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.CursoFormacaoAcademica", "PerfilId")
+                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", null)
+                        .WithMany("CursoFormacaoAcademica")
+                        .HasForeignKey("PerfilId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Cidade");
 
                     b.Navigation("Curso");
-
-                    b.Navigation("Perfil");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Endereco", b =>
                 {
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Cidade", "Cidade")
-                        .WithOne("Endereco")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Endereco", "IdCidade")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithOne()
+                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Endereco", "CidadeId");
 
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Estado", "Estado")
-                        .WithOne("Endereco")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Endereco", "IdEstado")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithOne()
+                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Endereco", "EstadoId");
 
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", "Perfil")
+                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", null)
                         .WithOne("Endereco")
                         .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Endereco", "PerfilId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Vaga", null)
+                        .WithOne("Endereco")
+                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Endereco", "VagaId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Cidade");
 
                     b.Navigation("Estado");
-
-                    b.Navigation("Perfil");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Escolaridade", b =>
                 {
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", "Perfil")
-                        .WithMany()
-                        .HasForeignKey("PerfilId");
-
-                    b.Navigation("Perfil");
+                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", null)
+                        .WithOne("Escolaridade")
+                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Escolaridade", "PerfilId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Estado", b =>
                 {
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Pais", "Pais")
-                        .WithOne("Estado")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Estado", "PaisId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany()
+                        .HasForeignKey("PaisId");
 
                     b.Navigation("Pais");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.HistoricoProfissional", b =>
                 {
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", "Perfil")
-                        .WithOne("HistoricoProfissional")
+                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Cidade", "Cidade")
+                        .WithOne()
                         .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.HistoricoProfissional", "CidadeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Cidade", "Cidade")
-                        .WithOne("HistoricoProfissional")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.HistoricoProfissional", "CidadeId1");
-
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Contato", "Contato")
-                        .WithOne("HistoricoProfissional")
+                        .WithOne()
                         .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.HistoricoProfissional", "ContatoId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", null)
+                        .WithMany("HistoricoProfissional")
+                        .HasForeignKey("PerfilId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Segmento", "Segmento")
-                        .WithOne("HistoricoProfissional")
+                        .WithOne()
                         .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.HistoricoProfissional", "SegmentoId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -865,122 +799,43 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.Navigation("Contato");
 
-                    b.Navigation("Perfil");
-
                     b.Navigation("Segmento");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Idioma", b =>
                 {
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", "Perfil")
+                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", null)
                         .WithOne("Idioma")
                         .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Idioma", "PerfilId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Perfil");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Objetivo", b =>
                 {
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Cidade", "Cidade")
-                        .WithOne("Objetivo")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Objetivo", "CidadeRegiaoInteresseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", "Perfil")
+                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", null)
                         .WithOne("Objetivo")
                         .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Objetivo", "PerfilId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("Cidade");
-
-                    b.Navigation("Perfil");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Perfil", b =>
                 {
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Conta", "Conta")
-                        .WithOne("Perfil")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Perfil", "ContaId")
+                        .WithMany()
+                        .HasForeignKey("ContaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Nacionalidade", "Nacionalidade")
-                        .WithOne("Perfil")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Perfil", "NacionalidadeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Segmento", "Segmento")
-                        .WithOne("Perfil")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Perfil", "SegmentoId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.Navigation("Conta");
-
-                    b.Navigation("Nacionalidade");
-
-                    b.Navigation("Segmento");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Vaga", b =>
                 {
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Contato", "Contato")
-                        .WithOne("Vaga")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Vaga", "ContatoId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Endereco", "Endereco")
-                        .WithOne("Vaga")
-                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Vaga", "EnderecoId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Perfil", "Perfil")
-                        .WithMany()
-                        .HasForeignKey("PerfilId");
-
-                    b.Navigation("Contato");
-
-                    b.Navigation("Endereco");
+                        .WithOne()
+                        .HasForeignKey("CurriculoVitaeInteligenteDomain.Entities.Vaga", "PerfilId");
 
                     b.Navigation("Perfil");
-                });
-
-            modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Cidade", b =>
-                {
-                    b.Navigation("CursoFormacaoAcademica");
-
-                    b.Navigation("Endereco");
-
-                    b.Navigation("HistoricoProfissional");
-
-                    b.Navigation("Objetivo");
-                });
-
-            modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Conta", b =>
-                {
-                    b.Navigation("Perfil");
-                });
-
-            modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Contato", b =>
-                {
-                    b.Navigation("HistoricoProfissional");
-
-                    b.Navigation("Vaga");
-                });
-
-            modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Curso", b =>
-                {
-                    b.Navigation("CursoFormacaoAcademica");
-                });
-
-            modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Endereco", b =>
-                {
-                    b.Navigation("Vaga");
-                });
-
-            modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Estado", b =>
-                {
-                    b.Navigation("Endereco");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.HistoricoProfissional", b =>
@@ -988,25 +843,15 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.Navigation("Cargo");
                 });
 
-            modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Nacionalidade", b =>
-                {
-                    b.Navigation("Perfil");
-                });
-
-            modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Pais", b =>
-                {
-                    b.Navigation("Estado");
-                });
-
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Perfil", b =>
                 {
-                    b.Navigation("Candidatura");
-
                     b.Navigation("Contato");
 
                     b.Navigation("CursoFormacaoAcademica");
 
                     b.Navigation("Endereco");
+
+                    b.Navigation("Escolaridade");
 
                     b.Navigation("HistoricoProfissional");
 
@@ -1015,11 +860,11 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.Navigation("Objetivo");
                 });
 
-            modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Segmento", b =>
+            modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Vaga", b =>
                 {
-                    b.Navigation("HistoricoProfissional");
+                    b.Navigation("Contato");
 
-                    b.Navigation("Perfil");
+                    b.Navigation("Endereco");
                 });
 #pragma warning restore 612, 618
         }

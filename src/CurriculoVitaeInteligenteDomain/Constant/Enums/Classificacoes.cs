@@ -90,6 +90,12 @@ namespace CurriculoVitaeInteligenteDomain.Content.Enums
         Paralisado = 2,
         Finalizado = 3
     }
+    public enum TipoContato
+    {
+        Email = 1,
+        Celular = 2,
+        Telefone = 3
+    }
     public enum ModalidadeTrabalho
     {
         homeOffice = 1,

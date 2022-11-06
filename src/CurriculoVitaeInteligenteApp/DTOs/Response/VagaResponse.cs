@@ -7,7 +7,7 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
    public  class VagaResponse : BaseResponse
     {
 
-        public Guid? Perfil_Id { get; set; }
+        public Guid? PerfilId { get; set; }
         public string? Titulo { get; set; }
         public string? Descricao { get; set; }
         public string? NomeEmpresa { get; set; }

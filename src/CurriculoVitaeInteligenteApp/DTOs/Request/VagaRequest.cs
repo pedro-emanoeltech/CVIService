@@ -7,7 +7,7 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Request
    public  class VagaRequest : BaseRequest
     {
 
-        public Guid? Perfil_Id { get; set; }
+        public Guid? PerfilId { get; set; }
         public string? Titulo { get; set; }
         public string? Descricao { get; set; }
         public string? NomeEmpresa { get; set; }

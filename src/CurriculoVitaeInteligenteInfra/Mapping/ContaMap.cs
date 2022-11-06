@@ -14,12 +14,12 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             base.Configure(builder);
             builder.Property(i => i.Email).IsRequired(true).HasMaxLength(255).HasConversion(v => v == null ? null : v.ToLower(), v => v);
             builder.Property(i => i.Senha).IsRequired(true).HasMaxLength(255);
-            builder.Property(i => i.TipoPerfil).HasMaxLength(5).HasConversion(new EnumToStringConverter<TipoPerfil>());
             builder.Property(i => i.Status).HasMaxLength(10).HasConversion(new EnumToStringConverter<Status>());
 
             //indice
             builder.HasIndex(i => i.Email).IsUnique(true);
 
+        
 
 
         }

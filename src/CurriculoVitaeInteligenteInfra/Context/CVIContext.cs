@@ -5,11 +5,8 @@ namespace CurriculoVitaeInteligenteInfra.Context
 {
     public class CVIContext : BaseContext
     {
-
-        public CVIContext(DbContextOptions<CVIContext> options) :
-            base(options)
+        public CVIContext(DbContextOptions<CVIContext> options) : base(options)
         {
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", isEnabled: true);
         }
 
         public DbSet<Perfil>? Perfil { get; set; }
@@ -28,7 +25,7 @@ namespace CurriculoVitaeInteligenteInfra.Context
         public DbSet<Vaga>? Vaga { get; set; }
         public DbSet<Pais>? Pais { get; set; }
         public DbSet<Segmento>? Segmento { get; set; }
-
+        public DbSet<Curso>? Curso { get; set; }
     }
     
 

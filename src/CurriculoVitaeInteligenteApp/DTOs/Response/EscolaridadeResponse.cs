@@ -5,7 +5,7 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
 {
     public class EscolaridadeResponse : BaseResponse
     {
-        public Guid? Perfil_Id { get; set; }
+        public Guid? PerfilId { get; set; }
         public NivelAcademico? NivelAcademico { get; set; }
 
 

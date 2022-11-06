@@ -10,7 +10,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
     public class ObjetivoRequest :BaseRequest
     {
 
-        public Guid? Perfil_Id { get; set; }
+        public Guid? PerfilId { get; set; }
         public string? AreaInteresse { get; set; }
 
         public double? PretensaoSalarial { get; set; }

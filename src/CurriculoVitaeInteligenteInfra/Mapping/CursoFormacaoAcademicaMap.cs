@@ -12,20 +12,14 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
         {
             // chave
             base.Configure(builder);
-            builder.Property(i => i.Instituicao).IsRequired(true).HasMaxLength(255).HasConversion(v => v == null ? null : v.ToLower(), v => v);
-            builder.Property(i => i.DescricaoCurso).HasMaxLength(300);
-            builder.Property(i => i.SituacaoCurso).HasMaxLength(20).HasConversion(new EnumToStringConverter<SituacaoCurso>());
-
-            //indice
-            builder.HasOne(i => i.Perfil).WithOne(p => p.CursoFormacaoAcademica).HasForeignKey<CursoFormacaoAcademica>(i => i.PerfilId).OnDelete(DeleteBehavior.Cascade);
+            builder.Property(i => i.Instituicao).IsRequired(true).HasColumnType("varchar(150)").HasConversion(v => v == null ? null : v.ToLower(), v => v);
+            builder.Property(i => i.DescricaoCurso).HasColumnType("varchar(500)"); ;
+            builder.Property(i => i.SituacaoCurso).HasColumnType("varchar(500)").HasConversion(new EnumToStringConverter<SituacaoCurso>());
 
 
-            builder.HasOne(i => i.Curso).WithOne(p => p.CursoFormacaoAcademica).HasForeignKey<CursoFormacaoAcademica>(i => i.CursoId).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(i => i.Cidade).WithOne(p => p.CursoFormacaoAcademica).HasForeignKey<CursoFormacaoAcademica>(i => i.CidadeId).OnDelete(DeleteBehavior.Cascade);
-
-
-
-
+            //relacionamento
+            builder.HasOne(i => i.Cidade).WithMany().HasForeignKey(i => i.CidadeId);
+            builder.HasOne(i => i.Curso).WithMany().HasForeignKey(i => i.CursoId);
         }
     }
 }

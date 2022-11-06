@@ -9,7 +9,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class EstadoRequest : BaseRequest
     {
-        public Guid? Pais_Id { get; set; }
+        public Guid? PaisId { get; set; }
         public string? Nome { get; set; }
         public string? UF { get; set; }
 

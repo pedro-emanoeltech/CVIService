@@ -10,7 +10,7 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Request
 {
     public class ContatoRequest : BaseRequest
     {
-        public Guid? Perfil_Id { get; set; }
+        public Guid? PerfilId { get; set; }
         public Guid? VagaId { get; set; }
 
         public string? Email { get; set; }

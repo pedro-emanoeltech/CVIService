@@ -64,7 +64,10 @@ namespace CurriculoVitaeInteligenteInfra.Context
             modelBuilder.ApplyConfiguration(new PaisMap());
             modelBuilder.ApplyConfiguration(new SegmentoMap());
 
+            
 
-        }
+
+
+    }
     }
 }

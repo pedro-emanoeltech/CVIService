@@ -6,7 +6,7 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
 {
     public class IdiomaResponse : BaseResponse
     {
-        public Guid? Perfil_Id { get; set; }
+        public Guid? PerfilId { get; set; }
         public string? Nome { get; set; }
         public NivelLinguagem? NivelLeitura { get; set; }
         public NivelLinguagem? NivelEscrita { get; set; }

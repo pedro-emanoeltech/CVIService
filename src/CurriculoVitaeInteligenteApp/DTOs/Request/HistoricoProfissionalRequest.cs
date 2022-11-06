@@ -11,13 +11,13 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class HistoricoProfissionalRequest : BaseRequest
     {
-        public Guid? Perfil_Id { get; set; }
+        public Guid? PerfilId { get; set; }
 
         public string? NomeEmpresa { get; set; }
         public PorteEmpresa? Porte { get; set; }
 
         public Guid? Contato_Id { get; set; }
-        public Guid? Cidade_Id { get; set; }
+        public Guid? CidadeId { get; set; }
         public Guid? Segmento_Id { get; set; }
 
 

@@ -9,7 +9,7 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
 {
     public class ContatoResponse : BaseResponse
     {
-        public Guid? Perfil_Id { get; set; }
+        public Guid? PerfilId { get; set; }
         public Guid? VagaId { get; set; }
 
         public string? Email { get; set; }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CurriculoVitaeInteligenteInfra.Migrations
 {
-    public partial class inicial : Migration
+    public partial class Incial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,10 +29,9 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     Senha = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    TipoPerfil = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: true),
                     Status = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
-                    DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    DateCreate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DateUpdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -56,7 +55,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Nome = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                    NomePais = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -89,6 +88,34 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Perfil",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(150)", nullable: true),
+                    Apelido = table.Column<string>(type: "varchar(50)", nullable: true),
+                    TipoPerfil = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: true),
+                    CPF = table.Column<string>(type: "varchar(12)", nullable: true),
+                    CNPJ = table.Column<string>(type: "varchar(14)", nullable: true),
+                    Idade = table.Column<string>(type: "varchar(3)", nullable: true),
+                    EstadoCivil = table.Column<string>(type: "varchar(30)", nullable: true),
+                    Genero = table.Column<string>(type: "varchar(20)", nullable: true),
+                    DateCreate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DateUpdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    ContaId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Perfil", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Perfil_Conta_ContaId",
+                        column: x => x.ContaId,
+                        principalTable: "Conta",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Estado",
                 columns: table => new
                 {
@@ -104,74 +131,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         name: "FK_Estado_Pais_PaisId",
                         column: x => x.PaisId,
                         principalTable: "Pais",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Perfil",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Nome = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
-                    Apelido = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
-                    CPF = table.Column<long>(type: "bigint", maxLength: 12, nullable: true),
-                    CNPJ = table.Column<long>(type: "bigint", maxLength: 14, nullable: true),
-                    Idade = table.Column<int>(type: "integer", maxLength: 30, nullable: true),
-                    EstadoCivil = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    Genero = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    SegmentoId = table.Column<Guid>(type: "uuid", nullable: true),
-                    NacionalidadeId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    ContaId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Perfil", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Perfil_Conta_ContaId",
-                        column: x => x.ContaId,
-                        principalTable: "Conta",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Perfil_Nacionalidade_NacionalidadeId",
-                        column: x => x.NacionalidadeId,
-                        principalTable: "Nacionalidade",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Perfil_Segmento_SegmentoId",
-                        column: x => x.SegmentoId,
-                        principalTable: "Segmento",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Contatos",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    PerfilId = table.Column<Guid>(type: "uuid", nullable: true),
-                    VagaId = table.Column<Guid>(type: "uuid", nullable: true),
-                    Email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Telefone = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
-                    Celular = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
-                    CelularSecundario = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
-                    DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Contatos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Contatos_Perfil_PerfilId",
-                        column: x => x.PerfilId,
-                        principalTable: "Perfil",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -180,15 +140,15 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     PerfilId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CursoId = table.Column<Guid>(type: "uuid", nullable: true),
                     CidadeId = table.Column<Guid>(type: "uuid", nullable: true),
-                    SituacaoCurso = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
-                    Inicio = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    Termino = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    Instituicao = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    DescricaoCurso = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: true),
-                    DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    CursoId = table.Column<Guid>(type: "uuid", nullable: true),
+                    SituacaoCurso = table.Column<string>(type: "varchar(500)", nullable: true),
+                    Inicio = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Termino = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Instituicao = table.Column<string>(type: "varchar(150)", nullable: false),
+                    DescricaoCurso = table.Column<string>(type: "varchar(500)", nullable: true),
+                    DateCreate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DateUpdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -197,56 +157,14 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         name: "FK_CursoFormacaoAcademica_Cidade_CidadeId",
                         column: x => x.CidadeId,
                         principalTable: "Cidade",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_CursoFormacaoAcademica_Curso_CursoId",
                         column: x => x.CursoId,
                         principalTable: "Curso",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_CursoFormacaoAcademica_Perfil_PerfilId",
-                        column: x => x.PerfilId,
-                        principalTable: "Perfil",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Endereco",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    PerfilId = table.Column<Guid>(type: "uuid", nullable: true),
-                    VagaId = table.Column<Guid>(type: "uuid", nullable: true),
-                    EnderecoPerfil = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
-                    Bairro = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
-                    Numero = table.Column<long>(type: "bigint", maxLength: 7, nullable: true),
-                    CEP = table.Column<long>(type: "bigint", maxLength: 8, nullable: true),
-                    Complemento = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    IdCidade = table.Column<Guid>(type: "uuid", nullable: true),
-                    IdEstado = table.Column<Guid>(type: "uuid", nullable: true),
-                    DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Endereco", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Endereco_Cidade_IdCidade",
-                        column: x => x.IdCidade,
-                        principalTable: "Cidade",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Endereco_Estado_IdEstado",
-                        column: x => x.IdEstado,
-                        principalTable: "Estado",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Endereco_Perfil_PerfilId",
                         column: x => x.PerfilId,
                         principalTable: "Perfil",
                         principalColumn: "Id",
@@ -260,8 +178,8 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     PerfilId = table.Column<Guid>(type: "uuid", nullable: true),
                     NivelAcademico = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
-                    DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    DateCreate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    DateUpdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -270,7 +188,8 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         name: "FK_Escolaridade_Perfil_PerfilId",
                         column: x => x.PerfilId,
                         principalTable: "Perfil",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -279,7 +198,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     PerfilId = table.Column<Guid>(type: "uuid", nullable: true),
-                    Nome = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    Nome = table.Column<string>(type: "varchar(255)", nullable: false),
                     NivelLeitura = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     NivelEscrita = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     NivelConversacao = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true)
@@ -301,69 +220,19 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     PerfilId = table.Column<Guid>(type: "uuid", nullable: true),
-                    AreaInteresse = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    PretensaoSalarial = table.Column<double>(type: "double precision", maxLength: 20, nullable: true),
-                    ResumoProfissional = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
-                    CidadeRegiaoInteresseId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    AreaInteresse = table.Column<string>(type: "varchar(200)", nullable: false),
+                    PretensaoSalarial = table.Column<string>(type: "varchar(10)", nullable: true),
+                    ResumoProfissional = table.Column<string>(type: "varchar(500)", nullable: true),
+                    DateCreate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DateUpdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Objetivo", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Objetivo_Cidade_CidadeRegiaoInteresseId",
-                        column: x => x.CidadeRegiaoInteresseId,
-                        principalTable: "Cidade",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Objetivo_Perfil_PerfilId",
                         column: x => x.PerfilId,
                         principalTable: "Perfil",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HistoricoProfissional",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    PerfilId = table.Column<Guid>(type: "uuid", nullable: true),
-                    NomeEmpresa = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Porte = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
-                    ContatoId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CidadeId = table.Column<Guid>(type: "uuid", nullable: true),
-                    SegmentoId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CidadeId1 = table.Column<Guid>(type: "uuid", nullable: true),
-                    DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HistoricoProfissional", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_HistoricoProfissional_Cidade_CidadeId1",
-                        column: x => x.CidadeId1,
-                        principalTable: "Cidade",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_HistoricoProfissional_Contatos_ContatoId",
-                        column: x => x.ContatoId,
-                        principalTable: "Contatos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_HistoricoProfissional_Perfil_CidadeId",
-                        column: x => x.CidadeId,
-                        principalTable: "Perfil",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_HistoricoProfissional_Segmento_SegmentoId",
-                        column: x => x.SegmentoId,
-                        principalTable: "Segmento",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -379,33 +248,159 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     NomeEmpresa = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     Requisitos = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
                     Beneficio = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: true),
-                    EnderecoId = table.Column<Guid>(type: "uuid", nullable: true),
-                    ContatoId = table.Column<Guid>(type: "uuid", nullable: true),
-                    TipoPerfil = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true),
                     ModalidadeTrabalho = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
-                    DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    DateCreate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DateUpdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vaga", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Vaga_Contatos_ContatoId",
+                        name: "FK_Vaga_Perfil_PerfilId",
+                        column: x => x.PerfilId,
+                        principalTable: "Perfil",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Candidaturas",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    VagaId = table.Column<Guid>(type: "uuid", nullable: true),
+                    PerfilId = table.Column<Guid>(type: "uuid", nullable: true),
+                    DateCreate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DateUpdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Candidaturas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Candidaturas_Perfil_PerfilId",
+                        column: x => x.PerfilId,
+                        principalTable: "Perfil",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Candidaturas_Vaga_VagaId",
+                        column: x => x.VagaId,
+                        principalTable: "Vaga",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contatos",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    PerfilId = table.Column<Guid>(type: "uuid", nullable: true),
+                    VagaId = table.Column<Guid>(type: "uuid", nullable: true),
+                    TipoContato = table.Column<string>(type: "varchar(15)", nullable: false),
+                    Texto = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
+                    DateCreate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DateUpdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contatos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Contatos_Perfil_PerfilId",
+                        column: x => x.PerfilId,
+                        principalTable: "Perfil",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Contatos_Vaga_VagaId",
+                        column: x => x.VagaId,
+                        principalTable: "Vaga",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Endereco",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    PerfilId = table.Column<Guid>(type: "uuid", nullable: true),
+                    VagaId = table.Column<Guid>(type: "uuid", nullable: true),
+                    CidadeId = table.Column<Guid>(type: "uuid", nullable: true),
+                    EstadoId = table.Column<Guid>(type: "uuid", nullable: true),
+                    Logradouro = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
+                    Bairro = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
+                    Numero = table.Column<long>(type: "bigint", maxLength: 7, nullable: true),
+                    CEP = table.Column<long>(type: "bigint", maxLength: 8, nullable: true),
+                    Complemento = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    DateCreate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DateUpdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Endereco", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Endereco_Cidade_CidadeId",
+                        column: x => x.CidadeId,
+                        principalTable: "Cidade",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Endereco_Estado_EstadoId",
+                        column: x => x.EstadoId,
+                        principalTable: "Estado",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Endereco_Perfil_PerfilId",
+                        column: x => x.PerfilId,
+                        principalTable: "Perfil",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Endereco_Vaga_VagaId",
+                        column: x => x.VagaId,
+                        principalTable: "Vaga",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HistoricoProfissional",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    PerfilId = table.Column<Guid>(type: "uuid", nullable: true),
+                    NomeEmpresa = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    Porte = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
+                    ContatoId = table.Column<Guid>(type: "uuid", nullable: true),
+                    CidadeId = table.Column<Guid>(type: "uuid", nullable: true),
+                    SegmentoId = table.Column<Guid>(type: "uuid", nullable: true),
+                    DateCreate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DateUpdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HistoricoProfissional", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HistoricoProfissional_Cidade_CidadeId",
+                        column: x => x.CidadeId,
+                        principalTable: "Cidade",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_HistoricoProfissional_Contatos_ContatoId",
                         column: x => x.ContatoId,
                         principalTable: "Contatos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Vaga_Endereco_EnderecoId",
-                        column: x => x.EnderecoId,
-                        principalTable: "Endereco",
+                        name: "FK_HistoricoProfissional_Perfil_PerfilId",
+                        column: x => x.PerfilId,
+                        principalTable: "Perfil",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Vaga_Perfil_PerfilId",
-                        column: x => x.PerfilId,
-                        principalTable: "Perfil",
-                        principalColumn: "Id");
+                        name: "FK_HistoricoProfissional_Segmento_SegmentoId",
+                        column: x => x.SegmentoId,
+                        principalTable: "Segmento",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -415,11 +410,11 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     HistoricoProfissionalId = table.Column<Guid>(type: "uuid", nullable: true),
                     NomeCargo = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Inicio = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    Termino = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    Inicio = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    Termino = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     DescricaoCargo = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: true),
-                    DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    DateCreate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DateUpdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -430,32 +425,6 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         principalTable: "HistoricoProfissional",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Candidaturas",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    PerfilId = table.Column<Guid>(type: "uuid", nullable: true),
-                    VagaId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DateCreate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateUpdate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Candidaturas", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Candidaturas_Perfil_PerfilId",
-                        column: x => x.PerfilId,
-                        principalTable: "Perfil",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Candidaturas_Vaga_VagaId",
-                        column: x => x.VagaId,
-                        principalTable: "Vaga",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -487,7 +456,8 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Cargos_HistoricoProfissionalId",
                 table: "Cargos",
-                column: "HistoricoProfissionalId");
+                column: "HistoricoProfissionalId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cargos_Id",
@@ -526,20 +496,23 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Contatos_PerfilId",
                 table: "Contatos",
-                column: "PerfilId",
+                column: "PerfilId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contatos_VagaId",
+                table: "Contatos",
+                column: "VagaId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_CursoFormacaoAcademica_CidadeId",
                 table: "CursoFormacaoAcademica",
-                column: "CidadeId",
-                unique: true);
+                column: "CidadeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CursoFormacaoAcademica_CursoId",
                 table: "CursoFormacaoAcademica",
-                column: "CursoId",
-                unique: true);
+                column: "CursoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CursoFormacaoAcademica_DateCreate",
@@ -555,7 +528,12 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_CursoFormacaoAcademica_PerfilId",
                 table: "CursoFormacaoAcademica",
-                column: "PerfilId",
+                column: "PerfilId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Endereco_CidadeId",
+                table: "Endereco",
+                column: "CidadeId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -564,27 +542,27 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                 column: "DateCreate");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Endereco_EstadoId",
+                table: "Endereco",
+                column: "EstadoId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Endereco_Id",
                 table: "Endereco",
                 column: "Id",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Endereco_IdCidade",
-                table: "Endereco",
-                column: "IdCidade",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Endereco_IdEstado",
-                table: "Endereco",
-                column: "IdEstado",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Endereco_PerfilId",
                 table: "Endereco",
                 column: "PerfilId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Endereco_VagaId",
+                table: "Endereco",
+                column: "VagaId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -596,7 +574,8 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Escolaridade_PerfilId",
                 table: "Escolaridade",
-                column: "PerfilId");
+                column: "PerfilId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Estado_Id",
@@ -607,8 +586,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Estado_PaisId",
                 table: "Estado",
-                column: "PaisId",
-                unique: true);
+                column: "PaisId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Estado_UF",
@@ -620,12 +598,6 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                 name: "IX_HistoricoProfissional_CidadeId",
                 table: "HistoricoProfissional",
                 column: "CidadeId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HistoricoProfissional_CidadeId1",
-                table: "HistoricoProfissional",
-                column: "CidadeId1",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -644,6 +616,11 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                 table: "HistoricoProfissional",
                 column: "Id",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HistoricoProfissional_PerfilId",
+                table: "HistoricoProfissional",
+                column: "PerfilId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_HistoricoProfissional_SegmentoId",
@@ -667,12 +644,6 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                 name: "IX_Nacionalidade_Id",
                 table: "Nacionalidade",
                 column: "Id",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Objetivo_CidadeRegiaoInteresseId",
-                table: "Objetivo",
-                column: "CidadeRegiaoInteresseId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -701,8 +672,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Perfil_ContaId",
                 table: "Perfil",
-                column: "ContaId",
-                unique: true);
+                column: "ContaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Perfil_DateCreate",
@@ -716,39 +686,15 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Perfil_NacionalidadeId",
-                table: "Perfil",
-                column: "NacionalidadeId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Perfil_SegmentoId",
-                table: "Perfil",
-                column: "SegmentoId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Segmento_Id",
                 table: "Segmento",
                 column: "Id",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vaga_ContatoId",
-                table: "Vaga",
-                column: "ContatoId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Vaga_DateCreate",
                 table: "Vaga",
                 column: "DateCreate");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Vaga_EnderecoId",
-                table: "Vaga",
-                column: "EnderecoId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vaga_Id",
@@ -759,7 +705,8 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Vaga_PerfilId",
                 table: "Vaga",
-                column: "PerfilId");
+                column: "PerfilId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -774,16 +721,19 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                 name: "CursoFormacaoAcademica");
 
             migrationBuilder.DropTable(
+                name: "Endereco");
+
+            migrationBuilder.DropTable(
                 name: "Escolaridade");
 
             migrationBuilder.DropTable(
                 name: "Idioma");
 
             migrationBuilder.DropTable(
-                name: "Objetivo");
+                name: "Nacionalidade");
 
             migrationBuilder.DropTable(
-                name: "Vaga");
+                name: "Objetivo");
 
             migrationBuilder.DropTable(
                 name: "HistoricoProfissional");
@@ -792,31 +742,28 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                 name: "Curso");
 
             migrationBuilder.DropTable(
-                name: "Endereco");
-
-            migrationBuilder.DropTable(
-                name: "Contatos");
+                name: "Estado");
 
             migrationBuilder.DropTable(
                 name: "Cidade");
 
             migrationBuilder.DropTable(
-                name: "Estado");
+                name: "Contatos");
 
             migrationBuilder.DropTable(
-                name: "Perfil");
+                name: "Segmento");
 
             migrationBuilder.DropTable(
                 name: "Pais");
 
             migrationBuilder.DropTable(
+                name: "Vaga");
+
+            migrationBuilder.DropTable(
+                name: "Perfil");
+
+            migrationBuilder.DropTable(
                 name: "Conta");
-
-            migrationBuilder.DropTable(
-                name: "Nacionalidade");
-
-            migrationBuilder.DropTable(
-                name: "Segmento");
         }
     }
 }

@@ -10,7 +10,5 @@ namespace CurriculoVitaeInteligenteDomain.Entities
     {
         public string? NomePais { get; set; }
 
-        public virtual Perfil? Perfil { get; set; }
-
     }
 }
