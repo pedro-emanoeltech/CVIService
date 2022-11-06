@@ -1,4 +1,5 @@
 ﻿using CurriculoVitaeInteligenteApp.DTOs.Response;
+using CurriculoVitaeInteligenteDomain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,7 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
         public string? Nome { get; set; }
         public string? UF { get; set; }
 
-
-        public virtual EnderecoResponse? Endereco { get; set; }
-
-        //navegaçao
-
-        public  PaisResponse? Pais { get; set; }
+        //navegacao
+        public Pais? Pais { get; set; }
     }
 }

@@ -12,8 +12,5 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
         public NivelLinguagem? NivelEscrita { get; set; }
         public NivelLinguagem? NivelConversacao { get; set; }
 
-
-        public virtual PerfilResponse? Perfil { get; set; }
-
     }
 }

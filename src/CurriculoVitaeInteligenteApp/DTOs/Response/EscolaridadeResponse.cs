@@ -8,7 +8,5 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
         public Guid? PerfilId { get; set; }
         public NivelAcademico? NivelAcademico { get; set; }
 
-
-        public virtual PerfilResponse? Perfil { get; set; }
     }
 }

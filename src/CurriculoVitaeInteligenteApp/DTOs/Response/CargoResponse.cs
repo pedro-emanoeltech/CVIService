@@ -9,13 +9,10 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
 {
     public class CargoResponse : BaseResponse
     {
-        public Guid? HistoricoProfissional_Id{ get; set; }
+        public Guid? HistoricoProfissionalId { get; set; }
         public string? NomeCargo { get; set; }
         public DateTime? Inicio { get; set; }
         public DateTime? Termino { get; set; }
         public string? DescricaoCargo { get; set; }
-
-        //navegacao
-        public virtual HistoricoProfissionalResponse? HistoricoProfissional { get; set; }
     }
 }

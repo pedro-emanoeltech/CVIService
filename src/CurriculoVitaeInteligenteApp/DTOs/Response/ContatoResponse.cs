@@ -1,4 +1,5 @@
 ﻿using CurriculoVitaeInteligenteApp.DTOs.Response;
+using CurriculoVitaeInteligenteDomain.Content.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +13,7 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
         public Guid? PerfilId { get; set; }
         public Guid? VagaId { get; set; }
 
-        public string? Email { get; set; }
-
-        public string? Telefone { get; set; }
-
-        public string? Celular { get; set; }
-
-        public string? CelularSecundario { get; set; }
-
-        //navegacao
-        public virtual PerfilResponse? Perfil { get; set; }
-
-        public virtual VagaResponse? Vaga { get; set; }
-
-        public virtual HistoricoProfissionalResponse? HistoricoProfissional { get; set; }
+        public TipoContato TipoContato { get; set; }
+        public string? Texto { get; set; }
     }
 }

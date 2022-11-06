@@ -10,9 +10,6 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
     public class SegmentoResponse : BaseResponse
     {
 
-        public string? Descricao { get; set; }
-
-        public virtual PerfilResponse? Perfil { get; set; }
-        public virtual HistoricoProfissionalResponse? HistoricoProfissional { get; set; }
+        public string? Setor { get; set; }
     }
 }

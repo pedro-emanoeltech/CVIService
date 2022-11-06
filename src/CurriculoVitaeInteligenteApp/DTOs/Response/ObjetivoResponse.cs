@@ -12,17 +12,7 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
 
         public Guid? PerfilId { get; set; }
         public string? AreaInteresse { get; set; }
-
         public double? PretensaoSalarial { get; set; }
-
         public string? ResumoProfissional { get; set; }
-
-        public Guid? CidadeRegiaoInteresse_Id { get; set; }
-
-        //relacionamento
-        public CidadeResponse? Cidade { get; set; }
-
-        //navegaçao
-        public virtual PerfilResponse? Perfil { get; set; }
     }
 }

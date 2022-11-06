@@ -11,7 +11,6 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
     {
         public string? NomePais { get; set; }
 
-        public virtual PerfilResponse? Perfil { get; set; }
 
     }
 }

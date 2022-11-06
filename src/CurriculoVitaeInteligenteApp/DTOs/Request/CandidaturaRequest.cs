@@ -1,4 +1,5 @@
 ﻿using CurriculoVitaeInteligenteApp.DTOs.Request;
+using CurriculoVitaeInteligenteDomain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Request
         public Guid? PerfilId { get; set; }
         public Guid? VagaId { get; set; }
 
+        public virtual Vaga? Vaga { get; set; }
+        public virtual Perfil? Perfil { get; set; }
     }
 }

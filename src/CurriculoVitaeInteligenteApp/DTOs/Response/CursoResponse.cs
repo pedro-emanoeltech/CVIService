@@ -9,12 +9,6 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
 {
     public class CursoResponse : BaseResponse
     {
-
         public string? NomeCurso { get; set; }
-
-        public virtual CursoFormacaoAcademicaResponse? CursoFormacaoAcademica { get; set; }
-
-
-
-}
+    }
 }
