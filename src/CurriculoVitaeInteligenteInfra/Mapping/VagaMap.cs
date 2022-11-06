@@ -21,8 +21,9 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
 
             builder.HasOne(i => i.Perfil).WithOne().HasForeignKey<Vaga>(i => i.PerfilId);
 
-            builder.HasOne(i => i.Contato).WithOne().HasForeignKey<Contato>(i => i.VagaId).OnDelete(DeleteBehavior.Cascade);
-            builder.HasOne(i => i.Endereco).WithOne().HasForeignKey<Endereco>(i => i.VagaId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Contato).WithOne().HasForeignKey<Vaga>(i => i.ContatoId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Estado).WithOne().HasForeignKey<Vaga>(i => i.CidadeId);
+            builder.HasOne(i => i.Cidade).WithOne().HasForeignKey<Vaga>(i => i.EstadoId);
         }
     }
 }

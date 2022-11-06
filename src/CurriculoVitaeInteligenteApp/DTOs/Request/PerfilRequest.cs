@@ -6,6 +6,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
    public class PerfilRequest : BaseRequest
     {
+        public Guid? ContaId { get; set; }
         public string? Nome { get; set; }
         public string? Apelido { get; set; }
         public Int64? CPF { get; set; }

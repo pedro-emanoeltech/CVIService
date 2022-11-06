@@ -35,9 +35,6 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
         public IList<CursoFormacaoAcademica>? CursoFormacaoAcademica { get; set; }
 
 
-        ////navegacao
-        public virtual Conta? Conta { get; set; }
-
 
 
 

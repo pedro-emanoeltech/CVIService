@@ -12,7 +12,6 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Request
     public class ContatoRequest : BaseRequest
     {
         public Guid? PerfilId { get; set; }
-        public Guid? VagaId { get; set; }
 
         public TipoContato TipoContato { get; set; }
         public string? Texto { get; set; }

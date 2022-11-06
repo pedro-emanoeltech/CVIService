@@ -11,7 +11,6 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Response
     public class EnderecoResponse : BaseResponse
     {
         public Guid? PerfilId { get; set; }
-        public Guid? VagaId { get; set; }
         public Guid? CidadeId { get; set; }
         public Guid? EstadoId { get; set; }
 
