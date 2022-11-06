@@ -13,8 +13,6 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Request
 
         public string? Senha { get; set; }
 
-        public TipoPerfil? TipoPerfil { get; set; }
-
         public Status Status { get; set; }
     }
 }

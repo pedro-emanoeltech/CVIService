@@ -3,6 +3,7 @@ using System;
 using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CurriculoVitaeInteligenteInfra.Migrations
 {
     [DbContext(typeof(CVIContext))]
-    partial class CVIContextModelSnapshot : ModelSnapshot
+    [Migration("20221106183621_Ajuste1")]
+    partial class Ajuste1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -596,6 +598,9 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.Property<Guid?>("SegmentoId")
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("SegmentoId1")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("TipoPerfil")
                         .HasMaxLength(5)
                         .HasColumnType("character varying(5)");
@@ -609,9 +614,9 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.HasIndex("NacionalidadeId");
-
                     b.HasIndex("SegmentoId");
+
+                    b.HasIndex("SegmentoId1");
 
                     b.ToTable("Perfil");
                 });
@@ -838,13 +843,12 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Nacionalidade", "Nacionalidade")
                         .WithMany()
-                        .HasForeignKey("NacionalidadeId")
+                        .HasForeignKey("SegmentoId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CurriculoVitaeInteligenteDomain.Entities.Segmento", "Segmento")
                         .WithMany()
-                        .HasForeignKey("SegmentoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SegmentoId1");
 
                     b.Navigation("Conta");
 

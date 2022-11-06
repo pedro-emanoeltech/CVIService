@@ -17,6 +17,6 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 
         public string? ResumoProfissional { get; set; }
 
-        public Guid? CidadeRegiaoInteresse_Id { get; set; }
+       
     }
 }

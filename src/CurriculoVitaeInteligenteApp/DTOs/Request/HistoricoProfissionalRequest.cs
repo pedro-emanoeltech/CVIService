@@ -16,12 +16,9 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public string? NomeEmpresa { get; set; }
         public PorteEmpresa? Porte { get; set; }
 
-        public Guid? Contato_Id { get; set; }
+        public Guid? ContatoId { get; set; }
         public Guid? CidadeId { get; set; }
-        public Guid? Segmento_Id { get; set; }
+        public Guid? SegmentoId { get; set; }
 
-
-
-   
     }
 }

@@ -14,15 +14,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public DateTime? Inicio { get; set; }
         public DateTime? Termino { get; set; }
         public string? Instituicao { get; set; }
-
         public string? DescricaoCurso { get; set; }
 
-
-        public CursoRequest? Curso { get; set; }
-        public  CidadeRequest? Cidade { get; set; }
-
-
-        // navegação
-        public virtual PerfilRequest? Perfil { get; set; }
     }
 }

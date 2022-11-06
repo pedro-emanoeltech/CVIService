@@ -12,7 +12,7 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
         {
             // chave
             base.Configure(builder);
-            builder.Property(i => i.Descricao).HasMaxLength(30);
+            builder.Property(i => i.Setor).HasMaxLength(30);
     
             
 

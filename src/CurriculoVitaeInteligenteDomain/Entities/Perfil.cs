@@ -14,8 +14,12 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public EstadoCivil? EstadoCivil { get; set; }
         public Genero? Genero { get; set; }
 
-
+        public Guid? NacionalidadeId { get; set; }
+        public Guid? SegmentoId { get; set; }
         //// Relacionamento
+
+        public Segmento? Segmento { get; set; }
+        public Nacionalidade? Nacionalidade { get; set; }
         public Escolaridade? Escolaridade { get; set; }
         public Endereco? Endereco { get; set; }
             

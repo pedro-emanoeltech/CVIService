@@ -115,5 +115,30 @@ namespace CurriculoVitaeInteligenteDomain.Content.Enums
         Português        = 9,
         Indonésio        = 10
     }
+    public enum TipoSetor
+    {
+        Vendas = 1,
+        Administrativo  = 2,
+        Fabricação  = 3,
+        Administração = 4,
+        AssistênciaMédica  = 5,
+        TI = 6,
+        Restaurante = 7,
+        hospitalidade = 8,
+        Operações  = 9,
+        Instalação = 10,
+        Transporte = 12,
+        logística = 13,
+        Marketing = 14,
+        Engenharia = 15,
+        Atendimento = 16,
+        RecursosHumanos  = 17,   
+        Serviços    = 18,
+        Contabilidade = 19,
+        Limpeza = 20,
+        Jurídico = 21,
+        Mídia = 22,
+        Construção = 23
+    }
 
 }

@@ -24,7 +24,8 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             //relacionamento
             builder.HasOne(i => i.Conta).WithMany().HasForeignKey(i=>i.ContaId).OnDelete(DeleteBehavior.Cascade);
 
-            
+            builder.HasOne(i => i.Nacionalidade).WithMany().HasForeignKey(i => i.NacionalidadeId).OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(i => i.Segmento).WithMany().HasForeignKey(i => i.SegmentoId).OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(i => i.Escolaridade).WithOne().HasForeignKey<Escolaridade>(i => i.PerfilId).OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(i => i.Endereco).WithOne().HasForeignKey<Endereco>(i => i.PerfilId).OnDelete(DeleteBehavior.Cascade);
             builder.HasOne(i => i.Objetivo).WithOne().HasForeignKey<Objetivo>(i => i.PerfilId).OnDelete(DeleteBehavior.Cascade);

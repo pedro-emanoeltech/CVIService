@@ -9,8 +9,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class SegmentoRequest : BaseRequest
     {
-
-        public string? Descricao { get; set; }
+        public string? Setor { get; set; }
 
     }
 }
