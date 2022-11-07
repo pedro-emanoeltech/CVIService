@@ -4,5 +4,6 @@ namespace CurriculoVitaeInteligenteDomain.Interfaces.Repositories
 {
     public interface IPerfilRepository : IBaseRepository<Perfil>
     {
+        Task<IList<Perfil>> GetList();
     }
 }
