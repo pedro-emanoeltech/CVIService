@@ -16,6 +16,9 @@ namespace CurriculoVitaeInteligenteDomain.Entities
         public string? Requisitos { get; set; }
         public string? Beneficio { get; set; }
         public ModalidadeTrabalho? ModalidadeTrabalho { get; set; }
+        public string? Url { get; set; }
+        
+
 
         public Contato? Contato { get; set; }
         public Cidade? Cidade { get; set; }

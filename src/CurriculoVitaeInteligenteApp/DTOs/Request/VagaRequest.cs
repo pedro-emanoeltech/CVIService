@@ -16,9 +16,13 @@ namespace CurriculoVitaeInteligenteApp.DTOs.Request
         public string? NomeEmpresa { get; set; }
         public string? Requisitos { get; set; }
         public string? Beneficio { get; set; }
+        public string? Url { get; set; }
 
-       
         public ModalidadeTrabalho? ModalidadeTrabalho{ get; set; }
+
+        public Contato? Contato { get; set; }
+        public Cidade? Cidade { get; set; }
+        public Estado? Estado { get; set; }
 
     }
 }

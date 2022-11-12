@@ -3,6 +3,7 @@ using System;
 using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CurriculoVitaeInteligenteInfra.Migrations
 {
     [DbContext(typeof(CVIContext))]
-    partial class CVIContextModelSnapshot : ModelSnapshot
+    [Migration("20221112022556_Add url em Vaga")]
+    partial class AddurlemVaga
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
