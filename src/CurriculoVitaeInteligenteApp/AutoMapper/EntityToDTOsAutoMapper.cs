@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CurriculoVitaeInteligenteApp.DTOs.Response;
 using CurriculoVitaeInteligenteDomain.Entities;
+using CVIServiceLibShared.App.Response;
 
 namespace CurriculoVitaeInteligenteApp.AutoMapper
 {

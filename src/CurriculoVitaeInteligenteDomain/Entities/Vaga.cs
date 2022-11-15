@@ -1,9 +1,8 @@
-﻿using CurriculoVitaeInteligenteDomain.Content.Enums;
-
+﻿using CVIServiceLibShared.Constants.Enums;
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
-   public  class Vaga: BaseEntityComData
+    public  class Vaga: BaseEntityComData
     {
         public Guid? PerfilId { get; set; }
         public Guid? CidadeId { get; set; }

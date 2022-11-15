@@ -1,5 +1,5 @@
-﻿using CurriculoVitaeInteligenteDomain.Content.Enums;
-using CurriculoVitaeInteligenteDomain.Entities;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
+using CVIServiceLibShared.Constants.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;

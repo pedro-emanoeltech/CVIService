@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using CurriculoVitaeInteligenteAPI.IControllers;
-using CurriculoVitaeInteligenteApp.DTOs.Request;
-using CurriculoVitaeInteligenteApp.DTOs.Response;
-using CurriculoVitaeInteligenteApp.DTOs.Validations;
 using CurriculoVitaeInteligenteApp.Interfaces;
 using CurriculoVitaeInteligenteDomain.Entities;
+using CVIServiceLibShared.App.Request;
+using CVIServiceLibShared.App.Response;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

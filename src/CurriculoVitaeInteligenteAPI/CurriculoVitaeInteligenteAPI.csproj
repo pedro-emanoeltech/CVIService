@@ -26,8 +26,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CurriculoVitaeInteligenteApp\CurriculoVitaeInteligenteApp.csproj" />
-    <ProjectReference Include="..\CurriculoVitaeInteligenteDomain\CurriculoVitaeInteligenteDomain.csproj" />
     <ProjectReference Include="..\CurriculoVitaeInteligenteInfra\CurriculoVitaeInteligenteInfra.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CVIServiceLibShared">
+      <HintPath>..\..\..\CVIServiceLibShared\CVIServiceLibShared\bin\Debug\net6.0-windows\CVIServiceLibShared.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

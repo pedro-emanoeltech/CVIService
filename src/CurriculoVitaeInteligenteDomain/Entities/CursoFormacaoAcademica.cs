@@ -1,10 +1,4 @@
-﻿using CurriculoVitaeInteligenteDomain.Content.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static CurriculoVitaeInteligenteDomain.Content.Enums.Classificacoes;
+﻿using CVIServiceLibShared.Constants.Enums;
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {

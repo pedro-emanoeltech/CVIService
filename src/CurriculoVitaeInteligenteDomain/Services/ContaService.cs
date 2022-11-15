@@ -1,8 +1,7 @@
-﻿using CurriculoVitaeInteligenteDomain.Content.Enums;
-using CurriculoVitaeInteligenteDomain.Entities;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
 using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteDomain.Interfaces.Services;
-
+using CVIServiceLibShared.Constants.Enums;
 
 namespace CurriculoVitaeInteligenteDomain.Services
 {

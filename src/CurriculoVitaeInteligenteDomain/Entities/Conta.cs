@@ -1,5 +1,4 @@
-﻿using CurriculoVitaeInteligenteDomain.Content.Enums;
-using System;
+﻿using CVIServiceLibShared.Constants.Enums;
 
 
 namespace CurriculoVitaeInteligenteDomain.Entities

@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
 using CurriculoVitaeInteligenteAPI.IControllers;
-using CurriculoVitaeInteligenteApp.DTOs.Request;
-using CurriculoVitaeInteligenteApp.DTOs.Response;
 using CurriculoVitaeInteligenteApp.Interfaces;
 using CurriculoVitaeInteligenteDomain.Entities;
-using Microsoft.AspNetCore.Authorization;
+using CVIServiceLibShared.App.Request;
+using CVIServiceLibShared.App.Response;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CurriculoVitaeInteligenteAPI.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Consumes("application/json", new string[] { })]

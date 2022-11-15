@@ -1,4 +1,4 @@
-﻿using CurriculoVitaeInteligenteApp.DTOs.Request;
+﻿using CVIServiceLibShared.App.Request;
 using FluentValidation;
 
 

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using CurriculoVitaeInteligenteApp.DTOs.Response;
 using CurriculoVitaeInteligenteApp.Interfaces;
 using CurriculoVitaeInteligenteDomain.Entities;
 using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteDomain.Interfaces.Services;
 using CurriculoVitaeInteligenteDomain.Services;
+using CVIServiceLibShared.App.Response;
 
 namespace CurriculoVitaeInteligenteApp.Services
 {

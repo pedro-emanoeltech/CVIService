@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using CurriculoVitaeInteligenteApp.DTOs.Response;
 using CurriculoVitaeInteligenteApp.Interfaces;
-using CurriculoVitaeInteligenteApp.Services;
 using CurriculoVitaeInteligenteDomain.Entities;
+using CVIServiceLibShared.App.Request;
+using CVIServiceLibShared.App.Response;
 
 namespace CurriculoVitaeInteligenteAPI.Controllers
 {

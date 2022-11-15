@@ -1,5 +1,4 @@
-﻿using CurriculoVitaeInteligenteApp.DTOs.Response;
-using CurriculoVitaeInteligenteDomain.Entities;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
 
 namespace CurriculoVitaeInteligenteApp.Interfaces
 {

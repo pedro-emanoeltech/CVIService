@@ -1,5 +1,5 @@
-﻿using CurriculoVitaeInteligenteApp.DTOs.Response;
-using CurriculoVitaeInteligenteDomain.Entities;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
+using CVIServiceLibShared.App.Response;
 
 namespace CurriculoVitaeInteligenteApp.Interfaces
 {

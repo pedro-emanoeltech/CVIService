@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using CurriculoVitaeInteligenteApp.DTOs.Request;
-using CurriculoVitaeInteligenteApp.DTOs.Response;
 using CurriculoVitaeInteligenteDomain.Entities;
+using CVIServiceLibShared.App.Request;
+using CVIServiceLibShared.App.Response;
 
 namespace CurriculoVitaeInteligenteApp.AutoMapper
 {
@@ -10,47 +10,47 @@ namespace CurriculoVitaeInteligenteApp.AutoMapper
         public DTOsToEntityAutoMapper()
         {
             //REQUEST 
-            CreateMap<AuthenticateRequest, Conta>().ReverseMap();
-            CreateMap<ContaRequest, Conta>().ReverseMap();
-            CreateMap<CandidaturaRequest, Candidatura>().ReverseMap();
-            CreateMap<CargoRequest, Cargo>().ReverseMap();
-            CreateMap<CidadeRequest, Cidade>().ReverseMap(); 
-            CreateMap<ContatoRequest, Contato>().ReverseMap();
-            CreateMap<CursoFormacaoAcademicaRequest, CursoFormacaoAcademica>().ReverseMap();
-            CreateMap<CursoRequest, Curso>().ReverseMap();
-            CreateMap<EnderecoRequest, Endereco>().ReverseMap();
-            CreateMap<EscolaridadeRequest, Escolaridade>().ReverseMap();
-            CreateMap<EstadoRequest, Estado>().ReverseMap();
-            CreateMap<HistoricoProfissionalRequest, HistoricoProfissional>().ReverseMap();
-            CreateMap<IdiomaRequest, Idioma>().ReverseMap();
-            CreateMap<NacionalidadeRequest, Nacionalidade>().ReverseMap();
-            CreateMap<ObjetivoRequest, Objetivo>().ReverseMap();
-            CreateMap<PaisRequest, Pais>().ReverseMap();
-            CreateMap<PerfilRequest, Perfil>().ReverseMap();
-            CreateMap<SegmentoRequest, Segmento>().ReverseMap();
-            CreateMap<VagaRequest, Vaga>().ReverseMap();
+            CreateMap<AuthenticateRequest, Conta>(MemberList.Destination).ReverseMap();
+            CreateMap<ContaRequest, Conta>(MemberList.Destination).ReverseMap();
+            CreateMap<CandidaturaRequest, Candidatura>(MemberList.Destination).ReverseMap();
+            CreateMap<CargoRequest, Cargo>(MemberList.Destination).ReverseMap();
+            CreateMap<CidadeRequest, Cidade>(MemberList.Destination).ReverseMap(); 
+            CreateMap<ContatoRequest, Contato>(MemberList.Destination).ReverseMap();
+            CreateMap<CursoFormacaoAcademicaRequest, CursoFormacaoAcademica>(MemberList.Destination).ReverseMap();
+            CreateMap<CursoRequest, Curso>(MemberList.Destination).ReverseMap();
+            CreateMap<EnderecoRequest, Endereco>(MemberList.Destination).ReverseMap();
+            CreateMap<EscolaridadeRequest, Escolaridade>(MemberList.Destination).ReverseMap();
+            CreateMap<EstadoRequest, Estado>(MemberList.Destination).ReverseMap();
+            CreateMap<HistoricoProfissionalRequest, HistoricoProfissional>(MemberList.Destination).ReverseMap();
+            CreateMap<IdiomaRequest, Idioma>(MemberList.Destination).ReverseMap();
+            CreateMap<NacionalidadeRequest, Nacionalidade>(MemberList.Destination).ReverseMap();
+            CreateMap<ObjetivoRequest, Objetivo>(MemberList.Destination).ReverseMap();
+            CreateMap<PaisRequest, Pais>(MemberList.Destination).ReverseMap();
+            CreateMap<PerfilRequest, Perfil>(MemberList.Destination).ReverseMap();
+            CreateMap<SegmentoRequest, Segmento>(MemberList.Destination).ReverseMap();
+            CreateMap<VagaRequest, Vaga>(MemberList.Destination).ReverseMap();
 
             //RESPONSES
-            CreateMap<Conta,ContaResponse > ().ReverseMap();
+            CreateMap<Conta,ContaResponse >(MemberList.Destination).ReverseMap();
             CreateMap<Conta, AuthenticateResponse>(MemberList.Destination)
                 .ForMember(d => d.ContaId, opt => opt.MapFrom(src => src.Id!));
-            CreateMap<CandidaturaResponse, Candidatura>().ReverseMap();
-            CreateMap<CargoResponse, Cargo>().ReverseMap();
-            CreateMap<CidadeResponse, Cidade>().ReverseMap();
-            CreateMap<ContatoResponse, Contato>().ReverseMap();
-            CreateMap<CursoFormacaoAcademicaResponse, CursoFormacaoAcademica>().ReverseMap();
-            CreateMap<CursoResponse, Curso>().ReverseMap();
-            CreateMap<EnderecoResponse, Endereco>().ReverseMap();
-            CreateMap<EscolaridadeResponse, Escolaridade>().ReverseMap();
-            CreateMap<EstadoResponse, Estado>().ReverseMap();
-            CreateMap<HistoricoProfissionalResponse, HistoricoProfissional>().ReverseMap();
-            CreateMap<IdiomaResponse, Idioma>().ReverseMap();
-            CreateMap<NacionalidadeResponse, Nacionalidade>().ReverseMap();
-            CreateMap<ObjetivoResponse, Objetivo>().ReverseMap();
-            CreateMap<PaisResponse, Pais>().ReverseMap();
-            CreateMap<PerfilResponse, Perfil>().ReverseMap();
-            CreateMap<SegmentoResponse, Segmento>().ReverseMap();
-            CreateMap<VagaResponse, Vaga>().ReverseMap();
+            CreateMap<CandidaturaResponse, Candidatura>(MemberList.Destination).ReverseMap();
+            CreateMap<CargoResponse, Cargo>(MemberList.Destination).ReverseMap();
+            CreateMap<CidadeResponse, Cidade>(MemberList.Destination).ReverseMap();
+            CreateMap<ContatoResponse, Contato>(MemberList.Destination).ReverseMap();
+            CreateMap<CursoFormacaoAcademicaResponse, CursoFormacaoAcademica>(MemberList.Destination).ReverseMap();
+            CreateMap<CursoResponse, Curso>(MemberList.Destination).ReverseMap();
+            CreateMap<EnderecoResponse, Endereco>(MemberList.Destination).ReverseMap();
+            CreateMap<EscolaridadeResponse, Escolaridade>(MemberList.Destination).ReverseMap();
+            CreateMap<EstadoResponse, Estado>(MemberList.Destination).ReverseMap();
+            CreateMap<HistoricoProfissionalResponse, HistoricoProfissional>(MemberList.Destination).ReverseMap();
+            CreateMap<IdiomaResponse, Idioma>(MemberList.Destination).ReverseMap();
+            CreateMap<NacionalidadeResponse, Nacionalidade>(MemberList.Destination).ReverseMap();
+            CreateMap<ObjetivoResponse, Objetivo>(MemberList.Destination).ReverseMap();
+            CreateMap<PaisResponse, Pais>(MemberList.Destination).ReverseMap();
+            CreateMap<PerfilResponse, Perfil>(MemberList.Destination).ReverseMap();
+            CreateMap<SegmentoResponse, Segmento>(MemberList.Destination).ReverseMap();
+            CreateMap<VagaResponse, Vaga>(MemberList.Destination).ReverseMap();
 
         }
     }

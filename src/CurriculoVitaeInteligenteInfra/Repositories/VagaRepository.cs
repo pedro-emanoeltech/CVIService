@@ -19,9 +19,9 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
                     throw new Exception("ID INVALIDO");
                 }
                 Vaga? TEntity = await _context.Set<Vaga>()
-                    .Include(p => p.Contato)
-                    .Include(p => p.Cidade)
-                    .Include(p => p.Estado)
+                    .Include(p => p!.Contato)
+                    .Include(p => p!.Cidade)
+                    .Include(p => p!.Estado)
                 .FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
                 if (TEntity == null)
                 {

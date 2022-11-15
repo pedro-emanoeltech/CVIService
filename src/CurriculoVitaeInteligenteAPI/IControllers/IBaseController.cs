@@ -1,6 +1,6 @@
-﻿using CurriculoVitaeInteligenteApp.DTOs.Request;
-using CurriculoVitaeInteligenteApp.DTOs.Response;
-using CurriculoVitaeInteligenteDomain.Entities;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
+using CVIServiceLibShared.App.Request;
+using CVIServiceLibShared.App.Response;
 
 namespace CurriculoVitaeInteligenteAPI.IControllers
 {

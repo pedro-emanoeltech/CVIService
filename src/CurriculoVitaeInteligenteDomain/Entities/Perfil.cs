@@ -1,9 +1,8 @@
-﻿using CurriculoVitaeInteligenteDomain.Content.Enums;
-
+﻿using CVIServiceLibShared.Constants.Enums;
 
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
-   public class Perfil : BaseEntityConta
+    public class Perfil : BaseEntityConta
     {
         public string? Nome { get; set; }
         public string? Apelido { get; set; }
