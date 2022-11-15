@@ -13,13 +13,8 @@
 	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\CVIServiceLibShared\CVIServiceLibShared\CVIServiceLibShared.csproj" />
-  </ItemGroup>
-
- 
-
-
-
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\CVIServiceLibShared\CVIServiceLibShared\CVIServiceLibShared.csproj" />
+	</ItemGroup>
 
 </Project>
