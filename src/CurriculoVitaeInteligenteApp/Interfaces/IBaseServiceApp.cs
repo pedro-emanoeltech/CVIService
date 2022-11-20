@@ -1,5 +1,4 @@
 ﻿using CurriculoVitaeInteligenteDomain.Entities;
-using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using System.Linq.Expressions;
 
 namespace CurriculoVitaeInteligenteApp.Interfaces

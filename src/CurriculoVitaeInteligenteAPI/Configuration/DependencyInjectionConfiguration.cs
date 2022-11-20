@@ -1,11 +1,9 @@
 ﻿using CurriculoVitaeInteligenteApp.Interfaces;
 using CurriculoVitaeInteligenteApp.Services;
-using CurriculoVitaeInteligenteDomain.Entities;
 using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteDomain.Interfaces.Services;
 using CurriculoVitaeInteligenteDomain.Services;
 using CurriculoVitaeInteligenteInfra;
-using CurriculoVitaeInteligenteInfra.Mapping;
 using CurriculoVitaeInteligenteInfra.Repositories;
 
 namespace CurriculoVitaeInteligenteAPI.Configuration
