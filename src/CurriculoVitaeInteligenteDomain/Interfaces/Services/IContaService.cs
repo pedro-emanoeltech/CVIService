@@ -11,7 +11,6 @@ namespace CurriculoVitaeInteligenteDomain.Interfaces.Services
 {
     public interface IContaService : IBaseService<Conta>
     {
-        Task<Conta> AdicionarConta(CancellationToken stoppingToken);
         Task<Conta> Authenticate(Conta TEntity);
     }
 }

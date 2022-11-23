@@ -36,33 +36,6 @@ namespace CurriculoVitaeInteligenteApp.Services
             return await base.Add(TEntity, saveChanges);
         }
 
-        public async Task<AuthenticateResponse> Authenticate(Conta TEntity)
-        {
-            try
-            {
-                AuthenticateResponse authenticate = new AuthenticateResponse();
-                var conta = await _Service.Authenticate(TEntity);
-                if (conta.Email is not null)
-                {
-
-                    _mapper.Map(conta, authenticate);
-                    var token = TokenService.GenerateToken(conta);
-                    authenticate.Token = token;
-                }
-                else
-                {
-                    throw new Exception("Conta nao encontrada");
-                }
-
-
-                return authenticate;
-            }
-            catch (Exception e)
-            {
-
-                throw new Exception(e.Message);
-            }   
-           
-        }
+       
     }
 }

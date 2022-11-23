@@ -29,6 +29,7 @@ namespace CurriculoVitaeInteligenteApp.AutoMapper
             CreateMap<PerfilRequest, Perfil>(MemberList.Destination).ReverseMap();
             CreateMap<SegmentoRequest, Segmento>(MemberList.Destination).ReverseMap();
             CreateMap<VagaRequest, Vaga>(MemberList.Destination).ReverseMap();
+            CreateMap<AuthenticateRequest, TokenAuth>(MemberList.Destination).ReverseMap();
 
             //RESPONSES
             CreateMap<Conta,ContaResponse >(MemberList.Destination).ReverseMap();
@@ -51,6 +52,7 @@ namespace CurriculoVitaeInteligenteApp.AutoMapper
             CreateMap<PerfilResponse, Perfil>(MemberList.Destination).ReverseMap();
             CreateMap<SegmentoResponse, Segmento>(MemberList.Destination).ReverseMap();
             CreateMap<VagaResponse, Vaga>(MemberList.Destination).ReverseMap();
+            CreateMap<AuthenticateResponse, TokenAuth>(MemberList.Destination).ReverseMap();
 
         }
     }

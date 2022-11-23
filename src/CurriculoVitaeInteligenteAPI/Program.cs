@@ -1,4 +1,8 @@
 using CurriculoVitaeInteligenteAPI.Configuration;
+using CurriculoVitaeInteligenteDomain.Constant.settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +13,8 @@ builder.Services.AddDependencyInjectionConfiguration(builder.Configuration);
 builder.Services.AddSwaggerConfiguration(builder.Configuration);
 builder.Services.ConfiguratonsApi();
 builder.Services.AutoMapperConfiguration();
+
+
 
 
 var app = builder.Build();
@@ -26,6 +32,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.ConfigurationPostgresEscopo();
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseSwaggerConfiguration();
 app.UseConfiguratonsApi();

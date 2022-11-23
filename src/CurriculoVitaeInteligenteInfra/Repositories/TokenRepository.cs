@@ -1,13 +1,13 @@
-﻿using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
+using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
+using CurriculoVitaeInteligenteInfra.Context;
 
 namespace CurriculoVitaeInteligenteInfra.Repositories
 {
-    public class TokenRepository : ITokenRepository
+    public class TokenRepository : BaseRepository<TokenAuth>, ITokenRepository
     {
+        public TokenRepository(CVIContext context) : base(context)
+        {
+        }
     }
 }

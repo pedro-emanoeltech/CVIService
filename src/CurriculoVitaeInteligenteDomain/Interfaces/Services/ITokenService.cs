@@ -1,14 +1,9 @@
-﻿using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System;
-using System.IdentityModel.Tokens.Jwt;
-using CurriculoVitaeInteligenteDomain.Entities;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
 
 namespace CurriculoVitaeInteligenteDomain.Interfaces.Services
 {
-    public interface ITokenService
+    public interface ITokenService : IBaseService<TokenAuth>
     {
-        string GenerateToken(Conta user);
+        Task<TokenAuth?> GenerateToken(Conta user);
     }
 }

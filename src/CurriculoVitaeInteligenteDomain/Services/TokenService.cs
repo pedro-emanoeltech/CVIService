@@ -1,38 +1,79 @@
 ﻿using CurriculoVitaeInteligenteDomain.Constant.settings;
 using CurriculoVitaeInteligenteDomain.Entities;
+using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
+using CurriculoVitaeInteligenteDomain.Interfaces.Services;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
 namespace CurriculoVitaeInteligenteDomain.Services
 {
-    public class TokenService 
+    public class TokenService :BaseService<TokenAuth> ,ITokenService
     {
-        public TokenService()
+        private readonly ITokenRepository _tokenRepository;
+        private readonly IContaService _contaService;
+        public TokenService(ITokenRepository repository, IUnitOfWork unitOfWork, IContaService contaService) : base(repository, unitOfWork)
         {
+            _tokenRepository = repository;
+            _contaService = contaService;
         }
 
-        public static string GenerateToken(Conta user)
+        public async Task<TokenAuth?> GenerateToken(Conta user)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(Token.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
+            if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Senha))
             {
-                Subject = new ClaimsIdentity(new Claim[]{
-                    new Claim(ClaimTypes.NameIdentifier,user.Id!.Value.ToString()),
-                }),
-                Expires = DateTime.UtcNow.AddHours(2),
-                SigningCredentials =
-                new SigningCredentials(
+                return null;
+            }
+            try
+            {
+                var conta = await _contaService.GetFirstOrDefault(p => p.Email == user.Email && p.Senha == user.Senha);
+                if (conta is null)
+                {
+                    return null;
+                }
+
+                var dataExpiracao = DateTime.Now.AddMinutes(60);
+                var key = Encoding.ASCII.GetBytes(Token.Secret);
+                var claimsIdentity = new ClaimsIdentity(new List<Claim>
+
+                {
+                    new Claim(ClaimTypes.Email,conta.Email!),
+                    new Claim(ClaimTypes.NameIdentifier,conta.Id.ToString()!)
+                });
+                var credencial = new SigningCredentials(
                     new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature
-                    )
+                    );
+                var Descriptor = new SecurityTokenDescriptor
                 {
-                }
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+                    Subject = claimsIdentity,
+                    Expires = dataExpiracao,
+                    SigningCredentials = credencial
+                };
+                var jwtTokenHandler = new JwtSecurityTokenHandler();
+                var securityToken = jwtTokenHandler.CreateToken(Descriptor);
+                var tokenResult = jwtTokenHandler.WriteToken(securityToken);
+
+                var tokenAuth = new TokenAuth
+                {
+                    Email = user.Email,
+                    Token = tokenResult,
+                    DataExpiracao = dataExpiracao,
+                    ExpiryTimeStamp = (int)dataExpiracao.Subtract(DateTime.Now).TotalSeconds  
+                };
+
+                await _tokenRepository.Add(tokenAuth!);
+                return tokenAuth;
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Erro ao fazer login" + e.Message);
+            }
+            
+           
         }
     }
 

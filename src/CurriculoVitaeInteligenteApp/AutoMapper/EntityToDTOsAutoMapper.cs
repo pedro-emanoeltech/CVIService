@@ -9,8 +9,10 @@ namespace CurriculoVitaeInteligenteApp.AutoMapper
         public EntityToDTOsAutoMapper()
         {
             CreateMap<Conta, ContaResponse>();
-
             CreateMap<Conta, ContaResponse>();
+
+
+            CreateMap<TokenAuth, AuthenticateResponse>();
         }
     }
 }

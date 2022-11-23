@@ -63,11 +63,12 @@ namespace CurriculoVitaeInteligenteInfra.Context
             modelBuilder.ApplyConfiguration(new VagaMap());
             modelBuilder.ApplyConfiguration(new PaisMap());
             modelBuilder.ApplyConfiguration(new SegmentoMap());
-
-            
-
+            modelBuilder.ApplyConfiguration(new TokenAuthMap());
 
 
-    }
+
+
+
+        }
     }
 }

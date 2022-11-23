@@ -83,26 +83,41 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
             });
 
-            
-            services.AddCors();
-            var key = Encoding.ASCII.GetBytes(Token.Secret);
-            services.AddAuthentication(p =>
+            services.AddAuthentication(o =>
             {
-                p.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                p.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-            }).AddJwtBearer(p =>
+                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
             {
-                p.RequireHttpsMetadata = false;
-                p.SaveToken=true;
-                p.TokenValidationParameters = new TokenValidationParameters()
+                o.RequireHttpsMetadata = false;
+                o.SaveToken = true;
+                o.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer  = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Token.Secret)),
+                    ValidateIssuer = false,
                     ValidateAudience = false
                 };
             });
+            //services.AddCors();
+            //var key = Encoding.ASCII.GetBytes(Token.Secret);
+            //services.AddAuthentication(p =>
+            //{
+            //    p.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    p.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            //}).AddJwtBearer(p =>
+            //{
+            //    p.RequireHttpsMetadata = false;
+            //    p.SaveToken=true;
+            //    p.TokenValidationParameters = new TokenValidationParameters()
+            //    {
+            //        ValidateIssuerSigningKey = true,
+            //        IssuerSigningKey = new SymmetricSecurityKey(key),
+            //        ValidateIssuer  = false,
+            //        ValidateAudience = false
+            //    };
+            //});
             services.AddAuthorization();
             services.AddEndpointsApiExplorer();
 

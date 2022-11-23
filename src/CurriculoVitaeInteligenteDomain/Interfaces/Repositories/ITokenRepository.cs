@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CurriculoVitaeInteligenteDomain.Entities;
 
 namespace CurriculoVitaeInteligenteDomain.Interfaces.Repositories
 {
-    public interface ITokenRepository
+    public interface ITokenRepository : IBaseRepository<TokenAuth>
     {
     }
 }

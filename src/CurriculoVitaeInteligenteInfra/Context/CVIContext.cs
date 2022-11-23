@@ -26,6 +26,7 @@ namespace CurriculoVitaeInteligenteInfra.Context
         public DbSet<Pais>? Pais { get; set; }
         public DbSet<Segmento>? Segmento { get; set; }
         public DbSet<Curso>? Curso { get; set; }
+        public DbSet<TokenAuth>? TokenAuth { get; set; }
     }
     
 

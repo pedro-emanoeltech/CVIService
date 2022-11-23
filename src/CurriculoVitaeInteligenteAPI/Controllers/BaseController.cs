@@ -4,12 +4,14 @@ using CurriculoVitaeInteligenteApp.Interfaces;
 using CurriculoVitaeInteligenteDomain.Entities;
 using CVIServiceLibShared.App.Request;
 using CVIServiceLibShared.App.Response;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CurriculoVitaeInteligenteAPI.Controllers
 {
 
     [Route("api/[controller]")]
+    [Authorize]
     [ApiConventionType(typeof(DefaultApiConventions))]
     [Consumes("application/json", new string[] { })]
     [Produces("application/json", new string[] { })]
@@ -28,6 +30,7 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
             }
 
             [HttpGet]
+            [Authorize]
             [ProducesResponseType(StatusCodes.Status404NotFound)]
             public async Task<ActionResult<IQueryable<TResponsesDTO>>> GetList()
             {

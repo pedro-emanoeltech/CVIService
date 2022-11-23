@@ -16,6 +16,10 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
             services.AddScoped<IContaService, ContaService>();
             services.AddScoped<IContaServiceApp, ContaServiceApp>();
 
+            services.AddScoped<ITokenRepository, TokenRepository>();
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<ITokenServiceApp, TokenServiceApp>();
+
             services.AddScoped<ICandidaturaRepository, CandidaturaRepository>();
             services.AddScoped<ICandidaturaService, CandidaturaService>();
             services.AddScoped<ICandidaturaServiceApp, CandidaturaServiceApp>();

@@ -3,6 +3,7 @@ using System;
 using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CurriculoVitaeInteligenteInfra.Migrations
 {
     [DbContext(typeof(CVIContext))]
-    partial class CVIContextModelSnapshot : ModelSnapshot
+    [Migration("20221123045832_AlterarToken")]
+    partial class AlterarToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,7 +54,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.HasIndex("VagaId");
 
-                    b.ToTable("Candidaturas", (string)null);
+                    b.ToTable("Candidaturas");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Cargo", b =>
@@ -94,7 +97,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("Cargos", (string)null);
+                    b.ToTable("Cargos");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Cidade", b =>
@@ -110,7 +113,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cidade", (string)null);
+                    b.ToTable("Cidade");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Conta", b =>
@@ -150,7 +153,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("Conta", (string)null);
+                    b.ToTable("Conta");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Contato", b =>
@@ -185,7 +188,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.HasIndex("PerfilId");
 
-                    b.ToTable("Contatos", (string)null);
+                    b.ToTable("Contatos");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Curso", b =>
@@ -198,7 +201,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Curso", (string)null);
+                    b.ToTable("Curso");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.CursoFormacaoAcademica", b =>
@@ -251,7 +254,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.HasIndex("PerfilId");
 
-                    b.ToTable("CursoFormacaoAcademica", (string)null);
+                    b.ToTable("CursoFormacaoAcademica");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Endereco", b =>
@@ -311,7 +314,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("PerfilId")
                         .IsUnique();
 
-                    b.ToTable("Endereco", (string)null);
+                    b.ToTable("Endereco");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Escolaridade", b =>
@@ -340,7 +343,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("PerfilId")
                         .IsUnique();
 
-                    b.ToTable("Escolaridade", (string)null);
+                    b.ToTable("Escolaridade");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Estado", b =>
@@ -371,7 +374,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("UF")
                         .IsUnique();
 
-                    b.ToTable("Estado", (string)null);
+                    b.ToTable("Estado");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.HistoricoProfissional", b =>
@@ -425,7 +428,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("SegmentoId")
                         .IsUnique();
 
-                    b.ToTable("HistoricoProfissional", (string)null);
+                    b.ToTable("HistoricoProfissional");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Idioma", b =>
@@ -460,7 +463,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("PerfilId")
                         .IsUnique();
 
-                    b.ToTable("Idioma", (string)null);
+                    b.ToTable("Idioma");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Nacionalidade", b =>
@@ -478,7 +481,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("Nacionalidade", (string)null);
+                    b.ToTable("Nacionalidade");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Objetivo", b =>
@@ -516,7 +519,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("PerfilId")
                         .IsUnique();
 
-                    b.ToTable("Objetivo", (string)null);
+                    b.ToTable("Objetivo");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Pais", b =>
@@ -538,7 +541,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("Pais", (string)null);
+                    b.ToTable("Pais");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Perfil", b =>
@@ -601,7 +604,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.HasIndex("SegmentoId");
 
-                    b.ToTable("Perfil", (string)null);
+                    b.ToTable("Perfil");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Segmento", b =>
@@ -618,7 +621,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("Segmento", (string)null);
+                    b.ToTable("Segmento");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.TokenAuth", b =>
@@ -630,6 +633,9 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime?>("DataExpiracao")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<DateTime?>("DateCreate")
                         .IsRequired()
                         .HasColumnType("timestamp without time zone");
@@ -639,9 +645,6 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
-
-                    b.Property<int?>("ExpiryTimeStamp")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Role")
                         .HasColumnType("text");
@@ -658,7 +661,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.ToTable("TokenAuth", (string)null);
+                    b.ToTable("TokenAuth");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Vaga", b =>
@@ -731,7 +734,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.HasIndex("PerfilId")
                         .IsUnique();
 
-                    b.ToTable("Vaga", (string)null);
+                    b.ToTable("Vaga");
                 });
 
             modelBuilder.Entity("CurriculoVitaeInteligenteDomain.Entities.Candidatura", b =>
