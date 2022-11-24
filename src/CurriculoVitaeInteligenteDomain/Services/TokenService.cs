@@ -1,4 +1,5 @@
-﻿using CurriculoVitaeInteligenteDomain.Constant.settings;
+﻿using AutoMapper;
+using CurriculoVitaeInteligenteDomain.Constant.settings;
 using CurriculoVitaeInteligenteDomain.Entities;
 using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteDomain.Interfaces.Services;
@@ -14,10 +15,13 @@ namespace CurriculoVitaeInteligenteDomain.Services
     {
         private readonly ITokenRepository _tokenRepository;
         private readonly IContaService _contaService;
-        public TokenService(ITokenRepository repository, IUnitOfWork unitOfWork, IContaService contaService) : base(repository, unitOfWork)
+        private readonly IMapper _mapper;
+
+        public TokenService(ITokenRepository repository, IUnitOfWork unitOfWork, IContaService contaService, IMapper mapper) : base(repository, unitOfWork)
         {
             _tokenRepository = repository;
             _contaService = contaService;
+            _mapper = mapper;
         }
 
         public async Task<TokenAuth?> GenerateToken(Conta user)
@@ -34,7 +38,7 @@ namespace CurriculoVitaeInteligenteDomain.Services
                     return null;
                 }
 
-                var dataExpiracao = DateTime.Now.AddMinutes(60);
+                var dataExpiracao = DateTime.UtcNow.AddMinutes(60);
                 var key = Encoding.ASCII.GetBytes(Token.Secret);
                 var claimsIdentity = new ClaimsIdentity(new List<Claim>
 
@@ -61,8 +65,10 @@ namespace CurriculoVitaeInteligenteDomain.Services
                     Email = user.Email,
                     Token = tokenResult,
                     DataExpiracao = dataExpiracao,
-                    ExpiryTimeStamp = (int)dataExpiracao.Subtract(DateTime.Now).TotalSeconds  
+                    ExpiryTimeStamp = (int)dataExpiracao.Subtract(DateTime.UtcNow).TotalSeconds
                 };
+                _mapper.Map(conta, tokenAuth);
+               
 
                 await _tokenRepository.Add(tokenAuth!);
                 return tokenAuth;

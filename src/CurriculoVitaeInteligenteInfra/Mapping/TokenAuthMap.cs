@@ -9,7 +9,7 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
         {
             // chave
             base.Configure(builder);
-            builder.Property(i => i.Token).IsRequired(true).HasMaxLength(255).HasConversion(v => v == null ? null : v.ToLower(), v => v);
+            builder.Property(i => i.Token).IsRequired(true).HasMaxLength(600).HasConversion(v => v == null ? null : v.ToLower(), v => v);
             builder.Property(i => i.ContaId).HasMaxLength(300);
 
         }
