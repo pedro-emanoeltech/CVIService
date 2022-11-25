@@ -9,6 +9,7 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
     {
         public CandidaturaRepository(CVIContext context) : base(context)
         {
+
         }
         public override async Task<Candidatura?> Get(string id)
         {

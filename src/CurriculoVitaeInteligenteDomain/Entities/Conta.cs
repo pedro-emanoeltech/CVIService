@@ -1,6 +1,5 @@
 ﻿using CVIServiceLibShared.Constants.Enums;
 
-
 namespace CurriculoVitaeInteligenteDomain.Entities
 {
     public class Conta : BaseEntityComData
@@ -10,6 +9,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
 
         public string? Senha { get; set; }
 
+        public TipoConta? TipoConta { get; set; }
         public Status Status { get; set; } = Status.Ativo;
     }
 }

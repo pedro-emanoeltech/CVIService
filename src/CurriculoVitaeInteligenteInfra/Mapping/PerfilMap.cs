@@ -19,7 +19,7 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             builder.Property(i => i.Idade).HasColumnType("varchar(3)");
             builder.Property(i => i.EstadoCivil).HasColumnType("varchar(30)").HasConversion(new EnumToStringConverter<EstadoCivil>());
             builder.Property(i => i.Genero).HasColumnType("varchar(20)").HasConversion(new EnumToStringConverter<Genero>());
-            builder.Property(i => i.TipoPerfil).HasMaxLength(5).HasConversion(new EnumToStringConverter<TipoPerfil>());
+            
 
             //relacionamento
             builder.HasOne(i => i.Conta).WithMany().HasForeignKey(i=>i.ContaId).OnDelete(DeleteBehavior.Cascade);
