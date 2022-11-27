@@ -10,6 +10,7 @@ namespace CurriculoVitaeInteligenteAPI.Controllers
     {
         public PerfilController(IPerfilServiceApp serviceApp, IMapper mapper) : base(serviceApp, mapper)
         {
+            ConsiderarContaId = true;
         }
 
     }

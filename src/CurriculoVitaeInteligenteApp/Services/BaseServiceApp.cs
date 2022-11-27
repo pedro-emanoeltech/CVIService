@@ -1,10 +1,15 @@
 ﻿using AutoMapper;
 using CurriculoVitaeInteligenteApp.Interfaces;
+using CurriculoVitaeInteligenteDomain.Constant.settings;
 using CurriculoVitaeInteligenteDomain.Entities;
 using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteDomain.Interfaces.Services;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq.Expressions;
+using System.Security.Claims;
+using System.Text;
 
 namespace CurriculoVitaeInteligenteApp.Services
 {
@@ -19,7 +24,35 @@ namespace CurriculoVitaeInteligenteApp.Services
             _Service = Service;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-          
+        }
+        public string GetClaimsFromToken(string token)
+        {
+            try
+            {
+
+
+                var tokenvalidationparametros = new TokenValidationParameters
+                {
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Token.Secret)),
+                    ValidateLifetime = false,
+                };
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var principal = tokenHandler.ValidateToken(token, tokenvalidationparametros, out var securityToken);
+                if (securityToken is not JwtSecurityToken jwtSecurityToken)
+                {
+
+                }
+                var contaId = principal.Claims.Where(p => p.Type == ClaimTypes.NameIdentifier).Select(c => c.Value).SingleOrDefault()!.ToString()!;
+
+                return contaId;
+            }
+            catch (Exception)
+            {
+                throw ;
+            }
         }
 
 
@@ -33,9 +66,9 @@ namespace CurriculoVitaeInteligenteApp.Services
             return await _Service.Get(id);
         }
 
-        public virtual async Task<IList<T>> GetList()
+        public virtual async Task<IList<T>> GetList(string ContaId = "")
         {
-            return await _Service.GetList();
+            return await _Service.GetList(ContaId);
 
         }
 
@@ -48,7 +81,7 @@ namespace CurriculoVitaeInteligenteApp.Services
         {
             try
             {
-                 TEntity = await _Service.Edit(id, TEntity);
+                TEntity = await _Service.Edit(id, TEntity);
                 return TEntity;
             }
             catch (Exception)
@@ -77,13 +110,13 @@ namespace CurriculoVitaeInteligenteApp.Services
             {
                 return await _Service.GetToList(condicao);
             }
-            catch (Exception e )   
+            catch (Exception e)
             {
-               throw new Exception(e.Message);            
+                throw new Exception(e.Message);
             }
         }
 
-       
+
     }
 
 }

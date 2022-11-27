@@ -28,9 +28,9 @@ namespace CurriculoVitaeInteligenteDomain.Services
             return await _repositorio.Get(id);
         }
 
-        public virtual  async Task<IList<T>> GetList()
+        public virtual  async Task<IList<T>> GetList(string ContaId ="")
         {
-            return await _repositorio.GetList();
+            return await _repositorio.GetList(ContaId);
         }
 
         public async Task<bool> Remove(string id)

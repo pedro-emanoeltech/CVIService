@@ -11,6 +11,8 @@ namespace CurriculoVitaeInteligenteApp.AutoMapper
         {
             CreateMap<Conta,TokenAuth>(MemberList.Destination)
                 .ForMember(d => d.ContaId, o => o.MapFrom(s => s.Id))
+                 .ForMember(d => d.Role, o => o.MapFrom(s => s.TipoConta))
+
                 .ForMember(dest => dest.Id, option => option.Ignore())
                 .ReverseMap().IgnoreAllSourcePropertiesWithAnInaccessibleSetter();
         }

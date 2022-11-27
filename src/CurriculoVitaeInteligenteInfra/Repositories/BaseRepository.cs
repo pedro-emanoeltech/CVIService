@@ -3,20 +3,23 @@ using CurriculoVitaeInteligenteDomain.Entities.Interfaces;
 using CurriculoVitaeInteligenteDomain.Interfaces.Repositories;
 using CurriculoVitaeInteligenteInfra.Context;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 using System.Data;
 using System.Linq.Expressions;
+using System.Reflection;
+using System.Reflection.Metadata;
+
 
 namespace CurriculoVitaeInteligenteInfra.Repositories
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : ClassBase, IAddContextBaseProperty
     {
         protected readonly CVIContext _context;
-      
+
 
         protected BaseRepository(CVIContext context)
         {
             _context = context;
-
         }
        
         public virtual async Task<T> Add(T TEntity, bool saveChanges = true)
@@ -58,12 +61,11 @@ namespace CurriculoVitaeInteligenteInfra.Repositories
             }
         }
 
-        public virtual async Task<IList<T>> GetList()
+        public virtual async Task<IList<T>> GetList(string ContaId ="")
         {
             try
             {
-                var lista = await _context.Set<T>()!.ToListAsync<T>();
-                return lista;
+                return await _context.Set<T>().ToListAsync<T>(); 
             }
             catch (Exception e)
             {

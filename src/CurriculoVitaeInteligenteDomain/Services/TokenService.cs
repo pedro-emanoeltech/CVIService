@@ -24,6 +24,7 @@ namespace CurriculoVitaeInteligenteDomain.Services
             _mapper = mapper;
         }
 
+
         public async Task<TokenAuth?> GenerateToken(Conta user)
         {
             if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Senha))
@@ -32,7 +33,7 @@ namespace CurriculoVitaeInteligenteDomain.Services
             }
             try
             {
-                var conta = await _contaService.GetFirstOrDefault(p => p.Email == user.Email && p.Senha == user.Senha);
+                var conta = await _contaService.GetFirstOrDefault(p => p.Email.Equals(user.Email)  && p.Senha == user.Senha);
                 if (conta is null)
                 {
                     return null;
@@ -46,6 +47,7 @@ namespace CurriculoVitaeInteligenteDomain.Services
                     new Claim(ClaimTypes.Email,conta.Email!),
                     new Claim(ClaimTypes.NameIdentifier,conta.Id.ToString()!),
                     new Claim(ClaimTypes.Role,conta.TipoConta.ToString()!)
+
                 });
                 var credencial = new SigningCredentials(
                     new SymmetricSecurityKey(key),
@@ -63,8 +65,6 @@ namespace CurriculoVitaeInteligenteDomain.Services
 
                 var tokenAuth = new TokenAuth
                 {
-                    Email = user.Email,
-                    Role = user.TipoConta.ToString(),
                     Token = tokenResult,
                     DataExpiracao = dataExpiracao,
                     ExpiryTimeStamp = (int)dataExpiracao.Subtract(DateTime.UtcNow).TotalSeconds
