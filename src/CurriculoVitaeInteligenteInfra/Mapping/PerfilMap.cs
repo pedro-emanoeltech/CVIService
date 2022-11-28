@@ -13,6 +13,7 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             // chave
             base.Configure(builder);
             builder.Property(i => i.Nome).HasColumnType("varchar(150)");
+            builder.Property(i => i.Bio).HasColumnType("varchar(150)");
             builder.Property(i => i.Apelido).HasColumnType("varchar(50)");
             builder.Property(i => i.CNPJ).HasColumnType("varchar(14)");
             builder.Property(i => i.CPF).HasColumnType("varchar(12)");

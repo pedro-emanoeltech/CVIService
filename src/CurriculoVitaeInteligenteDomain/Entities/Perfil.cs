@@ -5,6 +5,7 @@ namespace CurriculoVitaeInteligenteDomain.Entities
     public class Perfil : BaseEntityConta
     {
         public string? Nome { get; set; }
+        public string? Bio { get; set; }
         public string? Apelido { get; set; }
         public Int64? CPF { get; set; }
         public Int64? CNPJ { get; set; }
