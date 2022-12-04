@@ -38,7 +38,7 @@ namespace CurriculoVitaeInteligenteAPI.Configuration
                 {
                     opt.SwaggerDoc("v1", new OpenApiInfo
                     {
-                        Title = ("Curriculo Inteligente API "),
+                        Title = ("VAGAS PRO - PLATAFORMA DE RECRUTAMENTO ONLINE  "),
                         Version = "v1",
                         Description = "Projeto TCC Pedro Emanoel" ,
                         Contact= new OpenApiContact

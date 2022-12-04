@@ -40,7 +40,5 @@ app.UseConfiguratonsApi();
 
 app.MapRazorPages();
 
-app.Urls.Add("http://*:5071");
-app.Urls.Add("https://*:5070");
 
 app.Run();
