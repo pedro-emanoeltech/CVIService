@@ -10,7 +10,7 @@ namespace CurriculoVitaeInteligenteInfra.Mapping
             // chave
             base.Configure(builder);
             builder.Property(i => i.NomeCargo).IsRequired(true).HasMaxLength(255).HasConversion(v => v == null ? null : v.ToLower(), v => v);
-            builder.Property(i => i.DescricaoCargo).HasMaxLength(300);
+            builder.Property(i => i.DescricaoCargo).HasMaxLength(1500);
 
          
           

@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Repository\Deploy\Back</_PublishTargetUrl>
-    <History>True|2022-12-04T14:18:29.9786946Z;</History>
+    <_PublishTargetUrl>C:\Repository\Deploy\CurriculoVitaeInteligenteAPI</_PublishTargetUrl>
+    <History>True|2022-12-05T22:35:39.1168746Z;True|2022-12-05T19:34:56.8824635-03:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

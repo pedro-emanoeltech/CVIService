@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CurriculoVitaeInteligenteInfra.Migrations
 {
     [DbContext(typeof(CVIContext))]
-    [Migration("20221125014752_AjusteConta")]
-    partial class AjusteConta
+    [Migration("20221205220331_Inicial")]
+    partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -556,14 +556,16 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.Property<string>("Apelido")
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("Bio")
+                        .HasColumnType("varchar(150)");
+
                     b.Property<string>("CNPJ")
                         .HasColumnType("varchar(14)");
 
                     b.Property<string>("CPF")
                         .HasColumnType("varchar(12)");
 
-                    b.Property<Guid?>("ContaId")
-                        .IsRequired()
+                    b.Property<Guid>("ContaId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime?>("DateCreate")
@@ -629,7 +631,7 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                     b.Property<Guid?>("Id")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("ContaId")
+                    b.Property<Guid>("ContaId")
                         .HasMaxLength(300)
                         .HasColumnType("uuid");
 
@@ -650,7 +652,8 @@ namespace CurriculoVitaeInteligenteInfra.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Role")
-                        .HasColumnType("text");
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
                     b.Property<string>("Token")
                         .IsRequired()
